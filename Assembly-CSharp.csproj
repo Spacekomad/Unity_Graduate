@@ -148,6 +148,9 @@
     <Compile Include="Assets\ExplosiveLLC\SuperCharacterController\Code\Core\SuperCharacterController.cs" />
     <Compile Include="Assets\Lab\Script\StateMachine\FiniteStateMachine.cs" />
     <Compile Include="Assets\ExplosiveLLC\SuperCharacterController\Code\Core\SuperGround.cs" />
+    <Compile Include="Assets\Lab\Script\SceneCameraManager.cs" />
+    <Compile Include="Assets\Lab\Script\PlayerAnimationEventReceiver.cs" />
+    <Compile Include="Assets\Lab\Script\EnumTypes.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\ExplosiveLLC\SuperCharacterController\Code\README.txt" />
