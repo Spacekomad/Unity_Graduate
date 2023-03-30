@@ -1,0 +1,52 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class PlayerGroundedState : PlayerStateLayer
+{
+    private bool test = false;
+
+    public PlayerGroundedState(PlayerCharacter controller, FiniteStateMachine mainMachine, FiniteStateMachine subMachine) : base(controller, mainMachine, subMachine) { }
+
+    public override void Enter()
+    {
+        base.Enter();
+        subMachine.Initialize(playerCharacter.movingState);
+    }
+    public override void LogicUpdate()
+    {
+        base.LogicUpdate();
+        if (test)// If player got hit
+        {
+            if (test)// Stifness
+            {
+                machine.ChangeState(playerCharacter.stiffnessState);
+            }
+            else if (test)// Knockdown
+            {
+                machine.ChangeState(playerCharacter.downState);
+            }
+        }
+        else
+        {
+            if (playerCharacter.Grounded)
+            {
+                subMachine.currentState.LogicUpdate();
+            }
+            else
+            {
+                machine.ChangeState(playerCharacter.fallingState);
+            }
+        }
+    }
+    public override void PhysicsUpdate()
+    {
+        base.PhysicsUpdate();
+        subMachine.currentState.PhysicsUpdate();
+    }
+    public override void Exit()
+    {
+        base.Exit();
+        subMachine.currentState.Exit();
+    }
+}

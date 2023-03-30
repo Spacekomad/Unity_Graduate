@@ -432,7 +432,6 @@
 "Assets/Lab/Script/PlayerCharacter.cs"
 "Assets/Lab/Script/PlayerInput.cs"
 "Assets/Lab/Script/PlayerRange.cs"
-"Assets/Lab/Script/PlayerStateMachine/PlayerAimingState.cs"
 "Assets/Lab/Script/PlayerStateMachine/PlayerAttackingState.cs"
 "Assets/Lab/Script/PlayerStateMachine/PlayerCharacterSuperState.cs"
 "Assets/Lab/Script/PlayerStateMachine/PlayerDownState.cs"

@@ -86,6 +86,7 @@
     <Compile Include="Assets\ExplosiveLLC\SuperCharacterController\Code\Core\SuperMath.cs" />
     <Compile Include="Assets\ExplosiveLLC\RPG Character Mecanim Animation Pack FREE\Code\Lookups\Animations\HitType.cs" />
     <Compile Include="Assets\Lab\Script\PlayerStateMachine\PlayerCharacterSuperState.cs" />
+    <Compile Include="Assets\Lab\Script\PlayerRange.cs" />
     <Compile Include="Assets\Lab\Script\PlayerStateMachine\PlayerUsingSkillState.cs" />
     <Compile Include="Assets\ExplosiveLLC\RPG Character Mecanim Animation Pack FREE\Code\Actions\BaseActionHandler.cs" />
     <Compile Include="Assets\ExplosiveLLC\RPG Character Mecanim Animation Pack FREE\Code\Extensions\AnimatorExtensions.cs" />
@@ -135,7 +136,6 @@
     <Compile Include="Assets\ExplosiveLLC\RPG Character Mecanim Animation Pack FREE\Demo Elements\Code\NPC.cs" />
     <Compile Include="Assets\ExplosiveLLC\RPG Character Mecanim Animation Pack FREE\Code\Lookups\Animations\UnarmedAttack.cs" />
     <Compile Include="Assets\ExplosiveLLC\RPG Character Mecanim Animation Pack FREE\Code\Actions\Movement\Fall.cs" />
-    <Compile Include="Assets\Lab\Script\PlayerStateMachine\PlayerAimingState.cs" />
     <Compile Include="Assets\ExplosiveLLC\SuperCharacterController\Code\Core\SuperCollider.cs" />
     <Compile Include="Assets\ExplosiveLLC\RPG Character Mecanim Animation Pack FREE\Code\Actions\Movement\HitContext.cs" />
     <Compile Include="Assets\Lab\Script\PlayerStateMachine\PlayerDownState.cs" />
@@ -148,7 +148,6 @@
     <Compile Include="Assets\ExplosiveLLC\SuperCharacterController\Code\Core\SuperCharacterController.cs" />
     <Compile Include="Assets\Lab\Script\StateMachine\FiniteStateMachine.cs" />
     <Compile Include="Assets\ExplosiveLLC\SuperCharacterController\Code\Core\SuperGround.cs" />
-    <Compile Include="Assets\Lab\Script\PlayerRange.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\ExplosiveLLC\SuperCharacterController\Code\README.txt" />

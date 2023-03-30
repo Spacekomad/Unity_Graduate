@@ -1,0 +1,30 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public abstract class PlayerCharacterSuperState : State
+{
+    protected PlayerCharacter playerCharacter;
+
+    public PlayerCharacterSuperState(PlayerCharacter character, FiniteStateMachine machine) : base(machine)
+    {
+        playerCharacter = character;
+    }
+
+    public override void Enter()
+    {
+
+    }
+    public override void LogicUpdate()
+    {
+
+    }
+    public override void PhysicsUpdate()
+    {
+
+    }
+    public override void Exit()
+    {
+
+    }
+}
