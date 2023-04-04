@@ -58,20 +58,13 @@
   <ItemGroup>
     <Compile Include="Assets\Lab\Script\PlayerCharacter.cs" />
     <Compile Include="Assets\Lab\Script\Command\AttackCommand\Sword\SwordAttackCommand3.cs" />
-    <Compile Include="Assets\ExplosiveLLC\SuperCharacterController\Code\Core\SuperStateMachine.cs" />
-    <Compile Include="Assets\ExplosiveLLC\SuperCharacterController\Code\Examples\SimpleStateMachine.cs" />
     <Compile Include="Assets\Lab\Script\PlayerStateMachine\PlayerMovingState.cs" />
-    <Compile Include="Assets\ExplosiveLLC\SuperCharacterController\Code\Core\SuperCollision.cs" />
-    <Compile Include="Assets\ExplosiveLLC\SuperCharacterController\Code\Math3d.cs" />
-    <Compile Include="Assets\ExplosiveLLC\SuperCharacterController\Code\Core\CollisionSphere.cs" />
-    <Compile Include="Assets\ExplosiveLLC\SuperCharacterController\Code\Core\SuperMath.cs" />
     <Compile Include="Assets\Lab\Script\PlayerStateMachine\PlayerCharacterSuperState.cs" />
     <Compile Include="Assets\Lab\Script\PlayerRange.cs" />
-    <Compile Include="Assets\Lab\Script\PlayerStateMachine\PlayerUsingSkillState.cs" />
-    <Compile Include="Assets\ExplosiveLLC\SuperCharacterController\Code\Examples\PlayerInputController.cs" />
-    <Compile Include="Assets\ExplosiveLLC\SuperCharacterController\Code\Core\IgnoredCollider.cs" />
+    <Compile Include="Assets\Lab\Script\PlayerStateMachine\PlayerSkillState.cs" />
+    <Compile Include="Assets\Lab\Scriptable Object\WeaponAttackData.cs" />
     <Compile Include="Assets\Lab\Scriptable Object\WeaponData.cs" />
-    <Compile Include="Assets\Lab\Script\Command\AttackCommand\MeleeAttack.cs" />
+    <Compile Include="Assets\Lab\Script\MeleeAttackInfo.cs" />
     <Compile Include="Assets\Lab\Scriptable Object\SwordAttackData.cs" />
     <Compile Include="Assets\Lab\Script\Command\AttackCommand\Sword\SwordAttackCommand2.cs" />
     <Compile Include="Assets\Lab\Script\PlayerStateMachine\PlayerStateLayer.cs" />
@@ -81,37 +74,29 @@
     <Compile Include="Assets\Lab\Script\PlayerStateMachine\PlayerRollingState.cs" />
     <Compile Include="Assets\Lab\Script\Equipment\Equipment.cs" />
     <Compile Include="Assets\Lab\Script\StateMachine\EmptyState.cs" />
-    <Compile Include="Assets\ExplosiveLLC\SuperCharacterController\Code\Examples\Gravity.cs" />
-    <Compile Include="Assets\ExplosiveLLC\SuperCharacterController\Code\Examples\PlayerMachineDebug.cs" />
     <Compile Include="Assets\Lab\Script\Command\AttackCommand\Sword\SwordAttackCommand4.cs" />
     <Compile Include="Assets\Lab\Script\PlayerStateMachine\PlayerAttackingState.cs" />
     <Compile Include="Assets\Lab\Script\StateMachine\State.cs" />
     <Compile Include="Assets\Lab\Script\PlayerStateMachine\PlayerGroundedState.cs" />
     <Compile Include="Assets\Lab\Script\PlayerStateMachine\PlayerStiffnessState.cs" />
-    <Compile Include="Assets\ExplosiveLLC\SuperCharacterController\Code\Examples\PlayerMachine.cs" />
     <Compile Include="Assets\Lab\Script\PlayerInput.cs" />
-    <Compile Include="Assets\ExplosiveLLC\SuperCharacterController\Code\Core\SuperCollisionType.cs" />
     <Compile Include="Assets\Lab\Script\Command\AttackCommand\MeleeAttackCommand.cs" />
     <Compile Include="Assets\Lab\Script\PlayerStateMachine\PlayerUsingItemState.cs" />
-    <Compile Include="Assets\ExplosiveLLC\SuperCharacterController\Code\Core\BSPTree.cs" />
+    <Compile Include="Assets\Lab\Script\Globals.cs" />
     <Compile Include="Assets\Lab\Script\PlayerStateMachine\PlayerFreeFallingState.cs" />
-    <Compile Include="Assets\ExplosiveLLC\SuperCharacterController\Code\Core\SuperCollider.cs" />
     <Compile Include="Assets\Lab\Script\PlayerStateMachine\PlayerDownState.cs" />
     <Compile Include="Assets\Lab\Script\PlayerStateMachine\PlayerInteractingState.cs" />
-    <Compile Include="Assets\ExplosiveLLC\SuperCharacterController\Code\Examples\PlayerCamera.cs" />
-    <Compile Include="Assets\ExplosiveLLC\SuperCharacterController\Code\DebugDraw.cs" />
     <Compile Include="Assets\Lab\Script\PlayerAnimationEventReceiver.cs" />
-    <Compile Include="Assets\ExplosiveLLC\SuperCharacterController\Code\Core\SuperCharacterController.cs" />
     <Compile Include="Assets\Lab\Script\StateMachine\FiniteStateMachine.cs" />
     <Compile Include="Assets\Lab\Script\SceneCameraManager.cs" />
     <Compile Include="Assets\Lab\Script\Equipment\Weapons\Weapon.cs" />
     <Compile Include="Assets\Lab\Script\Command\Command.cs" />
-    <Compile Include="Assets\ExplosiveLLC\SuperCharacterController\Code\Core\SuperGround.cs" />
-    <Compile Include="Assets\Lab\Scriptable Object\WeaponAttackData.cs" />
-    <Compile Include="Assets\Lab\Script\Globals.cs" />
+    <Compile Include="Assets\Ancient Set - Dungeons\Aquarius Max Character\DemoCharacter.cs" />
+    <Compile Include="Assets\Ancient Set - Dungeons\Aquarius Max Character\Rotator2.cs" />
+    <Compile Include="Assets\Ancient Set - Dungeons\Aquarius Max Character\MakeSomeNoise.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Assets\ExplosiveLLC\SuperCharacterController\Code\README.txt" />
+    <None Include="Assets\Ancient Set - Dungeons\Aquarius Max Character\Rock_Cover_Standard.shader" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
