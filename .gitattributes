@@ -117,3 +117,4 @@
 *.tar lfs
 Assets/** filter=lfs diff=lfs merge=lfs -text
 Assets/Agarkova_CG/Beard_man/Art/Mesh/Beard_man.fbx filter=lfs diff=lfs merge=lfs -text
+Assets/Ancient[[:space:]]Set[[:space:]]-[[:space:]]Dungeons/** filter=lfs diff=lfs merge=lfs -text
