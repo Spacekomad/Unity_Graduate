@@ -1,0 +1,25 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public abstract class Character : MonoBehaviour
+{
+    protected FiniteStateMachine mainMachine;
+
+    protected virtual void Awake()
+    {
+        mainMachine = new FiniteStateMachine();
+    }
+    protected virtual void Start()
+    {
+        mainMachine.Initialize(new EmptyState(mainMachine));
+    }
+    protected virtual void Update()
+    {
+        mainMachine.currentState.LogicUpdate();
+    }
+    protected virtual void FixedUpdate()
+    {
+        mainMachine.currentState.PhysicsUpdate();
+    }
+}
