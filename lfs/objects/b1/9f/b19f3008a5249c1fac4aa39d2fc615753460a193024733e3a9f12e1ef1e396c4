@@ -1,0 +1,60 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class PlayerInput : MonoBehaviour
+{
+    //Singleton
+    public static PlayerInput instance { get { return _instance; } }
+    protected static PlayerInput _instance;
+    protected PlayerInput() { }
+
+    [Header("Character Input Values")]
+    public Vector2 move;
+    public Vector2 look;
+    public bool jump;
+    public bool sprint;
+    public float sprintGravity;
+
+    [Header("Movement Settings")]
+    public bool analogMovement;
+
+    [Header("Key Setting")]
+    public static KeyCode lockOnKey = KeyCode.Q;
+    public static KeyCode rollKey = KeyCode.E;
+    public static KeyCode attackKey = KeyCode.Mouse0;
+
+    private void Awake()
+    {
+        //Singleton
+        if (null == instance)
+        {
+            _instance = this;
+            DontDestroyOnLoad(this.gameObject);
+        }
+        else
+        {
+            Destroy(this.gameObject);
+        }
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        //OnMove
+        move.x = Input.GetAxis("Horizontal");
+        move.y = Input.GetAxis("Vertical");
+        //OnJump
+        jump = Input.GetButton("Jump");
+        //OnSprint
+        sprint = Input.GetButton("Sprint");
+        if (analogMovement)
+        {
+            sprintGravity = Input.GetAxis("Sprint");
+        }
+        else
+        {
+            sprintGravity = sprint ? 1.0f : 0.0f;
+        }
+    }
+}
