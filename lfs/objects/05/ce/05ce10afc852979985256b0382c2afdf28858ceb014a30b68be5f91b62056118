@@ -1,0 +1,17 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+namespace EnumTypes
+{
+    public enum PlayerAnimation
+    {
+        None = -1,
+        IdleNMove = 0,
+        Attack = 1,
+        Roll = 2,
+        Skill = 3,
+        UsingItem = 4,
+        Interaction = 5
+    }
+}
