@@ -1,23 +1,29 @@
 Using pre-set license
 Built from '2021.3/staging' branch; Version is '2021.3.11f1 (0a5ca18544bf) revision 679073'; Using compiler version '192829333'; Build Type 'Release'
-OS: 'Windows 10  (10.0.19041) 64bit Enterprise' Language: 'ko' Physical Memory: 16259 MB
+OS: 'Windows 11  (10.0.22621) 64bit Core' Language: 'ko' Physical Memory: 16322 MB
 BatchMode: 1, IsHumanControllingUs: 0, StartBugReporterOnCrash: 0, Is64bit: 1, IsPro: 1
 
 COMMAND LINE ARGUMENTS:
-C:\Program Files\Unity\Hub\Editor\2021.3.11f1\Editor\Unity.exe
+D:\Unity\Unity 2021.3.11f1\Editor\Unity.exe
 -adb2
 -batchMode
 -noUpm
 -name
 AssetImportWorker1
 -projectPath
-D:/Unity/Dongguk/Graduation Project/Lab
+D:/Unity_Graduate
 -logFile
 Logs/AssetImportWorker1.log
 -srvPort
+<<<<<<< HEAD
 2611
 Successfully changed project path to: D:/Unity/Dongguk/Graduation Project/Lab
 D:/Unity/Dongguk/Graduation Project/Lab
+=======
+53554
+Successfully changed project path to: D:/Unity_Graduate
+D:/Unity_Graduate
+>>>>>>> main
 [UnityMemory] Configuration Parameters - Can be set up in boot.config
     "memorysetup-bucket-allocator-granularity=16"
     "memorysetup-bucket-allocator-bucket-count=8"
@@ -47,16 +53,21 @@ D:/Unity/Dongguk/Graduation Project/Lab
     "memorysetup-temp-allocator-size-cloud-worker=32768"
     "memorysetup-temp-allocator-size-gi-baking-worker=262144"
     "memorysetup-temp-allocator-size-gfx=262144"
+<<<<<<< HEAD
 Refreshing native plugins compatible for Editor in 316.41 ms, found 3 plugins.
+=======
+Refreshing native plugins compatible for Editor in 74.93 ms, found 3 plugins.
+>>>>>>> main
 Preloading 0 native plugins for Editor in 0.00 ms.
 Initialize engine version: 2021.3.11f1 (0a5ca18544bf)
-[Subsystems] Discovering subsystems at path C:/Program Files/Unity/Hub/Editor/2021.3.11f1/Editor/Data/Resources/UnitySubsystems
-[Subsystems] Discovering subsystems at path D:/Unity/Dongguk/Graduation Project/Lab/Assets
+[Subsystems] Discovering subsystems at path D:/Unity/Unity 2021.3.11f1/Editor/Data/Resources/UnitySubsystems
+[Subsystems] Discovering subsystems at path D:/Unity_Graduate/Assets
 GfxDevice: creating device client; threaded=0; jobified=0
 Direct3D:
     Version:  Direct3D 11.0 [level 11.1]
-    Renderer: NVIDIA GeForce GTX 1050 Ti (ID=0x1c8c)
+    Renderer: NVIDIA GeForce RTX 2070 SUPER (ID=0x1e84)
     Vendor:   NVIDIA
+<<<<<<< HEAD
     VRAM:     4019 MB
     Driver:   31.0.15.3114
 Initialize mono
@@ -78,11 +89,33 @@ Mono: successfully reloaded assembly
 Domain Reload Profiling:
 	ReloadAssembly (1458ms)
 		BeginReloadAssembly (187ms)
+=======
+    VRAM:     8003 MB
+    Driver:   31.0.15.3141
+Initialize mono
+Mono path[0] = 'D:/Unity/Unity 2021.3.11f1/Editor/Data/Managed'
+Mono path[1] = 'D:/Unity/Unity 2021.3.11f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit-win32'
+Mono config path = 'D:/Unity/Unity 2021.3.11f1/Editor/Data/MonoBleedingEdge/etc'
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56952
+Begin MonoManager ReloadAssembly
+Registering precompiled unity dll's ...
+Register platform support module: D:/Unity/Unity 2021.3.11f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
+Registered in 0.001504 seconds.
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 79.63 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Mono: successfully reloaded assembly
+- Completed reload, in  0.530 seconds
+Domain Reload Profiling:
+	ReloadAssembly (530ms)
+		BeginReloadAssembly (53ms)
+>>>>>>> main
 			ExecutionOrderSort (0ms)
 			DisableScriptedObjects (0ms)
 			BackupInstance (0ms)
 			ReleaseScriptingObjects (0ms)
 			CreateAndSetChildDomain (1ms)
+<<<<<<< HEAD
 		EndReloadAssembly (1033ms)
 			LoadAssemblies (185ms)
 			RebuildTransferFunctionScriptingTraits (0ms)
@@ -97,17 +130,38 @@ Domain Reload Profiling:
 				BeforeProcessingInitializeOnLoad (2ms)
 				ProcessInitializeOnLoadAttributes (191ms)
 				ProcessInitializeOnLoadMethodAttributes (110ms)
+=======
+		EndReloadAssembly (396ms)
+			LoadAssemblies (53ms)
+			RebuildTransferFunctionScriptingTraits (0ms)
+			SetupTypeCache (87ms)
+			ReleaseScriptCaches (0ms)
+			RebuildScriptCaches (25ms)
+			SetupLoadedEditorAssemblies (238ms)
+				LogAssemblyErrors (0ms)
+				InitializePlatformSupportModulesInManaged (5ms)
+				SetLoadedEditorAssemblies (0ms)
+				RefreshPlugins (80ms)
+				BeforeProcessingInitializeOnLoad (1ms)
+				ProcessInitializeOnLoadAttributes (108ms)
+				ProcessInitializeOnLoadMethodAttributes (44ms)
+>>>>>>> main
 				AfterProcessingInitializeOnLoad (0ms)
 				EditorAssembliesLoaded (0ms)
 			ExecutionOrderSort2 (0ms)
 			AwakeInstancesAfterBackupRestoration (0ms)
 Platform modules already initialized, skipping
 Registering precompiled user dll's ...
+<<<<<<< HEAD
 Registered in 0.016569 seconds.
+=======
+Registered in 0.003195 seconds.
+>>>>>>> main
 Begin MonoManager ReloadAssembly
-Symbol file LoadedFromMemory doesn't match image D:\Unity\Dongguk\Graduation Project\Lab\Library\PackageCache\com.unity.visualscripting@1.7.8\Editor\VisualScripting.Core\Dependencies\YamlDotNet\Unity.VisualScripting.YamlDotNet.dll
-Symbol file LoadedFromMemory doesn't match image D:\Unity\Dongguk\Graduation Project\Lab\Library\PackageCache\com.unity.visualscripting@1.7.8\Editor\VisualScripting.Core\Dependencies\DotNetZip\Unity.VisualScripting.IonicZip.dll
+Symbol file LoadedFromMemory doesn't match image D:\Unity_Graduate\Library\PackageCache\com.unity.visualscripting@1.7.8\Editor\VisualScripting.Core\Dependencies\YamlDotNet\Unity.VisualScripting.YamlDotNet.dll
+Symbol file LoadedFromMemory doesn't match image D:\Unity_Graduate\Library\PackageCache\com.unity.visualscripting@1.7.8\Editor\VisualScripting.Core\Dependencies\DotNetZip\Unity.VisualScripting.IonicZip.dll
 Native extension for WindowsStandalone target not found
+<<<<<<< HEAD
 Native extension for Android target not found
 Refreshing native plugins compatible for Editor in 0.94 ms, found 3 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
@@ -136,12 +190,42 @@ Domain Reload Profiling:
 				ProcessInitializeOnLoadAttributes (594ms)
 				ProcessInitializeOnLoadMethodAttributes (59ms)
 				AfterProcessingInitializeOnLoad (15ms)
+=======
+Refreshing native plugins compatible for Editor in 0.72 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Mono: successfully reloaded assembly
+- Completed reload, in  0.889 seconds
+Domain Reload Profiling:
+	ReloadAssembly (890ms)
+		BeginReloadAssembly (84ms)
+			ExecutionOrderSort (0ms)
+			DisableScriptedObjects (5ms)
+			BackupInstance (0ms)
+			ReleaseScriptingObjects (0ms)
+			CreateAndSetChildDomain (16ms)
+		EndReloadAssembly (713ms)
+			LoadAssemblies (60ms)
+			RebuildTransferFunctionScriptingTraits (0ms)
+			SetupTypeCache (233ms)
+			ReleaseScriptCaches (1ms)
+			RebuildScriptCaches (52ms)
+			SetupLoadedEditorAssemblies (328ms)
+				LogAssemblyErrors (0ms)
+				InitializePlatformSupportModulesInManaged (4ms)
+				SetLoadedEditorAssemblies (0ms)
+				RefreshPlugins (1ms)
+				BeforeProcessingInitializeOnLoad (73ms)
+				ProcessInitializeOnLoadAttributes (224ms)
+				ProcessInitializeOnLoadMethodAttributes (24ms)
+				AfterProcessingInitializeOnLoad (2ms)
+>>>>>>> main
 				EditorAssembliesLoaded (0ms)
 			ExecutionOrderSort2 (0ms)
-			AwakeInstancesAfterBackupRestoration (14ms)
+			AwakeInstancesAfterBackupRestoration (5ms)
 Platform modules already initialized, skipping
 ========================================================================
 Worker process is ready to serve import requests
+<<<<<<< HEAD
 Launched and connected shader compiler UnityShaderCompiler.exe after 0.09 seconds
 Refreshing native plugins compatible for Editor in 1.03 ms, found 3 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
@@ -149,19 +233,28 @@ Unloading 3579 Unused Serialized files (Serialized files now loaded: 0)
 Unloading 40 unused Assets / (184.8 KB). Loaded Objects now: 4039.
 Memory consumption went from 131.5 MB to 131.3 MB.
 Total: 5.981100 ms (FindLiveObjects: 0.448800 ms CreateObjectMapping: 0.578800 ms MarkObjects: 4.762100 ms  DeleteObjects: 0.189200 ms)
+=======
+Launched and connected shader compiler UnityShaderCompiler.exe after 0.03 seconds
+Refreshing native plugins compatible for Editor in 1.31 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 3967 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 39 unused Assets / (190.2 KB). Loaded Objects now: 4433.
+Memory consumption went from 218.2 MB to 218.0 MB.
+Total: 4.191500 ms (FindLiveObjects: 0.420400 ms CreateObjectMapping: 0.475600 ms MarkObjects: 3.156800 ms  DeleteObjects: 0.137600 ms)
+>>>>>>> main
 
 AssetImportParameters requested are different than current active one (requested -> active):
   custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
   custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
   custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
   custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
-  custom:video-codec-MediaFoundation-h265: 746d11721c4dcdbdad8f713fa42b33f4 -> 
   custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
   custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
   custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
   custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
   custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
 ========================================================================
+<<<<<<< HEAD
 Received Prepare
 Registering precompiled user dll's ...
 Registered in 0.013597 seconds.
@@ -2081,3 +2174,664 @@ AssetImportParameters requested are different than current active one (requested
   custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
   custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
   custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+=======
+Received Import Request.
+  Time since last request: 71515.474292 seconds.
+  path: Assets/Scenes/StartMenu.unity
+  artifactKey: Guid(5614b8058c7584941a880cc9d3b7d7ad) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/StartMenu.unity using Guid(5614b8058c7584941a880cc9d3b7d7ad) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '0832048d84905c9825950e41591162e4') in 0.015206 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 28.599617 seconds.
+  path: Assets/Lab/Material/Dungeon Wall 1A1 1.mat
+  artifactKey: Guid(d6813f8cb985e4a47acb0626315927e7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Lab/Material/Dungeon Wall 1A1 1.mat using Guid(d6813f8cb985e4a47acb0626315927e7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '7bedf56e3852a01f8810455d7b316f38') in 0.177288 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 2460.195050 seconds.
+  path: Assets/Ancient Set - Dungeons/Newest Prefabs/Arches/Standard/Pillar Archway 1A2.prefab
+  artifactKey: Guid(8a7345847a1256149927098c0e514eb0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Ancient Set - Dungeons/Newest Prefabs/Arches/Standard/Pillar Archway 1A2.prefab using Guid(8a7345847a1256149927098c0e514eb0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b91964555a0659b6215efb7fe865d046') in 0.761942 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000136 seconds.
+  path: Assets/Ancient Set - Dungeons/Newest Prefabs/Arches/Standard/Pillar Archway 1A4.prefab
+  artifactKey: Guid(d5b33cacfde08504188599bae5db6a8a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Ancient Set - Dungeons/Newest Prefabs/Arches/Standard/Pillar Archway 1A4.prefab using Guid(d5b33cacfde08504188599bae5db6a8a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '6b68f0982815efa59382b4b12f3ecab4') in 0.098081 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000037 seconds.
+  path: Assets/Ancient Set - Dungeons/Newest Prefabs/Arches/Standard/Pillar Archway Stone 1A1.prefab
+  artifactKey: Guid(0dc0124bbc742da459f48e67a519eb00) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Ancient Set - Dungeons/Newest Prefabs/Arches/Standard/Pillar Archway Stone 1A1.prefab using Guid(0dc0124bbc742da459f48e67a519eb00) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'bfec6a5296264cc1f5ffa3ef33fe989c') in 1.506774 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000088 seconds.
+  path: Assets/Ancient Set - Dungeons/Newest Prefabs/Arches/Standard/Pillar Archway 1A5.prefab
+  artifactKey: Guid(eeac6868a324cb348b3b61323a0940e6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Ancient Set - Dungeons/Newest Prefabs/Arches/Standard/Pillar Archway 1A5.prefab using Guid(eeac6868a324cb348b3b61323a0940e6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd1d596cd1cb0cd6e9476190f6f5c4517') in 0.142493 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000029 seconds.
+  path: Assets/Ancient Set - Dungeons/Newest Prefabs/Arches/Standard/Pillar Archway Double 1A1.prefab
+  artifactKey: Guid(ab783576783597946bdc4cab0cfe03f4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Ancient Set - Dungeons/Newest Prefabs/Arches/Standard/Pillar Archway Double 1A1.prefab using Guid(ab783576783597946bdc4cab0cfe03f4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '972d3b5177d9ee7e05f9ac8c4410d3c6') in 0.135130 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 8.795478 seconds.
+  path: Assets/Ancient Set - Dungeons/Newest Prefabs/Floors/Straight/Floor Piece 1A2.prefab
+  artifactKey: Guid(7e6e7d514868b0041a109f761351ff73) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Ancient Set - Dungeons/Newest Prefabs/Floors/Straight/Floor Piece 1A2.prefab using Guid(7e6e7d514868b0041a109f761351ff73) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '87ed6c62c44e35261782f1ac6368c445') in 0.371040 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000019 seconds.
+  path: Assets/Ancient Set - Dungeons/Newest Prefabs/Floors/Straight/Floor Piece 1A3.prefab
+  artifactKey: Guid(2668dded9f782504bb27471488d18f35) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Ancient Set - Dungeons/Newest Prefabs/Floors/Straight/Floor Piece 1A3.prefab using Guid(2668dded9f782504bb27471488d18f35) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f68594d315fc2461bbd747af510d8332') in 0.058553 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000027 seconds.
+  path: Assets/Ancient Set - Dungeons/Newest Prefabs/Floors/Straight/Floor Piece 1A6.prefab
+  artifactKey: Guid(4f7cba64606474445b3a0dc9ab28d6f3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Ancient Set - Dungeons/Newest Prefabs/Floors/Straight/Floor Piece 1A6.prefab using Guid(4f7cba64606474445b3a0dc9ab28d6f3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '82b9707a8c0c57d73367da9175a8b1d7') in 0.062570 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000025 seconds.
+  path: Assets/Ancient Set - Dungeons/Newest Prefabs/Floors/Straight/Floor Piece 1A5.prefab
+  artifactKey: Guid(1b03e0bbbbbb32640b3c5baf7d3ae5ce) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Ancient Set - Dungeons/Newest Prefabs/Floors/Straight/Floor Piece 1A5.prefab using Guid(1b03e0bbbbbb32640b3c5baf7d3ae5ce) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '42b8af83a8bd2108fe5878201428b97b') in 0.049781 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000038 seconds.
+  path: Assets/Ancient Set - Dungeons/Newest Prefabs/Floors/Straight/Floor Piece 1A7.prefab
+  artifactKey: Guid(518cc6419642db245b3296c36f7f6d08) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Ancient Set - Dungeons/Newest Prefabs/Floors/Straight/Floor Piece 1A7.prefab using Guid(518cc6419642db245b3296c36f7f6d08) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '5eb914e10291e20d7b45833ae98b235b') in 0.079052 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 2075.257358 seconds.
+  path: Assets/Ancient Set - Dungeons/Newest Prefabs/Ceilings/Large/Vault Ceiling 1A1 (Large).prefab
+  artifactKey: Guid(a673d1d42280a8442994c3cd71daecad) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Ancient Set - Dungeons/Newest Prefabs/Ceilings/Large/Vault Ceiling 1A1 (Large).prefab using Guid(a673d1d42280a8442994c3cd71daecad) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd9760e093297a153bb787817fe6ae747') in 0.133258 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 3.046730 seconds.
+  path: Assets/Ancient Set - Dungeons/Newest Prefabs/Ceilings/Standard/Vault Ceiling 1A1.prefab
+  artifactKey: Guid(00f5f1daa12a9f849bed8d98ec7c4cf2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Ancient Set - Dungeons/Newest Prefabs/Ceilings/Standard/Vault Ceiling 1A1.prefab using Guid(00f5f1daa12a9f849bed8d98ec7c4cf2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '1f38d208b9581d7b451be0de1f603f8f') in 0.067839 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 7.584119 seconds.
+  path: Assets/Ancient Set - Dungeons/Newest Prefabs/Pillars/Standard/Pillar 1A2.prefab
+  artifactKey: Guid(bf193b0c275e334428e454926841153d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Ancient Set - Dungeons/Newest Prefabs/Pillars/Standard/Pillar 1A2.prefab using Guid(bf193b0c275e334428e454926841153d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '9dd1467123d9a86d7e385089a36ba923') in 0.064148 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000018 seconds.
+  path: Assets/Ancient Set - Dungeons/Newest Prefabs/Pillars/Standard/Pillar 1B3.prefab
+  artifactKey: Guid(76020fb47b614714ca7d1cde27b3bd8f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Ancient Set - Dungeons/Newest Prefabs/Pillars/Standard/Pillar 1B3.prefab using Guid(76020fb47b614714ca7d1cde27b3bd8f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '1c45bb8679ec60ab483efb308d2a913a') in 0.124719 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000066 seconds.
+  path: Assets/Ancient Set - Dungeons/Newest Prefabs/Pillars/Standard/Pillar 1A4.prefab
+  artifactKey: Guid(28da58b9976097c408912fa8f6ddffe3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Ancient Set - Dungeons/Newest Prefabs/Pillars/Standard/Pillar 1A4.prefab using Guid(28da58b9976097c408912fa8f6ddffe3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'cb27e116d56b045be8bc161a06a122f7') in 0.102483 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000041 seconds.
+  path: Assets/Ancient Set - Dungeons/Newest Prefabs/Pillars/Standard/Pillar Pedestal 1A4.prefab
+  artifactKey: Guid(50fc01383bc3dbd47bfc04411304bfd6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Ancient Set - Dungeons/Newest Prefabs/Pillars/Standard/Pillar Pedestal 1A4.prefab using Guid(50fc01383bc3dbd47bfc04411304bfd6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'fc9762b179df59c4c7bab7c81298e22f') in 0.078185 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000031 seconds.
+  path: Assets/Ancient Set - Dungeons/Newest Prefabs/Pillars/Standard/Pillar Small 2A5.prefab
+  artifactKey: Guid(eb87d2bd34792494fa3787efedf55813) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Ancient Set - Dungeons/Newest Prefabs/Pillars/Standard/Pillar Small 2A5.prefab using Guid(eb87d2bd34792494fa3787efedf55813) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b412acbc883f66b563be0cb7644c8562') in 0.045572 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000024 seconds.
+  path: Assets/Ancient Set - Dungeons/Newest Prefabs/Pillars/Standard/Pillar Pedestal 1A1.prefab
+  artifactKey: Guid(dff00cd49c4d3fa46a83400cfb3f7ff3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Ancient Set - Dungeons/Newest Prefabs/Pillars/Standard/Pillar Pedestal 1A1.prefab using Guid(dff00cd49c4d3fa46a83400cfb3f7ff3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a0ec0561c1f76f91953a2984f3279a0b') in 0.066842 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000019 seconds.
+  path: Assets/Ancient Set - Dungeons/Newest Prefabs/Pillars/Standard/Pillar 1B2.prefab
+  artifactKey: Guid(5b09903529621dd478f27ab42990fd6b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Ancient Set - Dungeons/Newest Prefabs/Pillars/Standard/Pillar 1B2.prefab using Guid(5b09903529621dd478f27ab42990fd6b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '3a828456a402dfac3a98c20932cb29ec') in 0.056529 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000019 seconds.
+  path: Assets/Ancient Set - Dungeons/Newest Prefabs/Pillars/Standard/Pillar Pedestal 1A3.prefab
+  artifactKey: Guid(ffc0f6b69b9c26f43b5db8649c58663c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Ancient Set - Dungeons/Newest Prefabs/Pillars/Standard/Pillar Pedestal 1A3.prefab using Guid(ffc0f6b69b9c26f43b5db8649c58663c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '435ead38192d96ffe439c1d01ef17184') in 0.055162 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000024 seconds.
+  path: Assets/Ancient Set - Dungeons/Newest Prefabs/Pillars/Standard/Pillar 1B6.prefab
+  artifactKey: Guid(bf1f17552a97ed344b32aa12a8067940) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Ancient Set - Dungeons/Newest Prefabs/Pillars/Standard/Pillar 1B6.prefab using Guid(bf1f17552a97ed344b32aa12a8067940) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '7926853c5d683fbdca28bf38f83d49f6') in 0.043267 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000048 seconds.
+  path: Assets/Ancient Set - Dungeons/Newest Prefabs/Pillars/Standard/Pillar Small 2A1.prefab
+  artifactKey: Guid(0a76bee315a60e046bb12f57f7905ce7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Ancient Set - Dungeons/Newest Prefabs/Pillars/Standard/Pillar Small 2A1.prefab using Guid(0a76bee315a60e046bb12f57f7905ce7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '254f4ba5d20363e3c33465ecf55454f1') in 0.061224 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 11.745413 seconds.
+  path: Assets/Ancient Set - Dungeons/Newest Prefabs/Staircases/Staircase Pillars/Staircase Curved Pillars 1A2.prefab
+  artifactKey: Guid(d0a497c30a0832e4ea91039d9709a60b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Ancient Set - Dungeons/Newest Prefabs/Staircases/Staircase Pillars/Staircase Curved Pillars 1A2.prefab using Guid(d0a497c30a0832e4ea91039d9709a60b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '64190267732e0d35a0a466300a17a036') in 0.170026 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000036 seconds.
+  path: Assets/Ancient Set - Dungeons/Newest Prefabs/Staircases/Staircase Pillars/Staircase Curved Pillars 2B1.prefab
+  artifactKey: Guid(96dce6cb2ef9adc4ebed51856e5b0ef1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Ancient Set - Dungeons/Newest Prefabs/Staircases/Staircase Pillars/Staircase Curved Pillars 2B1.prefab using Guid(96dce6cb2ef9adc4ebed51856e5b0ef1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '5609a7b5e2e529449a2a48eb68670265') in 0.068622 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000030 seconds.
+  path: Assets/Ancient Set - Dungeons/Newest Prefabs/Staircases/Staircase Pillars/Staircase Straight Pillars 1B2.prefab
+  artifactKey: Guid(4bfca5ce299f91f4586ffcec4afe583b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Ancient Set - Dungeons/Newest Prefabs/Staircases/Staircase Pillars/Staircase Straight Pillars 1B2.prefab using Guid(4bfca5ce299f91f4586ffcec4afe583b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '9afe28b47040615dd67d80ab5e07ef02') in 0.068841 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000021 seconds.
+  path: Assets/Ancient Set - Dungeons/Newest Prefabs/Staircases/Staircase Pillars/Staircase Straight Pillars 1A1.prefab
+  artifactKey: Guid(a7feb4477f48f8b4d983bf17b1254fd5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Ancient Set - Dungeons/Newest Prefabs/Staircases/Staircase Pillars/Staircase Straight Pillars 1A1.prefab using Guid(a7feb4477f48f8b4d983bf17b1254fd5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b694cb5be748772b1d7e7a3fb8c2d2e5') in 0.041459 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000032 seconds.
+  path: Assets/Ancient Set - Dungeons/Newest Prefabs/Staircases/Staircase Pillars/Staircase Curved Pillars 2A2.prefab
+  artifactKey: Guid(79dff14bc17404d4c8effd8997795ae9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Ancient Set - Dungeons/Newest Prefabs/Staircases/Staircase Pillars/Staircase Curved Pillars 2A2.prefab using Guid(79dff14bc17404d4c8effd8997795ae9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ca1309009d252185212393a31f921772') in 0.058276 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 2.484962 seconds.
+  path: Assets/Ancient Set - Dungeons/Newest Prefabs/Staircases/Straight/Staircase Straight 1B1.prefab
+  artifactKey: Guid(3022137d04d2aa94594cf043af8860f6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Ancient Set - Dungeons/Newest Prefabs/Staircases/Straight/Staircase Straight 1B1.prefab using Guid(3022137d04d2aa94594cf043af8860f6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '10feace77e97cac964cf604404e16cc5') in 0.687484 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000022 seconds.
+  path: Assets/Ancient Set - Dungeons/Newest Prefabs/Staircases/Straight/Staircase Straight Half 1B1.prefab
+  artifactKey: Guid(0009c033cb8668f469a7ecc7462bd7ad) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Ancient Set - Dungeons/Newest Prefabs/Staircases/Straight/Staircase Straight Half 1B1.prefab using Guid(0009c033cb8668f469a7ecc7462bd7ad) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '011c33a95e0c7cd683a64210866c9f38') in 0.139083 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000043 seconds.
+  path: Assets/Ancient Set - Dungeons/Newest Prefabs/Staircases/Straight/Staircase Straight Half 1B2.prefab
+  artifactKey: Guid(91c8f463170b0354789ede784c90d951) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Ancient Set - Dungeons/Newest Prefabs/Staircases/Straight/Staircase Straight Half 1B2.prefab using Guid(91c8f463170b0354789ede784c90d951) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '5be7cccbe163e853cff332f7391fe83c') in 0.098051 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 154.903233 seconds.
+  path: Assets/Ancient Set - Dungeons/Newest Prefabs/Walls/Straight/Standard/Advanced Wall 1A2.prefab
+  artifactKey: Guid(ba3acaca778886a42a81eb90b3c18145) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Ancient Set - Dungeons/Newest Prefabs/Walls/Straight/Standard/Advanced Wall 1A2.prefab using Guid(ba3acaca778886a42a81eb90b3c18145) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'dafc2d2d93ee41f2663ded3beea6efb6') in 0.097600 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000019 seconds.
+  path: Assets/Ancient Set - Dungeons/Newest Prefabs/Walls/Straight/Standard/Wall Half R 1A1.prefab
+  artifactKey: Guid(96580206670c07447b3fc7476f73f970) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Ancient Set - Dungeons/Newest Prefabs/Walls/Straight/Standard/Wall Half R 1A1.prefab using Guid(96580206670c07447b3fc7476f73f970) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a7d34c9a18fa98aaff857c47b163483e') in 0.078735 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000023 seconds.
+  path: Assets/Ancient Set - Dungeons/Newest Prefabs/Walls/Straight/Standard/Advanced Wall 1A4.prefab
+  artifactKey: Guid(887d754ae88e82549aea07decbc80ab7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Ancient Set - Dungeons/Newest Prefabs/Walls/Straight/Standard/Advanced Wall 1A4.prefab using Guid(887d754ae88e82549aea07decbc80ab7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'efece5452581a3537bd6fcca6bffbf96') in 0.102105 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000027 seconds.
+  path: Assets/Ancient Set - Dungeons/Newest Prefabs/Walls/Straight/Standard/Wall Half L 1A2.prefab
+  artifactKey: Guid(8088be7f0291ce947ae6066fbece06a5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Ancient Set - Dungeons/Newest Prefabs/Walls/Straight/Standard/Wall Half L 1A2.prefab using Guid(8088be7f0291ce947ae6066fbece06a5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '524b862aadd17aa9364060a87807f98f') in 0.067372 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000022 seconds.
+  path: Assets/Ancient Set - Dungeons/Newest Prefabs/Walls/Straight/Standard/Wall Half L 1A3.prefab
+  artifactKey: Guid(34d911bc66842e2409d668f11a23b97b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Ancient Set - Dungeons/Newest Prefabs/Walls/Straight/Standard/Wall Half L 1A3.prefab using Guid(34d911bc66842e2409d668f11a23b97b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '31965773a33f1991fed36deeae871b5b') in 0.045845 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000031 seconds.
+  path: Assets/Ancient Set - Dungeons/Newest Prefabs/Walls/Straight/Standard/Wall Quarter R 1A2.prefab
+  artifactKey: Guid(0bdc6a173d45d47478ff95cafbdbe1d6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Ancient Set - Dungeons/Newest Prefabs/Walls/Straight/Standard/Wall Quarter R 1A2.prefab using Guid(0bdc6a173d45d47478ff95cafbdbe1d6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '83a1b08d8c8def5597090d842158c708') in 0.042737 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000051 seconds.
+  path: Assets/Ancient Set - Dungeons/Newest Prefabs/Walls/Straight/Standard/Wall Quarter R 1A1.prefab
+  artifactKey: Guid(ca91e9e0652d5574e85535f5428063ab) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Ancient Set - Dungeons/Newest Prefabs/Walls/Straight/Standard/Wall Quarter R 1A1.prefab using Guid(ca91e9e0652d5574e85535f5428063ab) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '81ea4b751028610dee00194c07b97947') in 0.069774 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000032 seconds.
+  path: Assets/Ancient Set - Dungeons/Newest Prefabs/Walls/Straight/Standard/Wall Half R 1A2.prefab
+  artifactKey: Guid(4c6aca73a321b33448c634809ca7b61f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Ancient Set - Dungeons/Newest Prefabs/Walls/Straight/Standard/Wall Half R 1A2.prefab using Guid(4c6aca73a321b33448c634809ca7b61f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f9ed4459ea6c474ff1464aba9110eec7') in 0.055183 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000032 seconds.
+  path: Assets/Ancient Set - Dungeons/Newest Prefabs/Walls/Straight/Standard/Wall Quarter L 1A2.prefab
+  artifactKey: Guid(04d2d3c0ddd5ffe42a620bdd5a1811bc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Ancient Set - Dungeons/Newest Prefabs/Walls/Straight/Standard/Wall Quarter L 1A2.prefab using Guid(04d2d3c0ddd5ffe42a620bdd5a1811bc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '49dcfba00993ca22c2bc6ff6150d5e18') in 0.046263 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000022 seconds.
+  path: Assets/Ancient Set - Dungeons/Newest Prefabs/Walls/Straight/Standard/Wall Standard 1A3.prefab
+  artifactKey: Guid(02c01a0b24a31974b877006632a10770) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Ancient Set - Dungeons/Newest Prefabs/Walls/Straight/Standard/Wall Standard 1A3.prefab using Guid(02c01a0b24a31974b877006632a10770) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '37eed7a658b0e5ef5a91801af3525994') in 0.050526 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 1285.027553 seconds.
+  path: Assets/Ancient Set - Dungeons/Newest Prefabs/Walls/Straight/Large/Advanced Wall 1A2 (Large).prefab
+  artifactKey: Guid(b199249b8f5cd8b4b8d740875af9487d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Ancient Set - Dungeons/Newest Prefabs/Walls/Straight/Large/Advanced Wall 1A2 (Large).prefab using Guid(b199249b8f5cd8b4b8d740875af9487d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '401453de30bd3d8eb25783a940f3514a') in 0.203780 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000037 seconds.
+  path: Assets/Ancient Set - Dungeons/Newest Prefabs/Walls/Straight/Large/Advanced Wall 1A4 (Large).prefab
+  artifactKey: Guid(9ee326a623348b04686da75fa8bc4ba7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Ancient Set - Dungeons/Newest Prefabs/Walls/Straight/Large/Advanced Wall 1A4 (Large).prefab using Guid(9ee326a623348b04686da75fa8bc4ba7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'de4b3382d8ae7045f275506cbec3a252') in 0.138480 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 2.626673 seconds.
+  path: Assets/Ancient Set - Dungeons/Newest Prefabs/Walls/Straight/Sharp Corners/Wall Corner Half 1A2.prefab
+  artifactKey: Guid(86ed6f7e06b448140b778b13210a8b7b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Ancient Set - Dungeons/Newest Prefabs/Walls/Straight/Sharp Corners/Wall Corner Half 1A2.prefab using Guid(86ed6f7e06b448140b778b13210a8b7b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '221e9df6d53b4e2fd4335f37c7583e14') in 0.098791 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000022 seconds.
+  path: Assets/Ancient Set - Dungeons/Newest Prefabs/Walls/Straight/Sharp Corners/Wall Corner Quarter 1A2.prefab
+  artifactKey: Guid(2fbb132379867434bba71f53765dda34) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Ancient Set - Dungeons/Newest Prefabs/Walls/Straight/Sharp Corners/Wall Corner Quarter 1A2.prefab using Guid(2fbb132379867434bba71f53765dda34) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'cd0e3f59dc9b0d8c37dd5e1bea43e00f') in 0.108442 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000053 seconds.
+  path: Assets/Ancient Set - Dungeons/Newest Prefabs/Walls/Straight/Sharp Corners/Wall Corner Standard 1A1.prefab
+  artifactKey: Guid(b08177d9ffc92924baaa120961cf1558) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Ancient Set - Dungeons/Newest Prefabs/Walls/Straight/Sharp Corners/Wall Corner Standard 1A1.prefab using Guid(b08177d9ffc92924baaa120961cf1558) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '14feab8480be87c14752497098563000') in 0.054671 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000023 seconds.
+  path: Assets/Ancient Set - Dungeons/Newest Prefabs/Walls/Straight/Sharp Corners/Wall Corner Quarter 1A1.prefab
+  artifactKey: Guid(8378966f50d83da488d68ced8ab5dde3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Ancient Set - Dungeons/Newest Prefabs/Walls/Straight/Sharp Corners/Wall Corner Quarter 1A1.prefab using Guid(8378966f50d83da488d68ced8ab5dde3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '65e16dd770a923621a5f50e17686fc7f') in 0.048833 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 385.848267 seconds.
+  path: Assets/Ancient Set - Dungeons/Newest Prefabs/Staircases/Small Steps/Stairs Quarter Inner 1A2.prefab
+  artifactKey: Guid(7086fe117a465e447ac27ea527d710fe) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Ancient Set - Dungeons/Newest Prefabs/Staircases/Small Steps/Stairs Quarter Inner 1A2.prefab using Guid(7086fe117a465e447ac27ea527d710fe) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '35c69fa021fac8509e56a5a274574e1a') in 0.182052 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000024 seconds.
+  path: Assets/Ancient Set - Dungeons/Newest Prefabs/Staircases/Small Steps/Stairs Quarter Outer 1B1.prefab
+  artifactKey: Guid(bf46fefb05c202441b3c40f615c129a4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Ancient Set - Dungeons/Newest Prefabs/Staircases/Small Steps/Stairs Quarter Outer 1B1.prefab using Guid(bf46fefb05c202441b3c40f615c129a4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '812b5e3c0930c18a3d270011ac184f23') in 0.101172 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000030 seconds.
+  path: Assets/Ancient Set - Dungeons/Newest Prefabs/Staircases/Small Steps/Stairs Quarter Straight 1A.prefab
+  artifactKey: Guid(0e3160f553936b34f935cfdaf9efac8c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Ancient Set - Dungeons/Newest Prefabs/Staircases/Small Steps/Stairs Quarter Straight 1A.prefab using Guid(0e3160f553936b34f935cfdaf9efac8c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '04e79958daba6e43263112f4eef8a2fd') in 0.071494 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000021 seconds.
+  path: Assets/Ancient Set - Dungeons/Newest Prefabs/Staircases/Small Steps/Stairs Quarter Inner 1B1.prefab
+  artifactKey: Guid(3e93688067d7c1642a1fb956d4bfc0dc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Ancient Set - Dungeons/Newest Prefabs/Staircases/Small Steps/Stairs Quarter Inner 1B1.prefab using Guid(3e93688067d7c1642a1fb956d4bfc0dc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '8b3667e97facff8173ac148866ccc2bc') in 0.081130 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000035 seconds.
+  path: Assets/Ancient Set - Dungeons/Newest Prefabs/Staircases/Small Steps/Steps Group 1A1.prefab
+  artifactKey: Guid(f2e443a045b1bc44f8314c8b81c1c045) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Ancient Set - Dungeons/Newest Prefabs/Staircases/Small Steps/Steps Group 1A1.prefab using Guid(f2e443a045b1bc44f8314c8b81c1c045) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '1eaf0aeeab6e4033a5b84370654b4ca7') in 0.065248 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 15.928891 seconds.
+  path: Assets/Ancient Set - Dungeons/Newest Prefabs/Staircases/Curved/Staircase Curved L 1B1.prefab
+  artifactKey: Guid(eb70afec22e4da6479e2c9cfb723f144) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Ancient Set - Dungeons/Newest Prefabs/Staircases/Curved/Staircase Curved L 1B1.prefab using Guid(eb70afec22e4da6479e2c9cfb723f144) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e776f7a4544f74a4c62bf53117a51f1a') in 0.221568 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000026 seconds.
+  path: Assets/Ancient Set - Dungeons/Newest Prefabs/Staircases/Curved/Staircase Curved R 1B1.prefab
+  artifactKey: Guid(85540eddd1c0bf348abe214cedac7b84) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Ancient Set - Dungeons/Newest Prefabs/Staircases/Curved/Staircase Curved R 1B1.prefab using Guid(85540eddd1c0bf348abe214cedac7b84) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '543d5ea35bd7cd60f29439fd6d621709') in 0.132829 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000037 seconds.
+  path: Assets/Ancient Set - Dungeons/Newest Prefabs/Staircases/Curved/Staircase Curved R 1A1.prefab
+  artifactKey: Guid(ac38b30bd0e649f40922e1f2d982ff95) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Ancient Set - Dungeons/Newest Prefabs/Staircases/Curved/Staircase Curved R 1A1.prefab using Guid(ac38b30bd0e649f40922e1f2d982ff95) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a92bf24f70e0b2547f3fe5c4a0ffcd71') in 0.138327 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000021 seconds.
+  path: Assets/Ancient Set - Dungeons/Newest Prefabs/Staircases/Curved/Staircase Curved R 2A1.prefab
+  artifactKey: Guid(bd0a99cd7d5c8504a8f499e56442e096) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Ancient Set - Dungeons/Newest Prefabs/Staircases/Curved/Staircase Curved R 2A1.prefab using Guid(bd0a99cd7d5c8504a8f499e56442e096) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'bc2e2f469082fc48b18b2822dac5ce0e') in 0.158114 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 170.221192 seconds.
+  path: Assets/Ancient Set - Dungeons/Materials/Bookshelves 1A1.mat
+  artifactKey: Guid(0df422f93c1629942ac7a5978b29c2a8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Ancient Set - Dungeons/Materials/Bookshelves 1A1.mat using Guid(0df422f93c1629942ac7a5978b29c2a8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '32585deb4fe9b4cac77e5be6a649a5d1') in 0.359171 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000030 seconds.
+  path: Assets/Ancient Set - Dungeons/Materials/Chests 1A1.mat
+  artifactKey: Guid(2111c0193e2ec1843b66e28e006cf499) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Ancient Set - Dungeons/Materials/Chests 1A1.mat using Guid(2111c0193e2ec1843b66e28e006cf499) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c82802123235debf3e27f82a3a74f0ba') in 0.273504 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000021 seconds.
+  path: Assets/Ancient Set - Dungeons/Materials/Cliff Chunks 2A1.mat
+  artifactKey: Guid(96e420683d7de564cae21ffd451b38e8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Ancient Set - Dungeons/Materials/Cliff Chunks 2A1.mat using Guid(96e420683d7de564cae21ffd451b38e8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '86f8bcee43ee2024853d629144ec4bdd') in 0.262842 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000018 seconds.
+  path: Assets/Ancient Set - Dungeons/Materials/Flame_1A Base.prefab
+  artifactKey: Guid(50052e607b839724e829c38f240cf984) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Ancient Set - Dungeons/Materials/Flame_1A Base.prefab using Guid(50052e607b839724e829c38f240cf984) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ec5b3fd6e8765474a6535f354984d89a') in 0.034038 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000023 seconds.
+  path: Assets/Ancient Set - Dungeons/Materials/Dungeon Metal 1A1.mat
+  artifactKey: Guid(491236b656907de408b5a712994dbd29) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Ancient Set - Dungeons/Materials/Dungeon Metal 1A1.mat using Guid(491236b656907de408b5a712994dbd29) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '0267866211fb0ca320c8fd6bd89eadac') in 0.041176 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000018 seconds.
+  path: Assets/Ancient Set - Dungeons/Materials/Trim and Walls 1A1.mat
+  artifactKey: Guid(ca0610c7bf2b5794ab8501338cabc538) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Ancient Set - Dungeons/Materials/Trim and Walls 1A1.mat using Guid(ca0610c7bf2b5794ab8501338cabc538) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e57eb39e9f669670e6d3632e9c640de4') in 0.337143 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000025 seconds.
+  path: Assets/Ancient Set - Dungeons/Materials/Skeletons 1A1.mat
+  artifactKey: Guid(148563975a9810644bfac16dd7b8c7be) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Ancient Set - Dungeons/Materials/Skeletons 1A1.mat using Guid(148563975a9810644bfac16dd7b8c7be) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ed174be78743a5016919c445c148f39e') in 0.323941 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000019 seconds.
+  path: Assets/Ancient Set - Dungeons/Materials/Carpets 1A1.mat
+  artifactKey: Guid(fc068e16d1db8f14b828d7cde57ff346) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Ancient Set - Dungeons/Materials/Carpets 1A1.mat using Guid(fc068e16d1db8f14b828d7cde57ff346) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '4aa22024cd208e8b7215dab4aec6673c') in 0.487820 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000019 seconds.
+  path: Assets/Ancient Set - Dungeons/Materials/Water 1A2.mat
+  artifactKey: Guid(b8ffc33cc30c32c47984ddc9aa8310b7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Ancient Set - Dungeons/Materials/Water 1A2.mat using Guid(b8ffc33cc30c32c47984ddc9aa8310b7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a2812b3a1e05a4eb9781933b54484cb6') in 0.249536 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000096 seconds.
+  path: Assets/Ancient Set - Dungeons/Materials/Candle_Flame_1A.png
+  artifactKey: Guid(ce00d67cd53b1a9478a4ee81ca6fed79) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Ancient Set - Dungeons/Materials/Candle_Flame_1A.png using Guid(ce00d67cd53b1a9478a4ee81ca6fed79) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '1b4f96a4021d0ada1f194a7cc9a25cb3') in 0.072135 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 10.107912 seconds.
+  path: Assets/Ancient Set - Dungeons/Newest Prefabs/Props, Details, Lighting/Molten Plane 1.prefab
+  artifactKey: Guid(10dc019748daafe44b4b6ee9df357930) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Ancient Set - Dungeons/Newest Prefabs/Props, Details, Lighting/Molten Plane 1.prefab using Guid(10dc019748daafe44b4b6ee9df357930) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '4d23311f2b42c6a82a53e01edc176f0f') in 0.105335 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 5.421477 seconds.
+  path: Assets/Ancient Set - Dungeons/Newest Prefabs/Railings, Barriers/Straight/Railing 1A2.prefab
+  artifactKey: Guid(750f68db4eecd0b4c8617d868ceaa557) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Ancient Set - Dungeons/Newest Prefabs/Railings, Barriers/Straight/Railing 1A2.prefab using Guid(750f68db4eecd0b4c8617d868ceaa557) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ccab1c01fd02fe3580703180efd56768') in 0.101932 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000015 seconds.
+  path: Assets/Ancient Set - Dungeons/Newest Prefabs/Railings, Barriers/Straight/Railing 1A4.prefab
+  artifactKey: Guid(d67803e5523587340bb972e67543b19f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Ancient Set - Dungeons/Newest Prefabs/Railings, Barriers/Straight/Railing 1A4.prefab using Guid(d67803e5523587340bb972e67543b19f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '99529860f27bb8c3b65a5d3d5acd1928') in 0.047283 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000015 seconds.
+  path: Assets/Ancient Set - Dungeons/Newest Prefabs/Railings, Barriers/Straight/Railing 1B1.prefab
+  artifactKey: Guid(aa647eea5a723d34ba922cf976efb196) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Ancient Set - Dungeons/Newest Prefabs/Railings, Barriers/Straight/Railing 1B1.prefab using Guid(aa647eea5a723d34ba922cf976efb196) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ad005cc628847de6fca52f097ae72f30') in 0.062766 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000031 seconds.
+  path: Assets/Ancient Set - Dungeons/Newest Prefabs/Railings, Barriers/Straight/Railing 1C1.prefab
+  artifactKey: Guid(0cda1b5c2aeaaad4fb8599fcb47bd338) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Ancient Set - Dungeons/Newest Prefabs/Railings, Barriers/Straight/Railing 1C1.prefab using Guid(0cda1b5c2aeaaad4fb8599fcb47bd338) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f0d42ee9871f26fe21710de15da11502') in 0.075001 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000031 seconds.
+  path: Assets/Ancient Set - Dungeons/Newest Prefabs/Railings, Barriers/Straight/Railing 1C2.prefab
+  artifactKey: Guid(238ec94d211c78f47b73cfa2136f90ef) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Ancient Set - Dungeons/Newest Prefabs/Railings, Barriers/Straight/Railing 1C2.prefab using Guid(238ec94d211c78f47b73cfa2136f90ef) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'efde9300446aa6693d01288bcc2f24dd') in 0.060569 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000527 seconds.
+  path: Assets/Ancient Set - Dungeons/Newest Prefabs/Railings, Barriers/Straight/Railing Post 1A1.prefab
+  artifactKey: Guid(42cedd80e4a2e98428469671878d32c1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Ancient Set - Dungeons/Newest Prefabs/Railings, Barriers/Straight/Railing Post 1A1.prefab using Guid(42cedd80e4a2e98428469671878d32c1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '917c1eabe964cb1fdd408a6846d7ee2a') in 0.058895 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000020 seconds.
+  path: Assets/Ancient Set - Dungeons/Newest Prefabs/Railings, Barriers/Straight/Railing 1D1.prefab
+  artifactKey: Guid(76c224818a7b03f42b1561e50fa92568) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Ancient Set - Dungeons/Newest Prefabs/Railings, Barriers/Straight/Railing 1D1.prefab using Guid(76c224818a7b03f42b1561e50fa92568) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b690334832712c3d3f10d470ac86f532') in 0.056892 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 21.039182 seconds.
+  path: Assets/Ancient Set - Dungeons/Newest Prefabs/Floors/Curved/Curved Floor Outer 1A.prefab
+  artifactKey: Guid(5cb951b404e073e4e9c88987770aee27) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Ancient Set - Dungeons/Newest Prefabs/Floors/Curved/Curved Floor Outer 1A.prefab using Guid(5cb951b404e073e4e9c88987770aee27) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd47c1e8dacc07491e4cb28f7f7c7ece9') in 0.040011 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000017 seconds.
+  path: Assets/Ancient Set - Dungeons/Newest Prefabs/Floors/Curved/Curved Floor Piece L 1A1.prefab
+  artifactKey: Guid(e969d0db6ff6c9d47ad1cce77d99b7ff) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Ancient Set - Dungeons/Newest Prefabs/Floors/Curved/Curved Floor Piece L 1A1.prefab using Guid(e969d0db6ff6c9d47ad1cce77d99b7ff) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '5a942b182d2753acd8dad4cb74f7048e') in 0.060777 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000020 seconds.
+  path: Assets/Ancient Set - Dungeons/Newest Prefabs/Floors/Curved/Curved Floor Piece L 2A1.prefab
+  artifactKey: Guid(fad71662cfd23df4bace7966cc875d90) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Ancient Set - Dungeons/Newest Prefabs/Floors/Curved/Curved Floor Piece L 2A1.prefab using Guid(fad71662cfd23df4bace7966cc875d90) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '18d1e8c7833a8bfef587b3b7215dc78b') in 0.081411 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000022 seconds.
+  path: Assets/Ancient Set - Dungeons/Newest Prefabs/Floors/Curved/Curved Floor Piece R 1B1.prefab
+  artifactKey: Guid(60ee05be873d0b84bb14286552324df4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Ancient Set - Dungeons/Newest Prefabs/Floors/Curved/Curved Floor Piece R 1B1.prefab using Guid(60ee05be873d0b84bb14286552324df4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '6fda99375b4e83130726a0a842962c98') in 0.057391 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000019 seconds.
+  path: Assets/Ancient Set - Dungeons/Newest Prefabs/Floors/Curved/Curved Floor Piece L 2B1.prefab
+  artifactKey: Guid(5e95e54bb0c059842a51d31c87a3010d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Ancient Set - Dungeons/Newest Prefabs/Floors/Curved/Curved Floor Piece L 2B1.prefab using Guid(5e95e54bb0c059842a51d31c87a3010d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '197643555c7f9f9ac18016b0b981f803') in 0.019050 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 173.613681 seconds.
+  path: Assets/Ancient Set - Dungeons/Newest Prefabs/Walls/Curved/Inner/Wall Curved L 1B1.prefab
+  artifactKey: Guid(8c5f683b6fe8613409e9c3a895dc4f7f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Ancient Set - Dungeons/Newest Prefabs/Walls/Curved/Inner/Wall Curved L 1B1.prefab using Guid(8c5f683b6fe8613409e9c3a895dc4f7f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '03d04fae4648df84ca9502ae19b85ef0') in 0.124511 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000022 seconds.
+  path: Assets/Ancient Set - Dungeons/Newest Prefabs/Walls/Curved/Inner/Wall Curved R 2A1.prefab
+  artifactKey: Guid(7ffc93ec9b748b4478835175e78d3025) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Ancient Set - Dungeons/Newest Prefabs/Walls/Curved/Inner/Wall Curved R 2A1.prefab using Guid(7ffc93ec9b748b4478835175e78d3025) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '01eabf87aa4b2808d8b003c85cb11ab4') in 0.112642 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000069 seconds.
+  path: Assets/Ancient Set - Dungeons/Newest Prefabs/Walls/Curved/Inner/Wall Curved R 1B1.prefab
+  artifactKey: Guid(2b0a862e6571af7409e7fd18a45dba82) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Ancient Set - Dungeons/Newest Prefabs/Walls/Curved/Inner/Wall Curved R 1B1.prefab using Guid(2b0a862e6571af7409e7fd18a45dba82) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '2e96d4e5cf538fddc905083ce692fa62') in 0.065403 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000023 seconds.
+  path: Assets/Ancient Set - Dungeons/Newest Prefabs/Walls/Curved/Inner/Wall Curved R 1A1.prefab
+  artifactKey: Guid(61340352f9e0e6946a2353d2fa06d551) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Ancient Set - Dungeons/Newest Prefabs/Walls/Curved/Inner/Wall Curved R 1A1.prefab using Guid(61340352f9e0e6946a2353d2fa06d551) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f66704f0f2f9465e6d4fb2e8b0b66371') in 0.046427 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 6.000507 seconds.
+  path: Assets/Ancient Set - Dungeons/Newest Prefabs/Walls/Curved/Outer/Wall Curved L 1B2.prefab
+  artifactKey: Guid(25bc2fc4af44cf34b813267e18098c9a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Ancient Set - Dungeons/Newest Prefabs/Walls/Curved/Outer/Wall Curved L 1B2.prefab using Guid(25bc2fc4af44cf34b813267e18098c9a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c11fb82e235cf257bc512722b00c6fd1') in 0.096175 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000020 seconds.
+  path: Assets/Ancient Set - Dungeons/Newest Prefabs/Walls/Curved/Outer/Wall Curved R 2B2.prefab
+  artifactKey: Guid(d02ba65f1bac10e4981cd6ea1e4963dc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Ancient Set - Dungeons/Newest Prefabs/Walls/Curved/Outer/Wall Curved R 2B2.prefab using Guid(d02ba65f1bac10e4981cd6ea1e4963dc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b4b8b433369d9a5946b88ab07dfbc895') in 0.049542 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000048 seconds.
+  path: Assets/Ancient Set - Dungeons/Newest Prefabs/Walls/Curved/Outer/Wall Curved R 1B2.prefab
+  artifactKey: Guid(b35deee7a6d21a44eae3515397d860e2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Ancient Set - Dungeons/Newest Prefabs/Walls/Curved/Outer/Wall Curved R 1B2.prefab using Guid(b35deee7a6d21a44eae3515397d860e2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f20c74813fe742d6b142f866c3ba8692') in 0.047916 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000023 seconds.
+  path: Assets/Ancient Set - Dungeons/Newest Prefabs/Walls/Curved/Outer/Wall Curved L 2A2.prefab
+  artifactKey: Guid(fdb03602d7895bc48a372088af679999) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Ancient Set - Dungeons/Newest Prefabs/Walls/Curved/Outer/Wall Curved L 2A2.prefab using Guid(fdb03602d7895bc48a372088af679999) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e740789fccf7edbbf641a3f05786571c') in 0.050634 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 1084.857085 seconds.
+  path: Assets/Ancient Set - Dungeons/Newest Prefabs/Walls/Bridge Arched Walls/Standard/Arched Bridge Piece 1A2.prefab
+  artifactKey: Guid(4770775a09bb7964b942306c451f5dd6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Ancient Set - Dungeons/Newest Prefabs/Walls/Bridge Arched Walls/Standard/Arched Bridge Piece 1A2.prefab using Guid(4770775a09bb7964b942306c451f5dd6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '44e8fe3577fabbfc5315736fc79763da') in 0.157882 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000026 seconds.
+  path: Assets/Ancient Set - Dungeons/Newest Prefabs/Walls/Bridge Arched Walls/Standard/Stone Bridge 1A3.prefab
+  artifactKey: Guid(a1af33140b6d2c941adf035a9fddc185) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Ancient Set - Dungeons/Newest Prefabs/Walls/Bridge Arched Walls/Standard/Stone Bridge 1A3.prefab using Guid(a1af33140b6d2c941adf035a9fddc185) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '09e80d99f47d1cacf211632fb9daddd1') in 0.189050 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000028 seconds.
+  path: Assets/Ancient Set - Dungeons/Newest Prefabs/Walls/Bridge Arched Walls/Standard/Stone Bridge 1A1.prefab
+  artifactKey: Guid(c95b94bb694a990408d42a3aefd2b2f4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Ancient Set - Dungeons/Newest Prefabs/Walls/Bridge Arched Walls/Standard/Stone Bridge 1A1.prefab using Guid(c95b94bb694a990408d42a3aefd2b2f4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '7ef1f25884a6118e2256d49614b7c8b1') in 0.143987 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000035 seconds.
+  path: Assets/Ancient Set - Dungeons/Newest Prefabs/Walls/Bridge Arched Walls/Standard/Arched Bridge Piece 1A3.prefab
+  artifactKey: Guid(9726a9253f1eada47916d9aea0d30e6d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Ancient Set - Dungeons/Newest Prefabs/Walls/Bridge Arched Walls/Standard/Arched Bridge Piece 1A3.prefab using Guid(9726a9253f1eada47916d9aea0d30e6d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e3a1bbe005e5a3078aeb182637fbd58a') in 0.078420 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 11.575966 seconds.
+  path: Assets/Ancient Set - Dungeons/Newest Prefabs/Walls/Arched Walls, Doorways/Arched Wall 1A2.prefab
+  artifactKey: Guid(a8d1fe96ca99621419224c994ec0c582) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Ancient Set - Dungeons/Newest Prefabs/Walls/Arched Walls, Doorways/Arched Wall 1A2.prefab using Guid(a8d1fe96ca99621419224c994ec0c582) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'fc658f1d968471e46303ca0b422fe180') in 0.126760 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000029 seconds.
+  path: Assets/Ancient Set - Dungeons/Newest Prefabs/Walls/Arched Walls, Doorways/Arched Wall 1B3.prefab
+  artifactKey: Guid(37afc4804e82fde44b1b1054d63e40d7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Ancient Set - Dungeons/Newest Prefabs/Walls/Arched Walls, Doorways/Arched Wall 1B3.prefab using Guid(37afc4804e82fde44b1b1054d63e40d7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '0244ea5b2ff101c1493b243710de5241') in 0.109590 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000041 seconds.
+  path: Assets/Ancient Set - Dungeons/Newest Prefabs/Walls/Arched Walls, Doorways/Arched Wall Small Extension 1A1.prefab
+  artifactKey: Guid(6543c5cbb74c6e44aa01558d7cb7b970) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Ancient Set - Dungeons/Newest Prefabs/Walls/Arched Walls, Doorways/Arched Wall Small Extension 1A1.prefab using Guid(6543c5cbb74c6e44aa01558d7cb7b970) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd8f67a507166da6e5c377a5ae31e1610') in 0.064063 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000022 seconds.
+  path: Assets/Ancient Set - Dungeons/Newest Prefabs/Walls/Arched Walls, Doorways/Arched Wall 1B2.prefab
+  artifactKey: Guid(635bea020b5da7744ae1c12b5ce449ef) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Ancient Set - Dungeons/Newest Prefabs/Walls/Arched Walls, Doorways/Arched Wall 1B2.prefab using Guid(635bea020b5da7744ae1c12b5ce449ef) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '4ed41401fe4604c70bec9b3419fbd0b6') in 0.142767 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000052 seconds.
+  path: Assets/Ancient Set - Dungeons/Newest Prefabs/Walls/Arched Walls, Doorways/Arched Wall 1B4.prefab
+  artifactKey: Guid(c6b8d96c8b7ab1e428d82c41c87cf670) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Ancient Set - Dungeons/Newest Prefabs/Walls/Arched Walls, Doorways/Arched Wall 1B4.prefab using Guid(c6b8d96c8b7ab1e428d82c41c87cf670) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '9088deb809c5ba19082aae24901abf21') in 0.192771 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000069 seconds.
+  path: Assets/Ancient Set - Dungeons/Newest Prefabs/Walls/Arched Walls, Doorways/Arched Wall Gate 1B1.prefab
+  artifactKey: Guid(e7e1fa36a700cc24780790efba0d731c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Ancient Set - Dungeons/Newest Prefabs/Walls/Arched Walls, Doorways/Arched Wall Gate 1B1.prefab using Guid(e7e1fa36a700cc24780790efba0d731c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f643bb8f7baa8b247ae125c67a2a5b97') in 0.049237 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000043 seconds.
+  path: Assets/Ancient Set - Dungeons/Newest Prefabs/Walls/Arched Walls, Doorways/Arched Wall Window 1A1.prefab
+  artifactKey: Guid(dda9433425d5e834c910ba6478d3dc0c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Ancient Set - Dungeons/Newest Prefabs/Walls/Arched Walls, Doorways/Arched Wall Window 1A1.prefab using Guid(dda9433425d5e834c910ba6478d3dc0c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '8654c0c3254217b41e5829d0a9460c12') in 0.126577 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000033 seconds.
+  path: Assets/Ancient Set - Dungeons/Newest Prefabs/Walls/Arched Walls, Doorways/Arched Wall Extension 1A1.prefab
+  artifactKey: Guid(35aae6db846132e44bcde480fa59970c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Ancient Set - Dungeons/Newest Prefabs/Walls/Arched Walls, Doorways/Arched Wall Extension 1A1.prefab using Guid(35aae6db846132e44bcde480fa59970c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd2caa1fd2f9b68bf37b68a455674a8e1') in 0.100663 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000037 seconds.
+  path: Assets/Ancient Set - Dungeons/Newest Prefabs/Walls/Arched Walls, Doorways/Wall Doorway 1A2.prefab
+  artifactKey: Guid(9c9534d2a18ce344c973f87b064f59af) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Ancient Set - Dungeons/Newest Prefabs/Walls/Arched Walls, Doorways/Wall Doorway 1A2.prefab using Guid(9c9534d2a18ce344c973f87b064f59af) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '341c49cc12abef7dabf2c214789f6c3e') in 0.108343 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000035 seconds.
+  path: Assets/Ancient Set - Dungeons/Newest Prefabs/Walls/Arched Walls, Doorways/Wall Doorway 1B2.prefab
+  artifactKey: Guid(7abbb88cd418d164fb06909dde621004) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Ancient Set - Dungeons/Newest Prefabs/Walls/Arched Walls, Doorways/Wall Doorway 1B2.prefab using Guid(7abbb88cd418d164fb06909dde621004) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ce5d679d8e7c6cdecb26bd32252691e4') in 0.096148 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000037 seconds.
+  path: Assets/Ancient Set - Dungeons/Newest Prefabs/Walls/Arched Walls, Doorways/Wall Doorway 1B3.prefab
+  artifactKey: Guid(749e8e46ee89d544f92baa37931f3273) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Ancient Set - Dungeons/Newest Prefabs/Walls/Arched Walls, Doorways/Wall Doorway 1B3.prefab using Guid(749e8e46ee89d544f92baa37931f3273) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f03dd7a4346eeb00a1082a3ef2450db6') in 0.140480 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 48.124271 seconds.
+  path: Assets/Ancient Set - Dungeons/Newest Prefabs/Walls/Bridge Arched Walls/Large/Arched Bridge Piece 1A2 (Large).prefab
+  artifactKey: Guid(11a9e1f681bc971429fca03a67e9d26d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Ancient Set - Dungeons/Newest Prefabs/Walls/Bridge Arched Walls/Large/Arched Bridge Piece 1A2 (Large).prefab using Guid(11a9e1f681bc971429fca03a67e9d26d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '2bd922e3a925cd675ffd34a08c0b5b40') in 0.163105 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000023 seconds.
+  path: Assets/Ancient Set - Dungeons/Newest Prefabs/Walls/Bridge Arched Walls/Large/Stone Barrier 1A1 (Large).prefab
+  artifactKey: Guid(cd8b01aecc75cbf43864ce9c0ed498e9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Ancient Set - Dungeons/Newest Prefabs/Walls/Bridge Arched Walls/Large/Stone Barrier 1A1 (Large).prefab using Guid(cd8b01aecc75cbf43864ce9c0ed498e9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '221088d977a8911fea14f5635f5c1b17') in 0.067337 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000025 seconds.
+  path: Assets/Ancient Set - Dungeons/Newest Prefabs/Walls/Bridge Arched Walls/Large/Arched Bridge Piece 1A5 (Large).prefab
+  artifactKey: Guid(51c64f0620a70c54aa272a2809299f44) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Ancient Set - Dungeons/Newest Prefabs/Walls/Bridge Arched Walls/Large/Arched Bridge Piece 1A5 (Large).prefab using Guid(51c64f0620a70c54aa272a2809299f44) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '89fd3bc75519e043f9adcbd833230a24') in 0.116443 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 2753.284028 seconds.
+  path: Assets/Ancient Set - Dungeons/Newest Prefabs/Arches/Large/Pillar Archway 1A2 (Large).prefab
+  artifactKey: Guid(f96484d4ef0b39b4eb2e69e21de5f3e9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Ancient Set - Dungeons/Newest Prefabs/Arches/Large/Pillar Archway 1A2 (Large).prefab using Guid(f96484d4ef0b39b4eb2e69e21de5f3e9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '46e66e6af80ca0a7cb43e8965eafdb74') in 0.664331 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000022 seconds.
+  path: Assets/Ancient Set - Dungeons/Newest Prefabs/Arches/Large/Pillar Archway 1A3 (Large).prefab
+  artifactKey: Guid(8e232aa1ac7886443a7b5fe8b325c243) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Ancient Set - Dungeons/Newest Prefabs/Arches/Large/Pillar Archway 1A3 (Large).prefab using Guid(8e232aa1ac7886443a7b5fe8b325c243) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '35a69dfcc720bbb7ed2b8511f41a72ee') in 0.087871 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000036 seconds.
+  path: Assets/Ancient Set - Dungeons/Newest Prefabs/Arches/Large/Pillar Archway Stone 1A1 (Large).prefab
+  artifactKey: Guid(40fbcbb10c34c354598fe4b0c17ae27b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Ancient Set - Dungeons/Newest Prefabs/Arches/Large/Pillar Archway Stone 1A1 (Large).prefab using Guid(40fbcbb10c34c354598fe4b0c17ae27b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c9cd25185164e2da6f5a2ae89e9ed66b') in 0.798218 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000021 seconds.
+  path: Assets/Ancient Set - Dungeons/Newest Prefabs/Arches/Large/Pillar Archway Ornate 1A1 (Large).prefab
+  artifactKey: Guid(13692fc25cbf37241a41158a10fa33cb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Ancient Set - Dungeons/Newest Prefabs/Arches/Large/Pillar Archway Ornate 1A1 (Large).prefab using Guid(13692fc25cbf37241a41158a10fa33cb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '4bb817df55699f049a76fde22e63e66f') in 0.221632 seconds 
+>>>>>>> main
