@@ -396,7 +396,7 @@
 "Assets/Lab/Scriptable Object/SwordAttackData.cs"
 "Assets/Lab/Scriptable Object/WeaponAttackData.cs"
 "Assets/Lab/Scriptable Object/WeaponData.cs"
-"Assets/Scripts/UI/StartUI.cs"
+"Assets/Scripts/UI/TitleUI.cs"
 -langversion:9.0
 
 /deterministic
