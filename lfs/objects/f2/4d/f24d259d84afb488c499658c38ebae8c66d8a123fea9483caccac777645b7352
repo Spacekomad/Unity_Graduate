@@ -1,0 +1,37 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class PlayerMovingState : PlayerCharacterSuperState
+{
+    public PlayerMovingState(PlayerCharacter playerCharacter, FiniteStateMachine machine) : base(playerCharacter, machine) { }
+    public override void Enter()
+    {
+        base.Enter();
+        canTransition = true;
+        playerCharacter.currentAnimation = EnumTypes.PlayerAnimation.IdleNMove;
+        playerCharacter.isPlayingAnim = true;
+    }
+    public override void LogicUpdate()
+    {
+        base.LogicUpdate();
+
+        if (Input.GetKeyDown(PlayerInput.rollKey))
+        {
+            machine.ChangeState(playerCharacter.rollingState);
+        }
+        else if (Input.GetKeyDown(PlayerInput.attackKey))
+        {
+            machine.ChangeState(playerCharacter.attackingState);
+        }
+
+       playerCharacter.Move();
+    }
+    public override void Exit()
+    {
+        base.Exit();
+        playerCharacter.currentAnimation = EnumTypes.PlayerAnimation.None;
+        playerCharacter.isPlayingAnim = false;
+    }
+
+}

@@ -1,0 +1,23 @@
+using System;
+
+[Serializable]
+public class Weapon
+{
+    public Command[] commands { get { return _commands; } }
+    private Command[] _commands;
+
+    public float weaponPower;
+    public float weaponStiffness;
+
+    public Weapon(WeaponData weaponData, WeaponAttackData weaponAttackData)
+    {
+        weaponPower = weaponData.weaponPower;
+        weaponStiffness = weaponData.weaponStiffness;
+        SetCommands(weaponAttackData.commands);
+    }
+
+    public void SetCommands(Command[] commandSet)
+    {
+        _commands = commandSet;
+    }
+}
