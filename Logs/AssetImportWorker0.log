@@ -15,9 +15,15 @@ D:/Unity/Dongguk/Graduation Project/Lab
 -logFile
 Logs/AssetImportWorker0.log
 -srvPort
+<<<<<<< HEAD
 2963
 Successfully changed project path to: D:/Unity/Dongguk/Graduation Project/Lab
 D:/Unity/Dongguk/Graduation Project/Lab
+=======
+58110
+Successfully changed project path to: D:/Unity_Graduate
+D:/Unity_Graduate
+>>>>>>> a30a0e177ecf41803c292ec6dcd857a43587da03
 [UnityMemory] Configuration Parameters - Can be set up in boot.config
     "memorysetup-bucket-allocator-granularity=16"
     "memorysetup-bucket-allocator-bucket-count=8"
@@ -47,7 +53,11 @@ D:/Unity/Dongguk/Graduation Project/Lab
     "memorysetup-temp-allocator-size-cloud-worker=32768"
     "memorysetup-temp-allocator-size-gi-baking-worker=262144"
     "memorysetup-temp-allocator-size-gfx=262144"
+<<<<<<< HEAD
 Refreshing native plugins compatible for Editor in 189.17 ms, found 3 plugins.
+=======
+Refreshing native plugins compatible for Editor in 73.80 ms, found 3 plugins.
+>>>>>>> a30a0e177ecf41803c292ec6dcd857a43587da03
 Preloading 0 native plugins for Editor in 0.00 ms.
 Initialize engine version: 2021.3.11f1 (0a5ca18544bf)
 [Subsystems] Discovering subsystems at path C:/Program Files/Unity/Hub/Editor/2021.3.11f1/Editor/Data/Resources/UnitySubsystems
@@ -60,6 +70,7 @@ Direct3D:
     VRAM:     4019 MB
     Driver:   31.0.15.3114
 Initialize mono
+<<<<<<< HEAD
 Mono path[0] = 'C:/Program Files/Unity/Hub/Editor/2021.3.11f1/Editor/Data/Managed'
 Mono path[1] = 'C:/Program Files/Unity/Hub/Editor/2021.3.11f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit-win32'
 Mono config path = 'C:/Program Files/Unity/Hub/Editor/2021.3.11f1/Editor/Data/MonoBleedingEdge/etc'
@@ -78,11 +89,30 @@ Mono: successfully reloaded assembly
 Domain Reload Profiling:
 	ReloadAssembly (1386ms)
 		BeginReloadAssembly (165ms)
+=======
+Mono path[0] = 'D:/Unity/Unity 2021.3.11f1/Editor/Data/Managed'
+Mono path[1] = 'D:/Unity/Unity 2021.3.11f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit-win32'
+Mono config path = 'D:/Unity/Unity 2021.3.11f1/Editor/Data/MonoBleedingEdge/etc'
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56724
+Begin MonoManager ReloadAssembly
+Registering precompiled unity dll's ...
+Register platform support module: D:/Unity/Unity 2021.3.11f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
+Registered in 0.001393 seconds.
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 74.54 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Mono: successfully reloaded assembly
+- Completed reload, in  0.496 seconds
+Domain Reload Profiling:
+	ReloadAssembly (496ms)
+		BeginReloadAssembly (52ms)
+>>>>>>> a30a0e177ecf41803c292ec6dcd857a43587da03
 			ExecutionOrderSort (0ms)
 			DisableScriptedObjects (0ms)
 			BackupInstance (0ms)
 			ReleaseScriptingObjects (0ms)
 			CreateAndSetChildDomain (1ms)
+<<<<<<< HEAD
 		EndReloadAssembly (987ms)
 			LoadAssemblies (164ms)
 			RebuildTransferFunctionScriptingTraits (0ms)
@@ -97,17 +127,38 @@ Domain Reload Profiling:
 				BeforeProcessingInitializeOnLoad (2ms)
 				ProcessInitializeOnLoadAttributes (208ms)
 				ProcessInitializeOnLoadMethodAttributes (93ms)
+=======
+		EndReloadAssembly (365ms)
+			LoadAssemblies (51ms)
+			RebuildTransferFunctionScriptingTraits (0ms)
+			SetupTypeCache (83ms)
+			ReleaseScriptCaches (0ms)
+			RebuildScriptCaches (24ms)
+			SetupLoadedEditorAssemblies (219ms)
+				LogAssemblyErrors (0ms)
+				InitializePlatformSupportModulesInManaged (5ms)
+				SetLoadedEditorAssemblies (0ms)
+				RefreshPlugins (75ms)
+				BeforeProcessingInitializeOnLoad (1ms)
+				ProcessInitializeOnLoadAttributes (102ms)
+				ProcessInitializeOnLoadMethodAttributes (36ms)
+>>>>>>> a30a0e177ecf41803c292ec6dcd857a43587da03
 				AfterProcessingInitializeOnLoad (0ms)
 				EditorAssembliesLoaded (0ms)
 			ExecutionOrderSort2 (0ms)
 			AwakeInstancesAfterBackupRestoration (0ms)
 Platform modules already initialized, skipping
 Registering precompiled user dll's ...
+<<<<<<< HEAD
 Registered in 0.013206 seconds.
+=======
+Registered in 0.003119 seconds.
+>>>>>>> a30a0e177ecf41803c292ec6dcd857a43587da03
 Begin MonoManager ReloadAssembly
 Symbol file LoadedFromMemory doesn't match image D:\Unity\Dongguk\Graduation Project\Lab\Library\PackageCache\com.unity.visualscripting@1.7.8\Editor\VisualScripting.Core\Dependencies\YamlDotNet\Unity.VisualScripting.YamlDotNet.dll
 Symbol file LoadedFromMemory doesn't match image D:\Unity\Dongguk\Graduation Project\Lab\Library\PackageCache\com.unity.visualscripting@1.7.8\Editor\VisualScripting.Core\Dependencies\DotNetZip\Unity.VisualScripting.IonicZip.dll
 Native extension for WindowsStandalone target not found
+<<<<<<< HEAD
 Native extension for Android target not found
 Refreshing native plugins compatible for Editor in 1.03 ms, found 3 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
@@ -128,10 +179,32 @@ Domain Reload Profiling:
 			ReleaseScriptCaches (1ms)
 			RebuildScriptCaches (100ms)
 			SetupLoadedEditorAssemblies (729ms)
+=======
+Refreshing native plugins compatible for Editor in 0.66 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Mono: successfully reloaded assembly
+- Completed reload, in  0.846 seconds
+Domain Reload Profiling:
+	ReloadAssembly (847ms)
+		BeginReloadAssembly (83ms)
+			ExecutionOrderSort (0ms)
+			DisableScriptedObjects (6ms)
+			BackupInstance (0ms)
+			ReleaseScriptingObjects (0ms)
+			CreateAndSetChildDomain (15ms)
+		EndReloadAssembly (676ms)
+			LoadAssemblies (59ms)
+			RebuildTransferFunctionScriptingTraits (0ms)
+			SetupTypeCache (219ms)
+			ReleaseScriptCaches (1ms)
+			RebuildScriptCaches (48ms)
+			SetupLoadedEditorAssemblies (317ms)
+>>>>>>> a30a0e177ecf41803c292ec6dcd857a43587da03
 				LogAssemblyErrors (0ms)
 				InitializePlatformSupportModulesInManaged (25ms)
 				SetLoadedEditorAssemblies (1ms)
 				RefreshPlugins (1ms)
+<<<<<<< HEAD
 				BeforeProcessingInitializeOnLoad (170ms)
 				ProcessInitializeOnLoadAttributes (471ms)
 				ProcessInitializeOnLoadMethodAttributes (49ms)
@@ -149,6 +222,25 @@ Unloading 3970 Unused Serialized files (Serialized files now loaded: 0)
 Unloading 41 unused Assets / (221.6 KB). Loaded Objects now: 4430.
 Memory consumption went from 149.7 MB to 149.5 MB.
 Total: 5.160600 ms (FindLiveObjects: 0.436200 ms CreateObjectMapping: 0.360500 ms MarkObjects: 4.144600 ms  DeleteObjects: 0.217900 ms)
+=======
+				BeforeProcessingInitializeOnLoad (68ms)
+				ProcessInitializeOnLoadAttributes (216ms)
+				ProcessInitializeOnLoadMethodAttributes (26ms)
+				AfterProcessingInitializeOnLoad (2ms)
+				EditorAssembliesLoaded (0ms)
+			ExecutionOrderSort2 (0ms)
+			AwakeInstancesAfterBackupRestoration (5ms)
+Platform modules already initialized, skipping
+========================================================================
+Worker process is ready to serve import requests
+Launched and connected shader compiler UnityShaderCompiler.exe after 0.03 seconds
+Refreshing native plugins compatible for Editor in 0.72 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 3967 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 39 unused Assets / (190.1 KB). Loaded Objects now: 4433.
+Memory consumption went from 218.1 MB to 218.0 MB.
+Total: 2.746300 ms (FindLiveObjects: 0.291900 ms CreateObjectMapping: 0.229500 ms MarkObjects: 2.119900 ms  DeleteObjects: 0.104200 ms)
+>>>>>>> a30a0e177ecf41803c292ec6dcd857a43587da03
 
 AssetImportParameters requested are different than current active one (requested -> active):
   custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
@@ -161,3 +253,30 @@ AssetImportParameters requested are different than current active one (requested
   custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
   custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
   custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+<<<<<<< HEAD
+=======
+========================================================================
+Received Import Request.
+  Time since last request: 35163.736975 seconds.
+  path: Assets/Prefabs/UI/PlayerUI.prefab
+  artifactKey: Guid(4d7c5c545e75f1a4aae0b643c1d8286d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Prefabs/UI/PlayerUI.prefab using Guid(4d7c5c545e75f1a4aae0b643c1d8286d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '6d4a0c45347d84496b42b926486a0c5e') in 0.077224 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 2.923883 seconds.
+  path: Assets/Prefabs/UI/PlayerUI.prefab
+  artifactKey: Guid(4d7c5c545e75f1a4aae0b643c1d8286d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Prefabs/UI/PlayerUI.prefab using Guid(4d7c5c545e75f1a4aae0b643c1d8286d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '170a76da6d099344b69be65f95f7c0d9') in 0.020900 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 15.328070 seconds.
+  path: Assets/Prefabs/UI/PlayerUI.prefab
+  artifactKey: Guid(4d7c5c545e75f1a4aae0b643c1d8286d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Prefabs/UI/PlayerUI.prefab using Guid(4d7c5c545e75f1a4aae0b643c1d8286d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ad7f66e0059f2f94ac92ff50228e46c8') in 0.020279 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 5.219532 seconds.
+  path: Assets/Prefabs/UI/PlayerUI.prefab
+  artifactKey: Guid(4d7c5c545e75f1a4aae0b643c1d8286d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Prefabs/UI/PlayerUI.prefab using Guid(4d7c5c545e75f1a4aae0b643c1d8286d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b228e70bb3ccaf291124f2a9bce68472') in 0.019142 seconds 
+>>>>>>> a30a0e177ecf41803c292ec6dcd857a43587da03
