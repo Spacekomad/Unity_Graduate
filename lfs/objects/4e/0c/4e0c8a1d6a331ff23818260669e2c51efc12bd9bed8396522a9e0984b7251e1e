@@ -1,0 +1,87 @@
+
+using UnityEngine;
+using System;
+
+[Serializable]
+public abstract class CharacterStatus
+{
+    public float maxHP { get { return _maxHP; } }
+    public float currentHP { get { return _currentHP; } }
+
+    [SerializeField]
+    protected float _maxHP = 100.0f;
+    [SerializeField]
+    protected float _currentHP = 100.0f;
+
+    public virtual void TakeDamage(float damage)
+    {
+        //傈贸府
+        if (damage < 0)
+        {
+
+        }
+
+        _currentHP -= damage;
+
+        //饶贸府
+        if (_currentHP <= 0)
+        {
+
+        }
+    }
+
+    public virtual void RecoverHP(float amount)
+    {
+        //傈贸府
+        if (amount < 0)
+        {
+
+        }
+        if (_currentHP <= 0)
+        {
+
+        }
+
+        _currentHP += amount;
+
+        //饶贸府
+        if (_currentHP > _maxHP)
+        {
+
+        }
+    }
+
+    public virtual void SetCurrentHP(float value)
+    {
+        //傈贸府
+        if (value < 0)
+        {
+
+        }
+        _currentHP = value;
+        //饶贸府
+        if (_currentHP <= 0)
+        {
+
+        }
+    }
+
+    public virtual void SetMaxHP(float value)
+    {
+        if(value < 0)
+        {
+
+        }
+
+        _maxHP = value;
+
+        if(_maxHP < _currentHP)
+        {
+
+        }
+        if (_maxHP <= 0)
+        {
+
+        }
+    }
+}
