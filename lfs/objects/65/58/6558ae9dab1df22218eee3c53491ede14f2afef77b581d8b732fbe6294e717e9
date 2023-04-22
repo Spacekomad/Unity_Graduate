@@ -1,0 +1,67 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+// 맘다니형이나 스게노형 퍼지 추론으로 확장 불가능...
+// 이 클래스는 개인적으로 변형한 형태
+public abstract class FuzzySystem
+{
+    public FuzzySystem(int outputStatesNum)
+    {
+        this.outputStatesNum = outputStatesNum;
+        outDoMs = new float[outputStatesNum];
+        outDoMAddCount = new int[outputStatesNum];
+        rules = new List<FuzzyRule>();
+        SetMemberFunctions();
+        SetRules();
+    }
+
+    protected MembershipFunction[][] fuzzySets;
+    protected List<FuzzyRule> rules;
+    protected float[] outDoMs;
+    protected int[] outDoMAddCount;
+
+    protected int outputStatesNum;
+
+
+
+    protected abstract void SetMemberFunctions();
+    protected abstract void SetRules();
+
+    protected virtual void SetInputDoM(float[] input)
+    {
+        int i = 0;
+        foreach (MembershipFunction[] languageVar in fuzzySets)
+        {
+            foreach (MembershipFunction fuzzySet in languageVar)
+            {
+                fuzzySet.SetDoM(input[i]);
+            }
+            ++i;
+        }
+    }
+
+    public virtual float[] ComputeOutDoMs(float[] input)
+    {
+        outDoMs.Initialize();
+        outDoMAddCount.Initialize();
+
+        SetInputDoM(input);
+
+        foreach (FuzzyRule rule in rules)
+        {
+            outDoMs[rule.outputStateID] += rule.GetOutDoM();
+            ++outDoMAddCount[rule.outputStateID];
+        }
+
+        for (int i = 0; i < outputStatesNum; ++i)
+        {
+            if (outDoMAddCount[i] != 0)
+            {
+                outDoMs[i] /= outDoMAddCount[i];
+            }
+        }
+
+        return (float[])outDoMs.Clone();
+    }
+}

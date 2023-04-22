@@ -1,0 +1,11 @@
+public class MembershipFunction
+{
+    private float _DoM;
+
+    public float DoM { get { return _DoM; } }
+
+    public virtual void SetDoM(float input)
+    {
+        _DoM = 0.0f;
+    }
+}

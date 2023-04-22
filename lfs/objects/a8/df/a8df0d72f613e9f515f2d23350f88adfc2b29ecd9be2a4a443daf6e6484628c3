@@ -1,0 +1,21 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class ANDFuzzyRule : FuzzyRule
+{
+    public ANDFuzzyRule(int outputID) : base(outputID) { }
+
+    public override float GetOutDoM()
+    {
+        float min = 0.0f;
+        foreach (MembershipFunction fuzzySet in antecedent)
+        {
+            if (min > fuzzySet.DoM)
+            {
+                min = fuzzySet.DoM;
+            }
+        }
+        return min;
+    }
+}

@@ -1,0 +1,66 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class PlayerGroundedState : StateLayer
+{
+    private bool test = false;
+
+    public PlayerGroundedState(PlayerCharacter playerCharacter, FiniteStateMachine mainMachine, FiniteStateMachine subMachine) : base(playerCharacter, mainMachine, subMachine) { }
+
+    public override void Enter()
+    {
+        base.Enter();
+        canTransition = true;
+
+        //SubMachine initialize & enter func invoke
+        subMachine.Initialize(playerCharacter.movingState);
+    }
+    public override void LogicUpdate()
+    {
+        base.LogicUpdate();
+        canTransition = subMachine.currentState.canTransition;
+
+        if (subMachine.currentState.canTransition) {
+            if (test)// If player got hit
+            {
+                if (test)// Stifness
+                {
+                    machine.ChangeState(playerCharacter.stiffnessState);
+                    return;
+                }
+                else if (test)// Knockdown
+                {
+                    machine.ChangeState(playerCharacter.downState);
+                    return;
+                }
+            }
+            else
+            {
+                if (!playerCharacter.Grounded)// Not Grounded
+                {
+                    machine.ChangeState(playerCharacter.fallingState);
+                    return;
+                }
+            }
+        }
+
+        //subMachine Update
+        subMachine.currentState.LogicUpdate();
+    }
+    public override void PhysicsUpdate()
+    {
+        base.PhysicsUpdate();
+
+        //sybMachine FixedUpdate
+        subMachine.currentState.PhysicsUpdate();
+    }
+    public override void Exit()
+    {
+        base.Exit();
+        //subMachine exit
+        subMachine.currentState.Exit();
+
+
+    }
+}

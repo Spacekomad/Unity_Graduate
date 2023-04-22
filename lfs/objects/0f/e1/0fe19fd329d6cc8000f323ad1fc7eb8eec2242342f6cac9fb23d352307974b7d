@@ -1,0 +1,30 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class HereticSuperState : State
+{
+    protected Character_Heretic character;
+
+    public HereticSuperState(Character_Heretic character, FiniteStateMachine machine) : base(machine)
+    {
+        this.character = character;
+    }
+
+    public override void Enter()
+    {
+
+    }
+    public override void LogicUpdate()
+    {
+
+    }
+    public override void PhysicsUpdate()
+    {
+
+    }
+    public override void Exit()
+    {
+
+    }
+}
