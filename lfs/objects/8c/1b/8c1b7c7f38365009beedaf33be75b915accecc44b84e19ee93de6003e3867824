@@ -1,0 +1,27 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public abstract class StateLayer : PlayerCharacterSuperState
+{
+    protected FiniteStateMachine subMachine;
+    public StateLayer(PlayerCharacter character, FiniteStateMachine mainMachine, FiniteStateMachine subMachine) : base(character, mainMachine) {
+        this.subMachine = subMachine;
+    }
+    public override void Enter()
+    {
+        base.Enter();
+    }
+    public override void LogicUpdate()
+    {
+        base.LogicUpdate();
+    }
+    public override void PhysicsUpdate()
+    {
+        base.PhysicsUpdate();
+    }
+    public override void Exit()
+    {
+        base.Exit();
+    }
+}

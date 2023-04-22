@@ -1,0 +1,18 @@
+using System.Collections.Generic;
+
+public abstract class FuzzyRule
+{
+    public FuzzyRule(int outputID)
+    {
+        _outputStateID = outputID;
+        antecedent = new List<MembershipFunction>();
+    }
+
+    public List<MembershipFunction> antecedent;
+
+    private int _outputStateID;
+
+    public int outputStateID { get { return _outputStateID; } }
+
+    public abstract float GetOutDoM();
+}

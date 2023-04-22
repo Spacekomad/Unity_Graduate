@@ -1,0 +1,19 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+namespace Globals
+{
+    public class AnimationParameters
+    {
+        public static int Speed = Animator.StringToHash("Speed");
+        public static int Grounded = Animator.StringToHash("Grounded");
+        public static int FreeFall = Animator.StringToHash("Free Fall");
+        public static int GetHit = Animator.StringToHash("GetHit");
+        public static int Rolling = Animator.StringToHash("Rolling");
+        public static int Attacking = Animator.StringToHash("Attacking");
+        public static int EndAttack = Animator.StringToHash("End Attack");
+        public static int ChangeWeapon = Animator.StringToHash("Changing Weapon");
+        public static int ArmNum = Animator.StringToHash("Arm");
+    }
+}

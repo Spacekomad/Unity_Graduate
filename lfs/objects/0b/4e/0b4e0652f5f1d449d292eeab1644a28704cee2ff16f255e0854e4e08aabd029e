@@ -1,0 +1,19 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class AverageFuzzyRule : FuzzyRule
+{
+    public AverageFuzzyRule(int outputID) : base(outputID) { }
+    public override float GetOutDoM()
+    {
+        float average = 0.0f;
+        foreach (MembershipFunction fuzzySet in antecedent)
+        {
+            average += fuzzySet.DoM;
+        }
+        average /= antecedent.Count;
+
+        return average;
+    }
+}
