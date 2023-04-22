@@ -1,0 +1,26 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class PlayerFreeFallingState : PlayerCharacterSuperState
+{
+    public PlayerFreeFallingState(PlayerCharacter controller, FiniteStateMachine machine) : base(controller, machine) { }
+
+    public override void Enter()
+    {
+        base.Enter();
+    }
+    public override void LogicUpdate()
+    {
+        base.LogicUpdate();
+        Debug.Log("Player is falling down");
+    }
+    public override void PhysicsUpdate()
+    {
+        base.PhysicsUpdate();
+    }
+    public override void Exit()
+    {
+        base.Exit();
+    }
+}
