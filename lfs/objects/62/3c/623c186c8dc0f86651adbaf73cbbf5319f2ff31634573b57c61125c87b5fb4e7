@@ -1,0 +1,37 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+namespace Globals
+{
+    public class AnimationParameters
+    {
+        public static int Speed = Animator.StringToHash("Speed");
+        public static int Grounded = Animator.StringToHash("Grounded");
+        public static int FreeFall = Animator.StringToHash("Free Fall");
+        public static int GetHit = Animator.StringToHash("GetHit");
+        public static int Rolling = Animator.StringToHash("Rolling");
+        public static int Attacking = Animator.StringToHash("Attacking");
+        public static int EndAttack = Animator.StringToHash("End Attack");
+        public static int ChangeWeapon = Animator.StringToHash("Changing Weapon");
+        public static int ArmNum = Animator.StringToHash("Arm");
+    }
+    public class AnimationParameters_Heretic
+    {
+
+        public static int Idle = Animator.StringToHash("Idle");
+        public static int Stiffness = Animator.StringToHash("Stiffness");
+        public static int Dodge = Animator.StringToHash("Dodge");
+        public static int Attack = Animator.StringToHash("Attack");
+        public static int BasicAttact_Close = Animator.StringToHash("Basic Attack Close");
+        public static int BasicAttack_Far = Animator.StringToHash("Basic Attack Far");
+        public static int StrongAttack_Close = Animator.StringToHash("Strong Attack Close");
+        public static int StrongAttack_Far = Animator.StringToHash("Strong Attack Far");
+        public static int SprintAttack = Animator.StringToHash("Sprint Attack");
+        public static int SprintClose = Animator.StringToHash("Sprint Close");
+        public static int Break = Animator.StringToHash("Break");
+        public static int WalkClose = Animator.StringToHash("Walk Close");
+        public static int WalkBack = Animator.StringToHash("Walk Back");
+        public static int Execute_Failed = Animator.StringToHash("Execute Failed");
+    }
+}
