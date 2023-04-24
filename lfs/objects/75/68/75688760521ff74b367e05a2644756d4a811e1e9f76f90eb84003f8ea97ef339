@@ -1,0 +1,96 @@
+using UnityEngine;
+
+public class Character_Heretic : EnemyCharacter
+{
+    #region SerializedVariables
+    public float idleTime = 1.0f;
+
+    [Space(10)]
+    [Header("Viewer : Do not edit")]
+    [SerializeField]
+    private EnumTypes.FuzzyOutStates_Heretic _desiredAction;
+
+    #endregion
+
+    #region NonSerializedVariables
+
+    private FuzzySystem _fuzzySystem;
+    private float[] _fuzzySystemInputs;
+
+    #endregion
+
+    #region Properties
+
+    public EnumTypes.FuzzyOutStates_Heretic desiredAction;
+
+    #endregion
+
+    float time;
+
+    protected override void Awake()
+    {
+        base.Awake();
+        _fuzzySystem = new FuzzySystem_Heretic();
+        _fuzzySystemInputs = new float[_fuzzySystem.requiredInputNum];
+    }
+
+    protected override void Start()
+    {
+        base.Start();
+    }
+
+    protected override void Update()
+    {
+        base.Update();
+        time += Time.deltaTime;
+        if (time > 3.0f)
+        {
+            time = 0.0f;
+            if (target) 
+            {
+                //Debug.Log(Vector2.Distance(new Vector2(transform.position.x, transform.position.z), new Vector2(target.position.x, target.position.z)));
+                MakeDecision();
+                Debug.Log(_desiredAction.ToString());
+            }
+        }
+    }
+
+    protected override void FixedUpdate()
+    {
+        base.FixedUpdate();
+    }
+
+    public void MakeDecision()
+    {
+        SetFuzzySystemInput();
+        float[] output = _fuzzySystem.ComputeOutDoMs(_fuzzySystemInputs);
+
+        float randomRange = 0.0f;
+        foreach (float DoM in output)
+        {
+            randomRange += DoM;
+        }
+
+
+        float randomValue =  UnityEngine.Random.Range(0.0f, randomRange);
+        randomRange = 0.0f;
+        for(int i = 0; i < output.Length; ++i)
+        {
+            if(output[i] > 0.0f)
+            {
+                randomRange += output[i];
+                if (randomValue <= randomRange)
+                {
+                    _desiredAction = (EnumTypes.FuzzyOutStates_Heretic)i;
+                    break;
+                }
+            }
+        }
+    }
+
+    private void SetFuzzySystemInput()
+    {
+        _fuzzySystemInputs[0] = Vector2.Distance(new Vector2(transform.position.x, transform.position.z), new Vector2(target.position.x, target.position.z));
+        _fuzzySystemInputs[1] = targetCharacter.stat.currentHP / targetCharacter.stat.maxHP;
+    }
+}
