@@ -1,0 +1,20 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class ORFuzzyRule : FuzzyRule
+{
+    public ORFuzzyRule(int outputID) : base(outputID) { }
+    public override float GetOutDoM()
+    {
+        float max = 0.0f;
+        foreach (MembershipFunction fuzzySet in antecedent)
+        {
+            if (max < fuzzySet.DoM)
+            {
+                max = fuzzySet.DoM;
+            }
+        }
+        return max;
+    }
+}

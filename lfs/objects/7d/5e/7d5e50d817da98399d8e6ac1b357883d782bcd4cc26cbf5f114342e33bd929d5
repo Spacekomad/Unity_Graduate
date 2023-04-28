@@ -1,0 +1,15 @@
+public abstract class State
+{
+    public bool canTransition = true;
+
+    protected FiniteStateMachine machine;
+
+    public State(FiniteStateMachine targetMachine) {
+        machine = targetMachine;
+    }
+
+    public abstract void Enter();
+    public abstract void LogicUpdate();
+    public abstract void PhysicsUpdate();
+    public abstract void Exit();
+}
