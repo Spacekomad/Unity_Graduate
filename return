@@ -1,0 +1,569 @@
+[33mcommit dad456ba1ac952e75238c38d4f4cf026ff0597bb[m[33m ([m[1;36mHEAD -> [m[1;32mswift13[m[33m)[m
+Author: pollux-13 <strakk@naver.com>
+Date:   Fri May 12 13:00:34 2023 +0900
+
+    0512 works
+
+[33mcommit 9a5875cb313edce3477c9affe2eb6f6e145091e4[m[33m ([m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m, [m[1;32mmain[m[33m)[m
+Merge: 77b51d51 4d2704d9
+Author: Spacekomad <128958639+Spacekomad@users.noreply.github.com>
+Date:   Fri Apr 28 22:57:47 2023 +0900
+
+    Merge pull request #23 from Spacekomad/WUJU
+    
+    Wuju
+
+[33mcommit 4d2704d971ec4fe07ac6be87b89d8aca332ef10a[m
+Merge: 6c015dc2 77b51d51
+Author: spacekomad <spacekomad@gmail.com>
+Date:   Fri Apr 28 22:53:37 2023 +0900
+
+    Merge main
+
+[33mcommit 6c015dc2bd5878c5ae0eb4f245a5822a7e4a741e[m
+Author: spacekomad <spacekomad@gmail.com>
+Date:   Fri Apr 28 22:06:42 2023 +0900
+
+    Merge swift
+
+[33mcommit 77b51d51746486210e2cd13e139917af2e46ceb1[m
+Merge: 308187f9 6c34ab1f
+Author: Spacekomad <128958639+Spacekomad@users.noreply.github.com>
+Date:   Fri Apr 28 21:50:10 2023 +0900
+
+    Merge pull request #22 from Spacekomad/swift13
+    
+    Swift13
+
+[33mcommit 6c34ab1fa92f3a288dccc91d3f22289bb50e33a3[m[33m ([m[1;31morigin/swift13[m[33m)[m
+Author: pollux-13 <strakk@naver.com>
+Date:   Fri Apr 28 17:20:08 2023 +0900
+
+    UI기본 작업_base
+
+[33mcommit 308187f913fe405e1bca22421b710f8d8e37fa0d[m
+Merge: 70a47152 b5bbc777
+Author: Spacekomad <128958639+Spacekomad@users.noreply.github.com>
+Date:   Tue Apr 25 04:35:22 2023 +0900
+
+    Merge pull request #21 from Spacekomad/WUJU
+    
+    Wuju
+
+[33mcommit b5bbc7770cb62ed14deacd6236b701d3f29c9417[m
+Author: spacekomad <spacekomad@gmail.com>
+Date:   Tue Apr 25 04:34:20 2023 +0900
+
+    Heretic Action Complete
+
+[33mcommit f202f069d0bb38bfa6afb21122b8bf51268138bf[m
+Author: spacekomad <spacekomad@gmail.com>
+Date:   Sun Apr 23 17:57:52 2023 +0900
+
+    Backup
+
+[33mcommit 59f9cb34b4d96452d7a82ad97d7e9777e9ae8333[m
+Author: pollux-13 <strakk@naver.com>
+Date:   Sun Apr 23 00:18:07 2023 +0900
+
+    commit before pull main
+
+[33mcommit 70a4715205158e9758ae35650381cb3040682645[m
+Merge: 5d165b1b 8c76d729
+Author: Spacekomad <128958639+Spacekomad@users.noreply.github.com>
+Date:   Sat Apr 22 23:34:29 2023 +0900
+
+    Merge pull request #20 from Spacekomad/WUJU
+    
+    Wuju
+
+[33mcommit 8c76d729536a43eb1ea51ccaccd7ce32d1d68093[m
+Merge: 7600e9b7 5d165b1b
+Author: spacekomad <spacekomad@gmail.com>
+Date:   Sat Apr 22 23:31:16 2023 +0900
+
+    Merge main
+
+[33mcommit 5d165b1bf200429d8f07aab5816b07d5cec1de60[m
+Author: spacekomad <spacekomad@gmail.com>
+Date:   Sat Apr 22 23:28:17 2023 +0900
+
+    SceneA delete
+
+[33mcommit 7600e9b74c0896669e18d5d0a10fbe0df64e568a[m
+Author: spacekomad <spacekomad@gmail.com>
+Date:   Sat Apr 22 22:57:38 2023 +0900
+
+    Heretic animator setting modify
+
+[33mcommit 57ef2347deadf66fd52f91cf3a473bfed2b48849[m
+Author: spacekomad <spacekomad@gmail.com>
+Date:   Sat Apr 22 22:39:19 2023 +0900
+
+    Fuzzy System Complete
+
+[33mcommit d32b7a2335381ab49d3c6d87f899ae80d864cb54[m
+Merge: 3ddb8f40 1eecf47a
+Author: Spacekomad <128958639+Spacekomad@users.noreply.github.com>
+Date:   Sat Apr 22 13:29:27 2023 +0900
+
+    Merge pull request #19 from Spacekomad/swift13
+    
+    Swift13
+
+[33mcommit 1eecf47a40cdb7be1514a6566a523bd0691b320e[m
+Author: spacekomad <spacekomad@gmail.com>
+Date:   Sat Apr 22 13:28:39 2023 +0900
+
+    SceneA Repair
+
+[33mcommit 611a3ebc77ba9cdff61552ab8dc5f65b3d181a0e[m
+Author: spacekomad <spacekomad@gmail.com>
+Date:   Sat Apr 22 13:19:32 2023 +0900
+
+    SceneA Delete
+
+[33mcommit a4a6f4c257b92dfd8391b2aab4bed84a0fccb374[m
+Merge: 87708b2f 3ddb8f40
+Author: spacekomad <spacekomad@gmail.com>
+Date:   Sat Apr 22 13:12:36 2023 +0900
+
+    merge main
+
+[33mcommit 9fe54398e9ea8743f2509709f07c456872b73e6f[m
+Author: spacekomad <spacekomad@gmail.com>
+Date:   Sat Apr 22 13:07:29 2023 +0900
+
+    Fuzzy System
+
+[33mcommit 87708b2fbe70e01abb456442dff20134b7e869df[m
+Author: Spacekomad <128958639+Spacekomad@users.noreply.github.com>
+Date:   Sat Apr 22 13:04:45 2023 +0900
+
+    Delete UI.meta
+
+[33mcommit 16af7a7144db6dc4a35585d3210c3eeae453fbde[m
+Author: Spacekomad <128958639+Spacekomad@users.noreply.github.com>
+Date:   Sat Apr 22 13:04:26 2023 +0900
+
+    Delete Prefabs.meta
+
+[33mcommit 5fe689a46e8a212164f880f97c48df0c54367ea2[m
+Author: Spacekomad <128958639+Spacekomad@users.noreply.github.com>
+Date:   Sat Apr 22 13:04:04 2023 +0900
+
+    Delete Scripts.meta
+
+[33mcommit 4e89785d1d62162c598abc3c872bca59d2b51871[m
+Author: pollux-13 <strakk@naver.com>
+Date:   Sat Apr 22 01:34:52 2023 +0900
+
+    UI work 0422
+
+[33mcommit 77808b63b4466fbd6aafe2396499c316756e77e0[m
+Author: pollux-13 <strakk@naver.com>
+Date:   Wed Apr 19 12:56:13 2023 +0900
+
+    UI work_0418
+
+[33mcommit 3ddb8f4051b10eb2a9585f43247f08299457926b[m
+Merge: f8d4d068 a01d0716
+Author: Spacekomad <128958639+Spacekomad@users.noreply.github.com>
+Date:   Mon Apr 17 12:09:49 2023 +0900
+
+    Merge pull request #17 from Spacekomad/WUJU
+    
+    Player Gravity Setting & Falling Motion Setting
+
+[33mcommit a01d07161b62f51effacbf2e2324994a82826bbe[m
+Author: spacekomad <spacekomad@gmail.com>
+Date:   Mon Apr 17 11:59:51 2023 +0900
+
+    Player Gravity Setting & Falling Motion Setting
+
+[33mcommit f8d4d06845ad708775b64377bc7d4d5c8f872fd8[m
+Merge: 7561d6b6 67cecaf8
+Author: Spacekomad <128958639+Spacekomad@users.noreply.github.com>
+Date:   Sun Apr 16 18:53:15 2023 +0900
+
+    Merge pull request #16 from Spacekomad/WUJU
+    
+    Wuju
+
+[33mcommit 67cecaf83687489e89765c4b44910ba6418a2a41[m
+Author: spacekomad <spacekomad@gmail.com>
+Date:   Sun Apr 16 18:39:15 2023 +0900
+
+    보스 피격, 보스 animator 세팅, Weapon 스크립트작성
+
+[33mcommit 025ae5299868396424b36066d7a3f570d8521158[m
+Merge: ffe3ab1d 7561d6b6
+Author: pollux-13 <strakk@naver.com>
+Date:   Sat Apr 15 22:16:26 2023 +0900
+
+    230415_v4
+
+[33mcommit ffe3ab1d6e57e1639ed393fe6a4725b646c72d5a[m
+Author: pollux-13 <strakk@naver.com>
+Date:   Sat Apr 15 22:11:52 2023 +0900
+
+    230415_v2
+
+[33mcommit 36fcbab502de7832642ac708e7e608304c3be24d[m
+Author: pollux-13 <strakk@naver.com>
+Date:   Sat Apr 15 22:10:18 2023 +0900
+
+    230415
+
+[33mcommit 35b69523f24f5679d910613adaaf51cbfcee9520[m
+Merge: 712e878c 73eb7258
+Author: spacekomad <spacekomad@gmail.com>
+Date:   Sat Apr 15 19:40:54 2023 +0900
+
+    Main merge
+
+[33mcommit 712e878cecd1595e12e7b41bba94d952fa49472e[m
+Author: spacekomad <spacekomad@gmail.com>
+Date:   Sat Apr 15 19:40:05 2023 +0900
+
+    So Sad
+
+[33mcommit 73eb7258824abbafbb94e14829aa82d770ee6dae[m
+Author: spacekomad <spacekomad@gmail.com>
+Date:   Sat Apr 15 19:24:29 2023 +0900
+
+    jj
+
+[33mcommit 7561d6b6073f94f355f1a1797fcd7c87d12a6ffd[m
+Merge: dc15278d 6589ba91
+Author: Spacekomad <128958639+Spacekomad@users.noreply.github.com>
+Date:   Sat Apr 15 18:55:20 2023 +0900
+
+    Merge pull request #15 from Spacekomad/dahyebbooooong
+    
+    Dahyebbooooong
+
+[33mcommit 6589ba9116635515725e4a151277fdb1d90cce55[m
+Merge: b11ccda1 ea76621f
+Author: spacekomad <spacekomad@gmail.com>
+Date:   Sat Apr 15 18:54:46 2023 +0900
+
+    UI, Second Map
+
+[33mcommit b11ccda1a5f22171d967bb6835a8c15d0d9e3d91[m
+Author: spacekomad <spacekomad@gmail.com>
+Date:   Sat Apr 15 18:53:12 2023 +0900
+
+    asd
+
+[33mcommit ea76621fcff907821790c126023f0f67a672aee1[m
+Author: dahye <ek5348@naver.com>
+Date:   Sat Apr 15 18:32:20 2023 +0900
+
+    2map, ui
+
+[33mcommit c087dc97b1e71c93699c864a5c854ad2e8485c2c[m
+Author: spacekomad <spacekomad@gmail.com>
+Date:   Sat Apr 15 18:07:34 2023 +0900
+
+    Gizmo 추가중
+
+[33mcommit c2b231b5ae4c5d8cc33bdce107b52b9e2a3d058b[m
+Author: dahye <ek5348@naver.com>
+Date:   Sat Apr 15 17:58:12 2023 +0900
+
+    2번맵 완성, UI파일 추가
+
+[33mcommit dc15278d360cdf407c5e46f2860d0ebb4d9231df[m
+Author: spacekomad <spacekomad@gmail.com>
+Date:   Sat Apr 15 11:48:28 2023 +0900
+
+    conflict set
+
+[33mcommit af54acaa9408b6380de88186a95d46b6f7ec9373[m
+Author: spacekomad <spacekomad@gmail.com>
+Date:   Sat Apr 15 11:41:21 2023 +0900
+
+    merge
+
+[33mcommit f526185870503de50a261a55eb8b94ebc1fa74ae[m
+Merge: 7e415edc 7027c535
+Author: spacekomad <spacekomad@gmail.com>
+Date:   Sat Apr 15 11:29:30 2023 +0900
+
+    Merge branch 'main' of https://github.com/Spacekomad/Unity_Graduate into main
+
+[33mcommit 7e415edcee0f662632c1c1d1cd08d92257b8b17b[m
+Author: spacekomad <spacekomad@gmail.com>
+Date:   Sat Apr 15 10:59:14 2023 +0900
+
+    ingnore파일 main에서 삭제
+
+[33mcommit 7027c535d2ff01386d18f176cb62ccfefb103df7[m
+Author: Spacekomad <128958639+Spacekomad@users.noreply.github.com>
+Date:   Sat Apr 15 10:55:11 2023 +0900
+
+    Delete Unity_Graduate.sln
+
+[33mcommit 5d8d4e025ea308f1f4ca447eada529719244f635[m
+Author: Spacekomad <128958639+Spacekomad@users.noreply.github.com>
+Date:   Sat Apr 15 10:55:02 2023 +0900
+
+    Delete Lab.sln
+
+[33mcommit 7681773c645199940b35f7c1dd5793d55913b8a8[m
+Author: Spacekomad <128958639+Spacekomad@users.noreply.github.com>
+Date:   Sat Apr 15 10:54:34 2023 +0900
+
+    Delete .vs directory
+
+[33mcommit 5b1493e50105a49f58aba885f09b70c8225a450f[m
+Author: Spacekomad <128958639+Spacekomad@users.noreply.github.com>
+Date:   Sat Apr 15 10:53:11 2023 +0900
+
+    Delete Assembly-CSharp.csproj
+
+[33mcommit 51e4c96ccef17564b8dcb70cc9826bfe36d4013a[m
+Author: Spacekomad <128958639+Spacekomad@users.noreply.github.com>
+Date:   Sat Apr 15 10:52:36 2023 +0900
+
+    Delete Logs directory
+
+[33mcommit 6c1b12f77586ea8a480512c0318400f4d6fede3b[m
+Author: Spacekomad <128958639+Spacekomad@users.noreply.github.com>
+Date:   Sat Apr 15 10:52:11 2023 +0900
+
+    Delete UserSettings directory
+
+[33mcommit f7fe5d2a76c0d1fcefd0f266c7ffb032cf9faac6[m
+Merge: c062c1c5 96420a90
+Author: Spacekomad <128958639+Spacekomad@users.noreply.github.com>
+Date:   Sat Apr 15 10:38:27 2023 +0900
+
+    Merge pull request #13 from Spacekomad/swift13
+    
+    Swift13
+
+[33mcommit 96420a90e9e450e85822517e883afd2a21d27512[m
+Merge: c062c1c5 a30a0e17
+Author: spacekomad <spacekomad@gmail.com>
+Date:   Sat Apr 15 10:36:28 2023 +0900
+
+    Merge main
+
+[33mcommit a30a0e177ecf41803c292ec6dcd857a43587da03[m
+Author: pollux-13 <strakk@naver.com>
+Date:   Sat Apr 15 10:25:15 2023 +0900
+
+    UI 기본 틀 추가 및 충돌 방지 작업
+
+[33mcommit 563667ce986c5a5ce3d7eba583bea4c92de7189b[m
+Author: pollux-13 <strakk@naver.com>
+Date:   Sat Apr 15 10:10:55 2023 +0900
+
+    UI 기본 틀 추가 및 충돌 방지 파일 추가
+
+[33mcommit 64071d0dd6ff6cfff6540422c55af0ee46083d78[m
+Author: pollux-13 <strakk@naver.com>
+Date:   Fri Apr 14 19:59:40 2023 +0900
+
+    UI 기본 틀 추가
+
+[33mcommit c062c1c58e9b44b5538668a0f900a676f179b00c[m
+Merge: 97d7e551 a7554578
+Author: Spacekomad <128958639+Spacekomad@users.noreply.github.com>
+Date:   Mon Apr 10 05:27:44 2023 +0900
+
+    Merge pull request #9 from Spacekomad/WUJU
+    
+    2023-04-10-05:26 충돌 관련 설정 & 무기 교체, 스테이터스 추가 및 플레이어 Animator구조 변경
+
+[33mcommit 97d7e551c335915664dbc61102b61455fbd80ab3[m
+Author: Spacekomad <128958639+Spacekomad@users.noreply.github.com>
+Date:   Mon Apr 10 05:25:08 2023 +0900
+
+    Delete Library directory
+
+[33mcommit a7554578e2c3cba93cc97f5f82827ecd49cba984[m
+Author: spacekomad <spacekomad@gmail.com>
+Date:   Mon Apr 10 05:22:48 2023 +0900
+
+    merge
+
+[33mcommit b8d07cc6bc6ba4f4d036fb3be61643173732d146[m
+Merge: cb6fac45 48d1614e
+Author: spacekomad <spacekomad@gmail.com>
+Date:   Mon Apr 10 05:07:12 2023 +0900
+
+    merge
+
+[33mcommit 48d1614e245688371c3488981a97a4eb321c625c[m
+Author: spacekomad <spacekomad@gmail.com>
+Date:   Mon Apr 10 04:51:24 2023 +0900
+
+    ignore setting
+
+[33mcommit cb6fac45879f7a52083858cf261ca1ef29ee641c[m
+Author: spacekomad <spacekomad@gmail.com>
+Date:   Mon Apr 10 04:48:06 2023 +0900
+
+    ignore setting
+
+[33mcommit a9b407f3ae664db38d51a2165a9439836bbe31f6[m
+Author: spacekomad <spacekomad@gmail.com>
+Date:   Mon Apr 10 04:23:08 2023 +0900
+
+    ignore수정
+
+[33mcommit d1fb7112f7d3fd1bd613bb6582fd70544311f00d[m
+Author: spacekomad <spacekomad@gmail.com>
+Date:   Mon Apr 10 04:13:42 2023 +0900
+
+    merge 전
+
+[33mcommit 2a0b5465adbcde127fe0b5ada692ac7483bbe001[m
+Author: spacekomad <spacekomad@gmail.com>
+Date:   Mon Apr 10 02:17:11 2023 +0900
+
+    무기 변경 추가, 스테이터스 추가, Animator구조 변경
+
+[33mcommit 1d4554be08807de0586b132d15d91233b0192800[m
+Merge: 101d3b42 3552d191
+Author: Spacekomad <128958639+Spacekomad@users.noreply.github.com>
+Date:   Sun Apr 9 23:39:49 2023 +0900
+
+    Merge pull request #8 from Spacekomad/swift13
+    
+    2023-04-09-23:39
+
+[33mcommit 3552d1914c7abfd96b9c1b9bcf36410dff5855d0[m
+Merge: 39013c5e 101d3b42
+Author: pollux-13 <strakk@naver.com>
+Date:   Sun Apr 9 23:35:58 2023 +0900
+
+    make startUI and battlemap2 base
+
+[33mcommit 39013c5ea157b9b9351fe3ad1ba7e25251a43df2[m
+Merge: 0fe230b8 6d612150
+Author: pollux-13 <strakk@naver.com>
+Date:   Wed Apr 5 21:00:23 2023 +0900
+
+    더미 맵 추가
+
+[33mcommit 101d3b4272303081706984a60ed8fe0383a6f0f8[m
+Merge: 6d612150 d9f0f6e6
+Author: Spacekomad <128958639+Spacekomad@users.noreply.github.com>
+Date:   Wed Apr 5 01:06:53 2023 +0900
+
+    Merge pull request #7 from Spacekomad/WUJU
+    
+    Wuju
+    2023-04-05-01:05 맵 에셋 업로드 및 lfs 세팅
+
+[33mcommit d9f0f6e6c620dba3d093750054a9dabe786f795e[m
+Author: spacekomad <spacekomad@gmail.com>
+Date:   Wed Apr 5 00:38:20 2023 +0900
+
+    맵 에셋 lfs 수정
+
+[33mcommit 299335acd522d2e4702b442fd25e7f47b614032c[m
+Author: spacekomad <spacekomad@gmail.com>
+Date:   Wed Apr 5 00:18:24 2023 +0900
+
+    맵 에셋 추가
+
+[33mcommit 0fe230b8e33cb0f0a129368a556002076c089460[m
+Author: pollux-13 <strakk@naver.com>
+Date:   Mon Apr 3 19:30:04 2023 +0900
+
+    commit before merge
+
+[33mcommit 0f6b03a59b801144179f709348c163447a650c26[m
+Author: pollux-13 <strakk@naver.com>
+Date:   Mon Apr 3 19:12:50 2023 +0900
+
+    commit before pull origin main(0403)
+
+[33mcommit 6d612150e5b9055e1f384d2b2993229d46a9c3f8[m
+Merge: cef45a16 eaa8440e
+Author: Spacekomad <128958639+Spacekomad@users.noreply.github.com>
+Date:   Mon Apr 3 17:45:16 2023 +0900
+
+    Merge pull request #6 from Spacekomad/WUJU
+    
+    공격기능 추가
+
+[33mcommit eaa8440e3abc015a3c20a0b171340f03c43752b5[m
+Author: spacekomad <spacekomad@gmail.com>
+Date:   Mon Apr 3 17:40:03 2023 +0900
+
+    공격기능 추가
+
+[33mcommit cef45a16d17e82b64f03338ac972adeacb9552d6[m
+Merge: 623cb220 e00ac4b4
+Author: Spacekomad <128958639+Spacekomad@users.noreply.github.com>
+Date:   Sat Apr 1 13:32:32 2023 +0900
+
+    Merge pull request #5 from Spacekomad/swift13
+    
+    install probulider
+
+[33mcommit e00ac4b4ba3355272d58a6640a777220ba97f2aa[m
+Author: pollux-13 <strakk@naver.com>
+Date:   Fri Mar 31 19:57:11 2023 +0900
+
+    install probulider
+
+[33mcommit 623cb220f897d41b6a3cadf6c1eef03ea16114e9[m
+Merge: 6cb55bbd 58357811
+Author: Spacekomad <128958639+Spacekomad@users.noreply.github.com>
+Date:   Thu Mar 30 23:48:05 2023 +0900
+
+    Merge pull request #4 from Spacekomad/WUJU
+    
+    Animation Event 및 Receiver 추가, Animation관련 State 전환조건 수정
+
+[33mcommit 58357811d3e1f76ac335803f286cde021fa1d28a[m
+Author: spacekomad <spacekomad@gmail.com>
+Date:   Thu Mar 30 23:45:52 2023 +0900
+
+    Animation Event 및 Receiver 추가, Animation관련 State 전환조건 수정
+
+[33mcommit 6cb55bbd83ba6cf6b27366c6c293658c9c686ae4[m
+Merge: 33c63726 f551d076
+Author: Spacekomad <128958639+Spacekomad@users.noreply.github.com>
+Date:   Thu Mar 30 16:05:13 2023 +0900
+
+    Merge pull request #3 from Spacekomad/WUJU
+    
+    roll 버그 수정
+
+[33mcommit f551d0761b1c6018e45538ce38101fe4bf7c38e3[m
+Author: spacekomad <spacekomad@gmail.com>
+Date:   Thu Mar 30 16:00:56 2023 +0900
+
+    roll 버그 수정
+
+[33mcommit 33c63726e7771ee28a5b798dc50f8df7a70c4ca3[m
+Merge: 167789a7 016373ed
+Author: Spacekomad <128958639+Spacekomad@users.noreply.github.com>
+Date:   Thu Mar 30 15:24:52 2023 +0900
+
+    Merge pull request #2 from Spacekomad/WUJU
+    
+    Roll 기능 추가
+
+[33mcommit 016373ed54e851b6ac7452dbb0f167bc75c0020e[m
+Author: spacekomad <spacekomad@gmail.com>
+Date:   Thu Mar 30 15:21:03 2023 +0900
+
+    Roll 기능 추가
+
+[33mcommit 167789a744533a6b09ea14de0adf0498d8204699[m
+Merge: 55add132 a73c6846
+Author: Spacekomad <128958639+Spacekomad@users.noreply.github.com>
+Date:   Thu Mar 30 06:57:57 2023 +0900
+
+    Merge pull request #1 from Spacekomad/WUJU
+    
+    LockOn 기�
