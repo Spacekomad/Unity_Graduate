@@ -1,0 +1,19 @@
+using System;
+
+[Serializable]
+public abstract class Weapon
+{
+    protected PlayerCharacter playerCharacter;
+
+    public float weaponPower;
+    public float weaponStiffness;
+    
+    public Weapon(PlayerCharacter playerCharacter, WeaponData weaponData)
+    {
+        weaponPower = weaponData.weaponPower;
+        weaponStiffness = weaponData.weaponStiffness;
+        this.playerCharacter = playerCharacter;
+    }
+
+    public abstract bool Attack();
+}

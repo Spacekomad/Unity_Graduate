@@ -1,0 +1,48 @@
+using UnityEngine;
+using System.Collections.Generic;
+
+public class Equipment : MonoBehaviour
+{
+    public WeaponData defaultWeaponData;
+    public ComboData defaultWeaponComboData;
+    public Transform weaponSpawnPoint;
+
+    public Weapon currentWeapon;
+    public int currentUsableItem;
+
+    public int weaponIdx { get { return _weaponIdx; } }
+    public List<Weapon> equippedWeapons;
+
+    private PlayerCharacter _playerCharacter;
+
+    private int _weaponIdx;
+
+    private void Awake()
+    {
+        _playerCharacter = GetComponent<PlayerCharacter>();
+
+        equippedWeapons = new List<Weapon>();
+        _weaponIdx = 0;
+        equippedWeapons.Add(new MeleeWeapon(_playerCharacter, defaultWeaponData, defaultWeaponComboData));
+        currentWeapon = equippedWeapons[_weaponIdx];
+    }
+
+    private void Update()
+    {
+
+    }
+
+    public void ChangeWeaponNext()
+    {
+        ++_weaponIdx;
+        _weaponIdx %= equippedWeapons.Count;
+        currentWeapon = equippedWeapons[_weaponIdx];
+    }
+
+    //장비 착용
+
+    //장비 해제
+
+    //아이템 교체
+    //아이템 사용
+}
