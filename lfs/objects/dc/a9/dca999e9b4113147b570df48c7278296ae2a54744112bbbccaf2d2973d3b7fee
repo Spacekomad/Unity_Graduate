@@ -1,0 +1,58 @@
+using Globals;
+using UnityEngine;
+
+public class HereticStrongAttackState : HereticSuperState
+{
+    private float _stepDistance = 10.0f;
+
+    public HereticStrongAttackState(Character_Heretic character, FiniteStateMachine machine) : base(character, machine) 
+    {
+
+    }
+
+    public override void Enter()
+    {
+        base.Enter();
+        Debug.Log(this);
+        canTransition = true;
+        character.DesiredActionComplete();
+
+        character.agent.enabled = false;
+
+        character.animator.SetBool(AnimationParameters_Heretic.Attack, true);
+
+        if (character.GetXZDistanceToTarget() <= character.closeRange)
+        {
+            //원래는 어택 데이터 받아서 처리 지금은 애니메이션만
+            character.animator.SetTrigger(AnimationParameters_Heretic.StrongAttack_Close);
+        }
+        else
+        {
+            character.animator.SetTrigger(AnimationParameters_Heretic.StrongAttack_Far);
+        }
+    }
+
+    public override void LogicUpdate()
+    {
+        base.LogicUpdate();
+        DebugUIManager.instance.debugText.text = this.ToString();
+
+        if (character.animator.GetCurrentAnimatorStateInfo(0).normalizedTime > 1.0f)
+        {
+            machine.ChangeState(character.idleState);
+        }
+
+    }
+
+    public override void PhysicsUpdate()
+    {
+        base.PhysicsUpdate();
+    }
+
+    public override void Exit()
+    {
+        base.Exit();
+        character.animator.SetBool(AnimationParameters_Heretic.Attack, false);
+        character.agent.enabled = true;
+    }
+}
