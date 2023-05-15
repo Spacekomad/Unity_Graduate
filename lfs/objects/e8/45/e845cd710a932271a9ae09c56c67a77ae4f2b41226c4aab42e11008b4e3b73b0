@@ -1,0 +1,41 @@
+using System;
+using UnityEngine;
+
+[Serializable]
+public abstract class BoidManager : MonoBehaviour
+{
+    [Header("Boid Spawn Settings")]
+    public GameObject boidPrefab;
+    public Transform spawnTargetPosition;
+    [Range(2, 15000)]
+    public int boidSpawnNum = 100;
+    public float spawnRangeRadius = 30.0f;
+
+    [Header("Boid Settings")]
+    public Transform followTarget;
+    public float targetFollowWeight = 1.0f;
+
+    public float maxSpeed = 5.0f;
+    public float forwardSpeed = 3.0f;
+    public float maxRotateAnglePerSec = 90;
+    //public float rotationSmoothTime = 0.05f;
+    public float obstacleDetectionRange = 5.0f;
+
+    public float cohesionWeight = 1.0f;
+    public float cohesionRangeRadius = 20.0f;
+
+    public float alignmentWeight = 0.7f;
+    public float alignmentRangeRadius = 10.0f;
+
+    public float separationWeight = 1.0f;
+    public float separationRangeRadius = 5.0f;
+
+    // Start is called before the first frame update
+    protected virtual void Start()
+    {
+        SpawnBoid(boidSpawnNum);
+    }
+
+    public abstract void SpawnBoid(int num);
+
+}
