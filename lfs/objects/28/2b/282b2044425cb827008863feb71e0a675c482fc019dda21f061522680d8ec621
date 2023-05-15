@@ -1,0 +1,147 @@
+using EnumTypes;
+using Globals;
+using UnityEngine;
+
+public class HereticWalkState : HereticSuperState
+{
+    private float _time;
+
+    public HereticWalkState(Character_Heretic character, FiniteStateMachine machine) : base(character, machine) 
+    {
+
+    }
+
+    public override void Enter()
+    {
+        base.Enter();
+        canTransition = true;
+
+        character.agent.isStopped = false;
+        character.agent.speed = character.walkSpeed;
+        character.animator.SetBool(AnimationParameters_Heretic.WalkClose, true);
+        character.animator.SetBool(AnimationParameters_Heretic.WalkBack, false);
+
+        if(character.desiredAction == FuzzyOutStates_Heretic.StepBack)
+        {
+            character.agent.speed = character.walkBackSpeed;
+            character.animator.SetBool(AnimationParameters_Heretic.WalkBack, true);
+            character.animator.SetBool(AnimationParameters_Heretic.WalkClose, false);
+        }
+
+        _time = 0.0f;
+    }
+
+    public override void LogicUpdate()
+    {
+        base.LogicUpdate();
+        DebugUIManager.instance.debugText.text = this.ToString();
+
+        if (!character.target)
+        {
+            character.DesiredActionComplete();
+            machine.ChangeState(character.idleState);
+            return;
+        }
+
+        if (character.desiredAction == FuzzyOutStates_Heretic.WalkClose) // 다가감
+        {
+            if (character.GetXZDistanceToTarget() > character.closeRange)
+            {
+                character.agent.SetDestination(character.target.transform.position);
+                character.RotateToTarget();
+            }
+            else
+            {
+                character.DesiredActionComplete();
+                character.MakeDecision();
+                if (character.desiredAction == FuzzyOutStates_Heretic.StepBack)
+                {
+                    character.agent.speed = character.walkBackSpeed;
+                    character.animator.SetBool(AnimationParameters_Heretic.WalkBack, true);
+                    character.animator.SetBool(AnimationParameters_Heretic.WalkClose, false);
+                }
+            }
+        }
+        else if (character.desiredAction == FuzzyOutStates_Heretic.StepBack) // 물러섬
+        {
+            _time += Time.deltaTime;
+            character.agent.SetDestination(character.transform.position - character.transform.forward);
+            character.RotateToTarget();
+            if (_time >= character.walkBackTime)
+            {
+                _time = 0.0f;
+
+                character.MakeDecision();
+                if(character.desiredAction == FuzzyOutStates_Heretic.WalkClose)
+                {
+                    character.agent.speed = character.walkSpeed;
+                    character.animator.SetBool(AnimationParameters_Heretic.WalkClose, true);
+                    character.animator.SetBool(AnimationParameters_Heretic.WalkBack, false);
+                }
+                    
+            }
+        }
+        else // 의사결정 후처리
+        {
+            switch ((int)character.desiredAction)
+            {
+                case (int)FuzzyOutStates_Heretic.None:
+                    Debug.LogError("Heretic's desired action is not set\n");
+                    break;
+                case (int)FuzzyOutStates_Heretic.Waiting:
+                    machine.ChangeState(character.idleState);
+                    return;
+                case (int)FuzzyOutStates_Heretic.SprintClose:
+                    machine.ChangeState(character.sprintState);
+                    return;
+                case (int)FuzzyOutStates_Heretic.Dodge:
+                    machine.ChangeState(character.dodgeState);
+                    return;
+                case (int)FuzzyOutStates_Heretic.RangedAttack:
+                    machine.ChangeState(character.idleState);
+                    return;
+                default:
+                    character.animator.SetBool(AnimationParameters_Heretic.WalkClose, true);
+                    character.animator.SetBool(AnimationParameters_Heretic.WalkBack, false);
+                    break;
+            }
+
+            Vector3 boxOffset = character.transform.up * character.detectionBoxOffset.y + character.transform.forward * character.detectionBoxOffset.z;
+            if (Physics.CheckBox(character.transform.position + boxOffset,
+                character.detectionBox * 0.5f,
+                character.transform.rotation,
+                LayerMask.GetMask("Player")))
+            {
+                Debug.Log("Playerhit");
+                if (character.desiredAction == FuzzyOutStates_Heretic.BasicAttack)
+                {
+                    machine.ChangeState(character.basicAttackState);
+                    return;
+                }
+                if (character.desiredAction == FuzzyOutStates_Heretic.StrongAttack)
+                {
+                    machine.ChangeState(character.strongAttackState);
+                    return;
+                }
+            }
+            else
+            {
+                character.agent.SetDestination(character.target.position);
+                character.RotateToTarget();
+            }
+        }
+    }
+
+    public override void PhysicsUpdate()
+    {
+        base.PhysicsUpdate();
+    }
+
+    public override void Exit()
+    {
+        base.Exit();
+        character.agent.isStopped = true;
+        character.animator.SetBool(AnimationParameters_Heretic.WalkClose, false);
+        character.animator.SetBool(AnimationParameters_Heretic.WalkBack, false);
+    }
+}
