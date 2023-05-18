@@ -1,0 +1,22 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class WarpToBattle : MonoBehaviour
+{
+    [SerializeField]
+    public GameObject Point;
+
+    private CharacterController characterController;
+
+    private void OnTriggerEnter(Collider other)
+    {
+        characterController = other.GetComponent<CharacterController>();
+        if (characterController != null)
+        {
+            characterController.enabled = false;
+            characterController.transform.position = Point.transform.position;
+            characterController.enabled = true;
+        }
+    }
+}

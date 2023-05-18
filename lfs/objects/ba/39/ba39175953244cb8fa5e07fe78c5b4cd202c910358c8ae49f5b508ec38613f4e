@@ -1,0 +1,93 @@
+using EnumTypes;
+using Globals;
+using UnityEngine;
+
+public class HereticSprintState : HereticSuperState
+{
+    public HereticSprintState(Character_Heretic character, FiniteStateMachine machine) : base(character, machine) 
+    {
+
+    }
+
+    public override void Enter()
+    {
+        base.Enter();
+        canTransition = true;
+        
+        character.animator.SetBool(AnimationParameters_Heretic.SprintClose, true);
+
+        character.agent.isStopped = false;
+        character.agent.speed = character.sprintSpeed;
+    }
+
+    public override void LogicUpdate()
+    {
+        base.LogicUpdate();
+        DebugUIManager.instance.debugText.text = this.ToString();
+
+        if (!character.target)
+        {
+            character.DesiredActionComplete();
+            machine.ChangeState(character.idleState);
+            return;
+        }
+
+        if (character.desiredAction == FuzzyOutStates_Heretic.SprintClose)
+        {
+            if (character.GetXZDistanceToTarget() > character.closeRange)
+            {
+                character.agent.SetDestination(character.target.transform.position);
+                character.RotateToTarget();
+            }
+            else
+            {
+                character.DesiredActionComplete();
+                character.agent.isStopped = true;
+                character.MakeDecision();
+            }
+        }
+        else
+        {
+            if (character.animator.GetCurrentAnimatorStateInfo(0).normalizedTime > 0.9f)
+            {
+                machine.ChangeState(character.idleState);
+                return;
+            }
+
+            switch ((int)character.desiredAction)
+            {
+                case (int)FuzzyOutStates_Heretic.None:
+                    Debug.LogError("Heretic's desired action is not set\n");
+                    break;
+                case (int)FuzzyOutStates_Heretic.Dodge:
+                    machine.ChangeState(character.dodgeState);
+                    return;
+                case (int)FuzzyOutStates_Heretic.StrongAttack:
+                case (int)FuzzyOutStates_Heretic.BasicAttack:
+                    character.animator.SetBool(AnimationParameters_Heretic.Attack, true);
+                    character.animator.SetTrigger(AnimationParameters_Heretic.SprintAttack);
+                    break;
+                default:
+                    character.animator.SetTrigger(AnimationParameters_Heretic.Break);
+                    machine.ChangeState(character.idleState);
+                    return;
+            }
+        }
+
+        // Sprint attack Ã³¸®
+
+    }
+
+    public override void PhysicsUpdate()
+    {
+        base.PhysicsUpdate();
+    }
+
+    public override void Exit()
+    {
+        base.Exit();
+        character.agent.isStopped = true;
+        character.animator.SetBool(AnimationParameters_Heretic.SprintClose, false);
+        character.animator.SetBool(AnimationParameters_Heretic.Attack, false);
+    }
+}

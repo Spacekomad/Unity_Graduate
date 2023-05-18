@@ -1,0 +1,118 @@
+using Globals;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class HereticBasicAttackState : HereticSuperState
+{
+    private HereticEquipment equipment;
+    private float _stepDistance = 10.0f;
+    private bool isClose = false;
+    private bool attackEnd = false;
+
+    public HereticBasicAttackState(Character_Heretic character, FiniteStateMachine machine) : base(character, machine)
+    {
+        equipment = character.GetComponent<HereticEquipment>();
+    }
+
+    public override void Enter()
+    {
+        base.Enter();
+
+        canTransition = true;
+
+        character.agent.enabled = false;
+
+        character.DesiredActionComplete();
+
+        character.animator.SetBool(AnimationParameters_Heretic.Attack, true);
+
+        if (character.GetXZDistanceToTarget() <= character.closeRange)
+        {
+            isClose = true;
+        }
+        else
+        {
+            isClose = false;
+            character.animator.SetTrigger(AnimationParameters_Heretic.BasicAttack_Far);
+        }
+        attackEnd = false;
+    }
+
+    public override void LogicUpdate()
+    {
+        base.LogicUpdate();
+        DebugUIManager.instance.debugText.text = this.ToString();
+
+        if (!attackEnd)
+        {
+            if (isClose)
+            {
+                attackEnd = !equipment.currentWeapon.BasicAttack();
+            }
+            else
+            {
+                attackEnd = !BasicDodgeAttack();
+            }
+        }
+        else
+        {
+            machine.ChangeState(character.idleState);
+            return;
+        }
+
+    }
+
+    public override void PhysicsUpdate()
+    {
+        base.PhysicsUpdate();
+    }
+
+    public override void Exit()
+    {
+        base.Exit();
+        character.animator.SetBool(AnimationParameters_Heretic.Attack, false);
+        character.StopAllCoroutines();
+        character.agent.enabled = true;
+    }
+
+    public bool BasicDodgeAttack()
+    {
+        List<Transform> damagedEnemies = new List<Transform>();
+
+        Vector3 hitboxOffset = character.transform.right * character.dodgeAttack.attackRangeOffset.x +
+            character.transform.up * character.dodgeAttack.attackRangeOffset.y +
+            character.transform.forward * character.dodgeAttack.attackRangeOffset.z;
+
+        if (character.triggerAnimationEnd)
+        {
+            return false;
+        }
+        else
+        {
+            if (character.middleOfAttack)
+            {
+                Collider[] hitEntities = Physics.OverlapBox(character.transform.position + hitboxOffset,
+                    character.dodgeAttack.attackRange / 2,
+                    character.transform.rotation,
+                    character.dodgeAttack.attackTarget,
+                    QueryTriggerInteraction.Collide);
+
+                foreach (Collider entity in hitEntities)
+                {
+                    if (!damagedEnemies.Contains(entity.transform.parent.parent))
+                    {
+                        Debug.Log(entity + " damage");
+                        //적에게 데미지 주기
+                        entity.transform.parent.parent.GetComponent<PlayerCharacter>().TakeDamage((character.status.attackPower) * character.dodgeAttack.attackPowerCoefficient,
+                            character.status.stiffnessPower * character.dodgeAttack.attackStiffnessCoefficient);
+                        damagedEnemies.Add(entity.transform.parent.parent);
+                    }
+                }
+                // 공격으로 인해 Destroy된 적 데미지 목록에서 제거
+                damagedEnemies.RemoveAll(enemy => enemy == null);
+            }
+        }
+        return true;
+    }
+}
