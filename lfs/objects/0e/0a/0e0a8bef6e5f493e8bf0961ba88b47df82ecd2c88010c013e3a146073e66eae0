@@ -1,0 +1,23 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class FireDamage : MonoBehaviour
+{
+    [SerializeField]
+    private float damage = 1;
+
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            Adj_PlayerStatus playerState = other.GetComponent<Adj_PlayerStatus>();
+
+            if (playerState != null)
+            {
+                // Debug.Log("Hit");
+                playerState.TakeDamage(damage, 1);
+            }
+        }
+    }
+}

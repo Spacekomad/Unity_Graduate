@@ -1,0 +1,19 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class DamageObject : MonoBehaviour
+{
+    public float damage = 25;
+    public float stiffnessDamaged = 10.0f;
+
+    private void OnTriggerStay(Collider other)
+    {
+        Adj_PlayerStatus playerStats = other.GetComponent<Adj_PlayerStatus>();
+
+        if (playerStats != null)
+        {
+            playerStats.TakeDamage(damage, stiffnessDamaged);
+        }
+    }
+}

@@ -1,0 +1,92 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class HereticLance : HereticWeapon
+{
+    private int _comboIdx;
+    public int comboIdx { get { return _comboIdx; } }
+
+    private MeleeAttackInfo[] _basicAttackComboData;
+    private MeleeAttackInfo[] _strongAttackComboData;
+
+    private MeleeAttackInfo _skillAttackData;
+    private MeleeAttackInfo _dashAttackData;
+
+    public MeleeAttackInfo[] basicAttackComboData { get { return _basicAttackComboData; } }
+
+
+    public HereticLance(Character_Heretic character, WeaponData weaponData) : base(character, weaponData)
+    {
+        _comboIdx = 0;
+        _basicAttackComboData = weaponData.comboAttackData;
+        _strongAttackComboData = weaponData.comboStrongAttackData;
+        _skillAttackData = weaponData.comboSkillData[0];
+        _dashAttackData = weaponData.comboDashAttackData[0];
+    }
+
+    public override bool BasicAttack()
+    {
+        if (_comboIdx == 0)
+        {
+            character.animator.SetTrigger(Globals.AnimationParameters_Heretic.BasicAttact_Close);
+
+            character.StartCoroutine(ComboAttack(_basicAttackComboData[_comboIdx]));
+            ++_comboIdx;
+        }
+        if (character.triggerAnimationEnd)
+        {
+            if (_comboIdx < _basicAttackComboData.Length)
+            {
+                character.StartCoroutine(ComboAttack(_basicAttackComboData[_comboIdx]));
+                ++_comboIdx;
+            }
+            else
+            {
+                _comboIdx = 0;
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public IEnumerator ComboAttack(MeleeAttackInfo combodata)
+    {
+        List<Transform> damagedEnemies = new List<Transform>();
+
+        Vector3 hitboxOffset = character.transform.right * combodata.attackRangeOffset.x +
+            character.transform.up * combodata.attackRangeOffset.y +
+            character.transform.forward * combodata.attackRangeOffset.z;
+
+        while (!character.middleOfAttack)
+        {
+            yield return null;
+        }
+
+        while (character.middleOfAttack)
+        {
+            Collider[] hitEntities = Physics.OverlapBox(character.transform.position + hitboxOffset,
+                combodata.attackRange / 2,
+                character.transform.rotation,
+                combodata.attackTarget,
+                QueryTriggerInteraction.Collide);
+
+            foreach (Collider entity in hitEntities)
+            {
+                Debug.Log(entity);
+                if (!damagedEnemies.Contains(entity.transform.parent.parent))
+                {
+                    Debug.Log(entity + " damage");
+                    //적에게 데미지 주기
+                    entity.transform.parent.parent.GetComponent<PlayerCharacter>().TakeDamage((character.status.attackPower + weaponPower) * combodata.attackPowerCoefficient,
+                        (character.status.stiffnessPower + weaponStiffness) * combodata.attackStiffnessCoefficient);
+                    damagedEnemies.Add(entity.transform.parent.parent);
+                }
+            }
+            // 공격으로 인해 Destroy된 적 데미지 목록에서 제거
+            damagedEnemies.RemoveAll(enemy => enemy == null);
+
+            yield return null;
+        }
+    }
+}

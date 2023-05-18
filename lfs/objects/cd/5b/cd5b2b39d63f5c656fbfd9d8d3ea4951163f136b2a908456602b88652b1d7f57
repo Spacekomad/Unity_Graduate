@@ -1,0 +1,40 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class PlayerAttackingState : PlayerCharacterSuperState
+{
+    private PlayerEquipment playerEquipment;
+
+    public PlayerAttackingState(PlayerCharacter playerCharacter, FiniteStateMachine machine) : base(playerCharacter, machine) {
+        playerEquipment = playerCharacter.GetComponent<PlayerEquipment>();
+    }
+
+    public override void Enter()
+    {
+        base.Enter();
+        canTransition = true;
+
+        playerCharacter.animator.SetBool(Globals.AnimationParameters.EndAttack, false);
+    }
+    public override void LogicUpdate()
+    {
+        base.LogicUpdate();
+        if (!playerEquipment.currentWeapon.BasicAttack())
+        {
+            machine.ChangeState(playerCharacter.movingState);
+        }
+    }
+    public override void PhysicsUpdate()
+    {
+        base.PhysicsUpdate();
+    }
+    public override void Exit()
+    {
+        base.Exit();
+        playerCharacter.StopAllCoroutines();
+        playerCharacter.animator.SetBool(Globals.AnimationParameters.Attacking, false);
+        playerCharacter.animator.SetBool(Globals.AnimationParameters.EndAttack, true);
+        playerCharacter.justPlayedAnimation = EnumTypes.PlayerAnimation.None;
+    }
+}

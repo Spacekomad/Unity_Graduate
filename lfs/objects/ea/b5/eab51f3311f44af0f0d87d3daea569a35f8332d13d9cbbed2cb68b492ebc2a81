@@ -1,0 +1,41 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class PlayerSkillState : PlayerCharacterSuperState
+{
+    private PlayerEquipment playerEquipment;
+
+    public PlayerSkillState(PlayerCharacter controller, FiniteStateMachine machine) : base(controller, machine) 
+    {
+        playerEquipment = playerCharacter.GetComponent<PlayerEquipment>();
+    }
+
+
+
+    public override void Enter()
+    {
+        base.Enter();
+        canTransition = true;
+
+        playerCharacter.animator.SetTrigger(Globals.AnimationParameters.Parrying);
+    }
+    public override void LogicUpdate()
+    {
+        base.LogicUpdate();
+        if (!playerEquipment.currentWeapon.Skill())
+        {
+            machine.ChangeState(playerCharacter.movingState);
+        }
+    }
+    public override void PhysicsUpdate()
+    {
+        base.PhysicsUpdate();
+    }
+    public override void Exit()
+    {
+        base.Exit();
+        playerCharacter.StopAllCoroutines();
+        playerCharacter.justPlayedAnimation = EnumTypes.PlayerAnimation.None;
+    }
+}
