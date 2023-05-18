@@ -1,0 +1,28 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class PlayerStiffnessState : PlayerCharacterSuperState
+{
+    public PlayerStiffnessState(PlayerCharacter controller, FiniteStateMachine machine) : base(controller,machine) { }
+
+    public override void Enter()
+    {
+        base.Enter();
+        playerCharacter.animator.SetTrigger(Globals.AnimationParameters.GetHit);
+    }
+    public override void LogicUpdate()
+    {
+        base.LogicUpdate();
+        if (playerCharacter.animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f)
+        {
+            machine.ChangeState(playerCharacter.groundedState);
+        }
+    }
+
+    public override void Exit()
+    {
+        base.Exit();
+
+    }
+}

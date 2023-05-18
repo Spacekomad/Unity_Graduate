@@ -1,0 +1,109 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class MeleeWeapon : PlayerWeapon
+{
+    private int _comboIdx;
+    public int comboIdx { get { return _comboIdx; } }
+    private bool _attackReservation = false;
+
+    public MeleeAttackInfo[] _comboData;
+
+    public MeleeWeapon(PlayerCharacter playerCharacter, WeaponData weaponData) : base(playerCharacter, weaponData) 
+    {
+        _comboIdx = 0;
+        _comboData = weaponData.comboAttackData;
+    }
+
+    public override bool BasicAttack()
+    {
+        if(_comboIdx == 0)
+        {
+            playerCharacter.StartCoroutine(ComboAttack(_comboData[_comboIdx]));
+            ++_comboIdx;
+        }
+        if (playerCharacter.isPlayingAnim)
+        {
+            if (Input.GetKeyDown(PlayerInput.instance.attackKey))
+            {
+                _attackReservation = true;
+            }
+        }
+        if (playerCharacter.justPlayedAnimation == EnumTypes.PlayerAnimation.Attack && playerCharacter.isPlayingAnim == false)
+        {
+            if (_attackReservation)
+            {
+                if (_comboIdx < _comboData.Length)
+                {
+                    _attackReservation = false;
+                    playerCharacter.justPlayedAnimation = EnumTypes.PlayerAnimation.None;
+                    playerCharacter.StartCoroutine(ComboAttack(_comboData[_comboIdx]));
+                    ++_comboIdx;
+                }
+                else
+                {
+                    _attackReservation = false;
+                }
+            }
+            else
+            {
+                _comboIdx = 0;
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public override bool Skill()
+    {
+        return false;
+    }
+
+    public IEnumerator ComboAttack(MeleeAttackInfo combodata)
+    {
+        List<Transform> damagedEnemies = new List<Transform>();
+
+        Vector3 hitboxOffset = playerCharacter.transform.right * combodata.attackRangeOffset.x +
+            playerCharacter.transform.up * combodata.attackRangeOffset.y +
+            playerCharacter.transform.forward * combodata.attackRangeOffset.z;
+
+        playerCharacter.SetCameraRelateDirection();
+
+        yield return new WaitForSeconds(combodata.attackDelay);
+
+        playerCharacter.animator.SetTrigger(Globals.AnimationParameters.Attacking);
+
+        while (!playerCharacter.middleOfAttack)
+        {
+            playerCharacter.characterController.Move(playerCharacter.transform.forward * combodata.headwayDistance * 0.02f);
+            yield return null;
+        }
+        while (playerCharacter.middleOfAttack)
+        {
+            Collider[] hitEntities = Physics.OverlapBox(playerCharacter.transform.position + hitboxOffset,
+                combodata.attackRange / 2,
+                playerCharacter.transform.rotation,
+                combodata.attackTarget,
+                QueryTriggerInteraction.Collide);
+
+            foreach (Collider entity in hitEntities)
+            {
+                Debug.Log(entity);
+                if (!damagedEnemies.Contains(entity.transform.parent.parent))
+                {
+                    Debug.Log(entity + " damage");
+                    //적에게 데미지 주기
+                    entity.transform.parent.parent.GetComponent<EnemyCharacter>()
+                        .takeDamage((playerCharacter.stat.attackPower + weaponPower) * combodata.attackPowerCoefficient, 
+                        (playerCharacter.stat.stiffnessPower + weaponStiffness) * combodata.attackStiffnessCoefficient);
+                    damagedEnemies.Add(entity.transform.parent.parent);
+                }
+            }
+            // 공격으로 인해 Destroy된 적 데미지 목록에서 제거
+            damagedEnemies.RemoveAll(enemy => enemy == null);
+
+            yield return null;
+        }
+    }
+}

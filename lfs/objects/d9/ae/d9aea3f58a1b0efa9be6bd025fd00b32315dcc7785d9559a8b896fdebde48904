@@ -1,0 +1,38 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.Rendering;
+
+public class UsePool : MonoBehaviour
+{
+    int num = 0;
+    [SerializeField]
+    private int _maxNum = 8;
+
+    // Update is called once per frame
+    void Update()
+    {
+        if(num < _maxNum)
+        {
+            Pool(num++);
+        }    
+    }
+
+    private void Pool(int num)
+    {
+        int count = (num / 4) + 1;
+
+        Vector3 newPos = this.transform.position;
+        if (num % 4 == 0)
+            newPos += new Vector3(count, 0, 0);
+        else if (num % 4 == 1)
+            newPos += new Vector3(0, 0, count);
+        else if (num % 4 == 2)
+            newPos += new Vector3(count * (-2), 0, 0);
+        else
+            newPos += new Vector3(0, 0, count * (-2));
+        GameObject _poolObj = ObjectPoolManager.Instance.Spawn("101");
+        _poolObj.transform.position = newPos;
+        ObjectPoolManager.Instance.Despawn(_poolObj, 4 + count);
+    }
+}

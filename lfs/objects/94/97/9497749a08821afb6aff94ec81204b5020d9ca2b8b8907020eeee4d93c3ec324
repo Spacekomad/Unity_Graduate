@@ -1,0 +1,42 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class AnimationEventReciever_Heretic : MonoBehaviour
+{
+    private Character_Heretic character;
+
+    private void Awake()
+    {
+        character = GetComponent<Character_Heretic>();
+    }
+
+    public void AnimationStart()
+    {
+
+    }
+
+    public void AnimationEnd()
+    {
+        character.animationEnd = true;
+    }
+
+    public void AttackStart()
+    {
+        character.middleOfAttack = true;
+    }
+
+    public void AttackEnd()
+    {
+        character.middleOfAttack = false;
+    }
+
+    public void NeedMoveStart()
+    {
+        character.needMove = true;
+    }
+    public void NeedMoveEnd()
+    {
+        character.needMove = false;
+    }
+}
