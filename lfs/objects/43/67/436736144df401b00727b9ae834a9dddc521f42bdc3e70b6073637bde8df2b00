@@ -1,0 +1,427 @@
+using UnityEngine;
+
+[RequireComponent(typeof(PlayerCharacterStatus))]
+[RequireComponent(typeof(CharacterController))]
+[RequireComponent(typeof(Animator))]
+[RequireComponent(typeof(PlayerAnimationEventReceiver))]
+[RequireComponent(typeof(PlayerEquipment))]
+public class PlayerCharacter : Character
+{
+    #region SerializedVariables
+
+    public PlayerCharacterStatus stat;
+
+    [Space(10)]
+    [Header("Player basic settings")]
+    [Tooltip("Move speed of the character in m/s")]
+    public float MoveSpeed = 0.0f;
+
+    [Tooltip("Sprint speed of the character in m/s")]
+    public float SprintSpeed = 3.0f;
+
+    [Tooltip("Stamina consumed by Sprint execution")]
+    public float SprintStaminaConsumptionRate = 2.0f;
+
+    [Tooltip("Acceleration between speed to speed")]
+    public float Acceleration = 10.0f;
+
+    [Tooltip("How fast the character turns to face movement direction")]
+    [Range(0.0f, 0.3f)]
+    public float RotationSmoothTime = 0.12f;
+
+    [Space(10)]
+    [Tooltip("The height the player can jump")]
+    public float JumpHeight = 1.2f;
+
+    [Tooltip("The character uses its own gravity value. The engine default is -9.81f")]
+    public float Gravity = -15.0f;
+
+    [Space(10)]
+    [Tooltip("Time required to pass before being able to jump again. Set to 0f to instantly jump again")]
+    public float JumpTimeout = 0.50f;
+
+    [Tooltip("Time required to pass before entering the fall state. Useful for walking down stairs")]
+    public float FallTimeout = 0.15f;
+
+    [Space(10)]
+    [Tooltip("Time offset before rolling")]
+    public float rollDelayTime = 0.15f;
+
+    [Tooltip("Maximum distance that can be rolled")]
+    public float rollingSpeed = 0.0f;
+
+    [Tooltip("Stamina consumed by rolling action execution")]
+    public float RollStaminaConsumption = 30.0f;
+
+    [Tooltip("Time that not hit")]
+    public float invincibleTime = 0.7f;
+
+    [Tooltip("If the character is invincible or not")]
+    public bool isInvincible = false;
+
+    public bool superArm = false;
+
+    [Space(10)]
+    public GameObject parryBox;
+
+    public bool middleOfAttack = false;
+    public bool middleOfParry = false;
+    [SerializeField]
+    private bool _middleOfStiffness = false;
+    [SerializeField]
+    private bool _middleOfKnockdown = false;
+
+    [Header("Player Grounded")]
+    [Tooltip("If the character is grounded or not. Not part of the CharacterController built in grounded check")]
+    public bool Grounded = true;
+
+    [Tooltip("Useful for rough ground")]
+    public float GroundedOffset = -0.14f;
+
+    [Tooltip("The radius of the grounded check. Should match the radius of the CharacterController")]
+    public float GroundedRadius = 0.28f;
+
+    [Tooltip("What layers the character uses as ground")]
+    public LayerMask GroundLayers;
+
+    [Space(10)]
+    [Header("Animation")]
+    [Tooltip("Animation just played")]
+    public EnumTypes.PlayerAnimation justPlayedAnimation;
+
+    [Tooltip("If the character play animation or not")]
+    public bool isPlayingAnim = true;
+
+    #endregion
+
+    #region NonSerializedVariables
+    // player
+    private float _speed = 0.0f;
+    private float _animationBlend;
+    private float _targetRotation = 0.0f;
+    private float _rotationVelocity;
+    private float _verticalVelocity;
+
+    // timeout deltatime
+    private float _jumpTimeoutDelta;
+    private float _fallTimeoutDelta;
+
+    private CharacterController _controller;
+    private Animator _animator;
+    private Transform _mainCamera;
+
+    #endregion
+
+    #region Property
+
+    // property
+    public CharacterController characterController { get { return _controller; } }
+    public Animator animator { get { return _animator; } }
+
+    public bool middleOfStiffness 
+    { 
+        get 
+        {
+            if (_middleOfStiffness)
+            {
+                _middleOfStiffness = false;
+                return !_middleOfStiffness;
+            }
+            return _middleOfStiffness;
+        } 
+    }
+    public bool middleOfKnockdown { 
+        get 
+        { 
+            if (_middleOfKnockdown)
+            {
+                _middleOfKnockdown = false;
+                return !_middleOfKnockdown;
+            }
+            return _middleOfKnockdown; 
+        } 
+    }
+
+    #endregion
+
+    #region PlayerStates
+    // State submachines
+    private FiniteStateMachine _groundedMachine = new FiniteStateMachine();
+    // Main states
+    public PlayerGroundedState groundedState;
+    public PlayerFreeFallingState fallingState;
+    public PlayerStiffnessState stiffnessState;
+    public PlayerDownState downState;
+    // Grounded substates
+    public PlayerMovingState movingState;
+    public PlayerAttackingState attackingState;
+    public PlayerRollingState rollingState;
+    public PlayerSkillState skillState;
+    public PlayerUsingItemState usingItemState;
+    public PlayerInteractingState interactingState;
+    public PlayerChangingWeaponState changingWeaponState;
+    #endregion
+
+    #region MonoBehaviourMethod
+    protected override void Awake()
+    {
+        base.Awake();
+        // State Instanciate
+        groundedState = new PlayerGroundedState(this, mainMachine, _groundedMachine);
+        fallingState = new PlayerFreeFallingState(this, mainMachine);
+        stiffnessState = new PlayerStiffnessState(this, mainMachine);
+        downState = new PlayerDownState(this, mainMachine);
+
+        movingState = new PlayerMovingState(this, _groundedMachine);
+        attackingState = new PlayerAttackingState(this, _groundedMachine);
+        rollingState = new PlayerRollingState(this, _groundedMachine);
+        skillState = new PlayerSkillState(this, _groundedMachine);
+        usingItemState = new PlayerUsingItemState(this, _groundedMachine);
+        interactingState = new PlayerInteractingState(this, _groundedMachine);
+        changingWeaponState = new PlayerChangingWeaponState(this, _groundedMachine);
+
+        _mainCamera = SceneCameraManager.instance.mainCamera.transform;
+    }
+
+    // Start is called before the first frame update
+    protected override void Start()
+    {
+        base.Start();
+        // State Machine Initialize
+        mainMachine.Initialize(groundedState);
+
+        _controller = GetComponent<CharacterController>();
+        _animator = GetComponent<Animator>();
+        stat = GetComponent<PlayerCharacterStatus>();
+
+        _jumpTimeoutDelta = JumpTimeout;
+        _fallTimeoutDelta = FallTimeout;
+    }
+
+    // Update is called once per frame
+    protected override void Update()
+    {
+        base.Update();
+        GroundedCheck();
+        CheckLockOnToggle();
+        
+    }
+    protected override void FixedUpdate()
+    {
+        base.FixedUpdate();
+        applyGravity();
+    }
+
+    #endregion
+
+    private void applyGravity()
+    {
+        _controller.Move(Vector3.up * Gravity * Time.deltaTime);
+    }
+
+    private void CheckLockOnToggle()
+    {
+        if (PlayerRange.nearest != null) {
+            if (Input.GetKeyDown(PlayerInput.instance.lockOnKey))
+            {
+                SceneCameraManager.instance.LockOnToggle();
+            }
+        }
+    }
+
+    private void GroundedCheck()
+    {
+        // set sphere position, with offset
+        Vector3 spherePosition = new Vector3(transform.position.x, transform.position.y - GroundedOffset, transform.position.z);
+        Grounded = Physics.CheckSphere(spherePosition, GroundedRadius, GroundLayers, QueryTriggerInteraction.Ignore);
+
+        // update animator if using character
+        if (_animator)
+        {
+            _animator.SetBool("Grounded", Grounded);
+        }
+    }
+
+    public void Move()
+    {
+        // set target speed based on move speed, sprint speed and if sprint is pressed
+        float targetSpeed = PlayerInput.instance.sprint ? (SprintSpeed * PlayerInput.instance.sprintGravity) : MoveSpeed;
+
+        // a simplistic acceleration and deceleration designed to be easy to remove, replace, or iterate upon
+
+        // note: Vector2's == operator uses approximation so is not floating point error prone, and is cheaper than magnitude
+        // if there is no input, set the target speed to 0
+        if (PlayerInput.instance.move == Vector2.zero) targetSpeed = 0.0f;
+
+        float inputMagnitude = PlayerInput.instance.analogMovement ? PlayerInput.instance.move.magnitude : 1f;
+        if (inputMagnitude > 1.0f)
+            inputMagnitude = 1.0f;
+
+        float speed2SpeedOffset = 0.02f;
+        _speed = Mathf.Lerp(_speed, targetSpeed * inputMagnitude, Acceleration * Time.deltaTime);
+        if (Mathf.Abs(_speed - targetSpeed) < speed2SpeedOffset)
+        {
+            _speed = targetSpeed;
+        }
+
+        //Animation Blend        
+        if (_speed <= MoveSpeed)
+        {
+            _animationBlend = Mathf.Lerp(0.0f, 0.5f, _speed / MoveSpeed);
+        }
+        else
+        {
+            _animationBlend = Mathf.Lerp(0.5f, 1.0f, _speed / SprintSpeed);
+        }
+
+        if (_animationBlend < 0.01f)
+        {
+            _animationBlend = 0f;
+        }
+
+        // normalise input direction
+        Vector3 inputDirection = new Vector3(PlayerInput.instance.move.x, 0.0f, PlayerInput.instance.move.y).normalized;
+
+        // note: Vector2's != operator uses approximation so is not floating point error prone, and is cheaper than magnitude
+        // if there is a move input rotate player when the player is moving
+        if (PlayerInput.instance.move != Vector2.zero)
+        {
+            _targetRotation = Mathf.Atan2(inputDirection.x, inputDirection.z) * Mathf.Rad2Deg + _mainCamera.eulerAngles.y;
+            float rotation = Mathf.SmoothDampAngle(transform.eulerAngles.y, _targetRotation, ref _rotationVelocity, RotationSmoothTime);
+            // rotate to face input direction relative to camera position
+            transform.rotation = Quaternion.Euler(0.0f, rotation, 0.0f);
+        }
+
+
+        Vector3 targetDirection = Quaternion.Euler(0.0f, _targetRotation, 0.0f) * Vector3.forward;
+        targetDirection.y = 0.0f;
+
+        // move the player
+        _controller.Move(targetDirection.normalized * (_speed * Time.deltaTime));
+
+        // update animator if using character
+        
+        if (_animator)
+        {
+            _animator.SetFloat(Globals.AnimationParameters.Speed, _animationBlend);
+        }
+        
+    }
+
+    public void SetCameraRelateDirection()
+    {
+        float targetRotationY = 0.0f;
+        Vector3 inputDirection = new Vector3(PlayerInput.instance.move.x, 0.0f, PlayerInput.instance.move.y).normalized;
+        if (!SceneCameraManager.instance.lockOn && PlayerInput.instance.move != Vector2.zero)
+        {
+            targetRotationY = Mathf.Atan2(inputDirection.x, inputDirection.z) * Mathf.Rad2Deg + _mainCamera.eulerAngles.y;
+        }
+        else
+        {
+            targetRotationY = _mainCamera.eulerAngles.y;
+        }
+        transform.rotation = Quaternion.Euler(0, targetRotationY, 0);
+    }
+
+    public void TakeDamage(float damage, float stiffnessDamage)
+    {
+        Debug.Log("Player take damage : \nDamage : " + damage + "\nStiffness" + stiffnessDamage);
+        if (!isInvincible)
+            stat.TakeDamage(damage, stiffnessDamage);
+        if (stat.middleOfStiffness && !superArm)
+        {
+            _middleOfStiffness = true;
+        }
+    }
+
+    public void TakeKnockDown(float damage)
+    {
+
+    }
+
+    #region Deprecated
+    /*
+        private void JumpAndGravity()
+        {
+            if (Grounded)
+            {
+                // reset the fall timeout timer
+                _fallTimeoutDelta = FallTimeout;
+
+                // update animator if using character
+                *//*
+                            if (_hasAnimator)
+                            {
+                                _animator.SetBool("Free fall", false);
+                                _animator.SetBool("Jump", false);
+                            }
+                *//*
+                // stop our velocity dropping infinitely when grounded
+                if (_verticalVelocity < 0.0f)
+                {
+                    _verticalVelocity = -2f;
+                }
+
+                // Jump
+
+                if (_input.jump && _jumpTimeoutDelta <= 0.0f)
+                {
+                    // the square root of H * -2 * G = how much velocity needed to reach desired height
+                    _verticalVelocity = Mathf.Sqrt(JumpHeight * -2f * Gravity);
+
+                    // update animator if using character
+                    *//*
+                    if (_hasAnimator)
+                    {
+                        _animator.SetBool("Jump", true);
+                    }
+                    *//*
+                }
+
+                // jump timeout
+                if (_jumpTimeoutDelta >= 0.0f)
+                {
+                    _jumpTimeoutDelta -= Time.deltaTime;
+                }
+            }
+            else
+            {
+                // reset the jump timeout timer
+                _jumpTimeoutDelta = JumpTimeout;
+
+                // fall timeout
+                if (_fallTimeoutDelta >= 0.0f)
+                {
+                    _fallTimeoutDelta -= Time.deltaTime;
+                }
+                else
+                {
+                    // update animator if using character
+    *//*
+                    if (_hasAnimator)
+                    {
+                        _animator.SetBool("Free fall", true);
+                    }
+    *//*
+                }
+
+                // if we are not grounded, do not jump
+                _input.jump = false;
+
+                // apply gravity over time if under terminal (multiply by delta time twice to linearly speed up over time)
+                if (_verticalVelocity < _terminalVelocity)
+                {
+                    _verticalVelocity += Gravity * Time.deltaTime;
+                }
+            }
+
+            // apply gravity over time if under terminal (multiply by delta time twice to linearly speed up over time)
+            if (_verticalVelocity < _terminalVelocity)
+            {
+                _verticalVelocity += Gravity * Time.deltaTime;
+            }
+        }
+    */
+    #endregion
+
+}
