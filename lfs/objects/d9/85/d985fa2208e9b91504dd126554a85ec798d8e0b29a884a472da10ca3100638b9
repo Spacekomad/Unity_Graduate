@@ -1,0 +1,144 @@
+using System;
+using UniRx;
+using UnityEngine;
+
+[Serializable]
+public class PlayerCharacterStatus : CharacterStatus
+{
+    public HealthBar healthBar;
+    public StaminaBar staminaBar;
+
+    public float attackPower = 10.0f;
+    public float stiffnessPower = 10.0f;
+
+    protected float _maxStamina = 100.0f;
+    public ReactiveProperty<float> _currentStamina = new ReactiveProperty<float>();
+
+    // Stamina Recovery Delay Time
+    public float staminaRecoverDelay = 0.5f;
+    // Stamina recovery per delay
+    public float staminaRecoverRate = 2.0f;
+
+    private IDisposable staminaRecovery;
+
+    public float maxStamina { get { return _maxStamina; } }
+    public float currentStamina { get { return _currentStamina.Value; } }
+
+    protected override void Awake()
+    {
+        base.Awake();
+        Init();
+    }
+
+    /// <summary>
+    /// Initial Setting
+    /// </summary>
+    private void Init()
+    {
+        if(healthBar == null)
+            healthBar = GameObject.Find("HealthBar_player").GetComponent<HealthBar>();
+        if(staminaBar == null)
+            staminaBar = GameObject.Find("StaminaBar_player").GetComponent<StaminaBar>();
+
+        healthBar.SetMaxHealth(maxHP);
+        healthBar.SetCurrentHealth(currentHP);
+        staminaBar.SetMaxStamina(maxStamina);
+        _currentStamina.Value = maxStamina;
+        // Subscribe _currentStamina 
+        _currentStamina.ObserveEveryValueChanged(x => x.Value)
+            .Subscribe(StaminaChanged)
+            .AddTo(this);
+    }
+
+    private void StartStaminaRecovery()
+    {
+        StopStaminaRecovery();
+
+        staminaRecovery = Observable.Timer(
+            TimeSpan.FromSeconds(staminaRecoverDelay)
+            , TimeSpan.FromSeconds(staminaRecoverDelay))
+            .Subscribe(_ => RecoverStamina(staminaRecoverRate))
+            .AddTo(this);
+    }
+
+    private void StopStaminaRecovery()
+    {
+        if(staminaRecovery != null)
+        {
+            staminaRecovery.Dispose();
+            staminaRecovery = null;
+        }
+    }
+
+    /// <summary>
+    /// Consume Stamina as much as amount
+    /// </summary>
+    public void ConsumeStamina(float amount)
+    {
+        if (amount < 0)
+        {
+            amount = 0;
+        }
+
+        _currentStamina.Value -= amount;
+
+        if (_currentStamina.Value < 0)
+        {
+            _currentStamina.Value = 0;
+
+        }
+
+        if (_currentStamina.Value < _maxStamina)
+            StartStaminaRecovery();
+    }
+
+    /// <summary>
+    /// Recover Stamina as much as amount
+    /// </summary>
+    public void RecoverStamina(float amount)
+    {
+        _currentStamina.Value += amount;
+        if(_currentStamina.Value >= _maxStamina)
+        {
+            _currentStamina.Value = _maxStamina;
+
+            // Stop stamina recovery
+            StopStaminaRecovery();
+        }
+    }
+
+    /// <summary>
+    /// Reflect StaminaBar UI
+    /// </summary>
+    private void StaminaChanged(float value)
+    {
+        staminaBar.SetCurrentStamina(_currentStamina.Value);
+    }
+
+    public override void TakeDamage(float damage)
+    {
+        base.TakeDamage(damage);
+        HealthChanged();
+    }
+
+    public override void TakeDamage(float damage, float stiffnessDamage)
+    {
+        base.TakeDamage(damage, stiffnessDamage);
+        HealthChanged();
+    }
+
+    public override void RecoverHP(float amount)
+    {
+        base.RecoverHP(amount);
+        HealthChanged();
+    }
+
+    /// <summary>
+    /// Reflect HealthBar UI
+    /// </summary>
+    private void HealthChanged()
+    {
+        // UI ¹Ý¿µ
+        healthBar.SetCurrentHealth(currentHP);
+    }
+}
