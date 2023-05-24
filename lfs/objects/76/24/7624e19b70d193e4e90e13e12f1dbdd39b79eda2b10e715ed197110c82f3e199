@@ -1,0 +1,65 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class HereticGroundedState : StateLayer_Heretic
+{
+    public HereticGroundedState(Character_Heretic character, FiniteStateMachine mainMachine, FiniteStateMachine subMachine) : base(character, mainMachine, subMachine) 
+    {
+
+    }
+
+    public override void Enter()
+    {
+        base.Enter();
+        canTransition = true;
+
+        subMachine.Initialize(character.idleState);
+    }
+
+    public override void LogicUpdate()
+    {
+        base.LogicUpdate();
+        canTransition = subMachine.currentState.canTransition;
+
+        if (subMachine.currentState.canTransition)
+        {
+            if (character.getStiffness)// If player got hit
+            {
+                machine.ChangeState(character.stiffnessState);
+                return;
+            }
+            else if (character.getKnockdown)
+            {
+                //상태전이
+                return;
+            }
+            else
+            {
+                /*
+                if (!character.grounded)// Not Grounded
+                {
+                    return;
+                }
+                */
+            }
+        }
+
+        //subMachine Update
+        subMachine.currentState.LogicUpdate();
+    }
+
+    public override void PhysicsUpdate()
+    {
+        base.PhysicsUpdate();
+        //subMachine FixedUpdate
+        subMachine.currentState.PhysicsUpdate();
+    }
+
+    public override void Exit()
+    {
+        base.Exit();
+        //subMachine exit
+        subMachine.currentState.Exit();
+    }
+}

@@ -1,0 +1,49 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class PlayerAnimationEventReceiver : MonoBehaviour
+{
+    private PlayerCharacter _player;
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        _player = GetComponent<PlayerCharacter>();
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        
+    }
+
+    public void StartAttack()
+    {
+        _player.middleOfAttack = true;
+    }
+    public void EndAttack()
+    {
+        _player.middleOfAttack = false;
+    }
+
+    public void StartParry()
+    {
+        _player.middleOfParry = true;
+    }
+    public void EndParry()
+    {
+        _player.middleOfParry = false;
+    }
+
+    public void StartAnimation(int currentAnimation)
+    {
+        _player.justPlayedAnimation = (EnumTypes.PlayerAnimation)currentAnimation;
+        _player.isPlayingAnim = true;
+    }
+    public void EndAnimation()
+    {
+        _player.isPlayingAnim = false;
+    }
+
+}

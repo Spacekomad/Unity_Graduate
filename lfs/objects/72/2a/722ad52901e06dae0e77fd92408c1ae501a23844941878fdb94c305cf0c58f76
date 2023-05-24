@@ -1,0 +1,164 @@
+using System;
+using UniRx;
+using Unity.VisualScripting;
+using UnityEngine;
+
+[Serializable]
+public class PlayerCharacterStatus : CharacterStatus
+{
+    public HealthBar healthBar;
+    public StaminaBar staminaBar;
+
+    public float attackPower = 10.0f;
+    public float stiffnessPower = 10.0f;
+
+    protected float _maxStamina = 100.0f;
+    public ReactiveProperty<float> _currentStamina = new ReactiveProperty<float>();
+
+    // 스태미나 회복 딜레이 시간
+    public float staminaRecoverDelay = 0.5f;
+    // 딜레이 당 회복량
+    public float staminaRecoverRate = 2.0f;
+
+    private IDisposable staminaRecovery;
+
+    public float maxStamina { get { return _maxStamina; } }
+    public float currentStamina { get { return _currentStamina.Value; } }
+
+    protected override void Awake()
+    {
+        base.Awake();
+        Init();
+    }
+
+    /// <summary>
+    /// Initial Setting
+    /// </summary>
+    private void Init()
+    {
+        if(healthBar == null)
+            healthBar = GameObject.Find("HealthBar_player").GetComponent<HealthBar>();
+        if(staminaBar == null)
+            staminaBar = GameObject.Find("StaminaBar_player").GetComponent<StaminaBar>();
+        
+        _currentStamina.Value = _maxStamina;
+        // Subscribe _currentStamina 
+        _currentStamina.ObserveEveryValueChanged(x => x.Value)
+            .Subscribe(StaminaChanged)
+            .AddTo(this);
+    }
+
+    private void StartStaminaRecovery()
+    {
+        StopStaminaRecovery();
+
+        staminaRecovery = Observable.Timer(
+            TimeSpan.FromSeconds(staminaRecoverDelay)
+            , TimeSpan.FromSeconds(staminaRecoverDelay))
+            .Subscribe(_ => RecoverStamina(staminaRecoverRate))
+            .AddTo(this);
+    }
+
+    private void StopStaminaRecovery()
+    {
+        if(staminaRecovery != null)
+        {
+            staminaRecovery.Dispose();
+            staminaRecovery = null;
+        }
+    }
+
+    /// <summary>
+    /// Consume Stamina as much as amount
+    /// </summary>
+    public void ConsumeStamina(float amount)
+    {
+        if (amount < 0)
+        {
+            amount = 0;
+        }
+
+        _currentStamina.Value -= amount;
+
+        if (_currentStamina.Value < 0)
+        {
+            _currentStamina.Value = 0;
+
+        }
+
+        if (_currentStamina.Value < _maxStamina)
+            StartStaminaRecovery();
+    }
+
+    /// <summary>
+    /// Recover Stamina as much as amount
+    /// </summary>
+    public void RecoverStamina(float amount)
+    {
+        _currentStamina.Value += amount;
+        if(_currentStamina.Value >= _maxStamina)
+        {
+            _currentStamina.Value = _maxStamina;
+
+            // Stop stamina recovery
+            StopStaminaRecovery();
+        }
+    }
+
+    /// <summary>
+    /// Reflect StaminaBar UI
+    /// </summary>
+    private void StaminaChanged(float value)
+    {
+        staminaBar.SetCurrentStamina(_currentStamina.Value);
+    }
+
+    public override void TakeDamage(float damage)
+    {
+        //전처리
+        if (damage < 0)
+        {
+            damage = 0;
+        }
+
+        _currentHP -= damage;
+        HealthChanged();
+
+        //후처리
+        if (_currentHP <= 0)
+        {
+            _currentHP = 0;
+        }
+    }
+
+    public override void RecoverHP(float amount)
+    {
+        //전처리
+        if (amount < 0)
+        {
+            return;
+        }
+        if (_currentHP <= 0)
+        {
+            return;
+        }
+
+        _currentHP += amount;
+        HealthChanged();
+
+        //후처리
+        if (_currentHP > _maxHP)
+        {
+            _currentHP = _maxHP;
+        }
+    }
+
+    /// <summary>
+    /// Reflect HealthBar UI
+    /// </summary>
+    private void HealthChanged()
+    {
+        // UI 반영
+        healthBar.SetCurrentHealth(_currentHP);
+    }
+}
