@@ -1,0 +1,296 @@
+using UnityEngine;
+using UnityEngine.AI;
+
+[RequireComponent(typeof(Animator))]
+public class Character_Heretic : EnemyCharacter
+{
+    #region SerializedVariables
+
+    [Header("Initial attack settings")]
+    public AttackData_Heretic attackData;
+
+    [Space(10)]
+    [Header("Character attack settings")]
+    public float closeRange;
+
+    public float maxDistanceToTryAttack;
+
+    public Vector3 detectionBox;
+    public Vector3 detectionBoxOffset;
+    public bool needMove;
+    public bool middleOfAttack;
+
+    public bool animationEnd = false;
+
+    [Space(10)]
+    public float walkSpeed = 3.0f;
+
+    public float walkBackSpeed = 2.0f;
+    public float walkBackTime = 2.0f;
+
+    public float sprintSpeed = 7.0f;
+
+    [Space(10)]
+    [Tooltip("Term between action and action")]
+    public float idleTime = 3.0f;
+
+    [Tooltip("How fast the character turns to face movement direction")]
+    [Range(0.0f, 0.3f)]
+    public float rotationSmoothTime = 0.12f;
+
+    [Tooltip("Time to not take damage when character is dodging")]
+    public float invincibleTime = 0.7f;
+
+    [Tooltip("If the character is invincible or not")]
+    public bool isInvincible = false;
+    
+    public bool getStiffness;
+    public bool getKnockdown;
+
+    [Space(10)]
+    [Header("Boss exclusive attack data")]
+    public MeleeAttackInfo dodgeAttack;
+    public MeleeAttackInfo dashAttack;
+
+    [Space(10)]
+    [Header("Viewer : Do not edit")]
+    [SerializeField]
+    private EnumTypes.FuzzyOutStates_Heretic _desiredAction = EnumTypes.FuzzyOutStates_Heretic.None;
+
+    #endregion
+
+    #region NonSerializedVariables
+
+    private NavMeshAgent _agent;
+    private Rigidbody _rigidbody;
+
+    private HereticEquipment equipment;
+
+    private FuzzySystem _fuzzySystem;
+    private float[] _fuzzySystemInputs;
+
+    private float _rotationVelocity;
+
+    #endregion
+
+    #region States
+
+    private FiniteStateMachine _groundedMachine;
+    //Main State
+    private HereticGroundedState _groundedState;
+    private HereticStiffnessState _stiffnessState;
+    //Grounded State
+    private HereticIdleState _idleState;
+    private HereticDodgeState _dodgeState;
+    
+    private HereticWalkState _walkState;
+    private HereticSprintState _sprintState;
+    private HereticBasicAttackState _basicAttackState;
+    private HereticStrongAttackState _strongAttackState;
+
+    #endregion
+
+    #region Properties
+
+    public NavMeshAgent agent { get { return _agent; } }
+
+    public Rigidbody rigidbody { get { return _rigidbody; } }
+
+    public EnumTypes.FuzzyOutStates_Heretic desiredAction { get { return _desiredAction; } }
+
+    // States
+    public HereticGroundedState groundedState { get { return _groundedState; } }
+    public HereticStiffnessState stiffnessState { get { return _stiffnessState; } }
+
+    public HereticIdleState idleState { get { return _idleState; } }
+    public HereticDodgeState dodgeState { get { return _dodgeState; } }
+    public HereticWalkState walkState { get { return _walkState; } }
+    public HereticSprintState sprintState { get { return _sprintState; } }
+    public HereticBasicAttackState basicAttackState { get { return _basicAttackState; } }
+    public HereticStrongAttackState strongAttackState { get { return _strongAttackState; } }
+
+    public bool triggerAnimationEnd
+    { 
+        get 
+        {
+            if (animationEnd)
+            {
+                animationEnd = false;
+                return !animationEnd;
+            }
+            return animationEnd;
+        }
+    }
+
+    #endregion
+
+    protected override void Awake()
+    {
+        base.Awake();
+
+        equipment = GetComponent<HereticEquipment>();
+
+        _agent = GetComponent<NavMeshAgent>();
+        _rigidbody = GetComponent<Rigidbody>();
+
+        _fuzzySystem = new FuzzySystem_Heretic();
+        _fuzzySystemInputs = new float[_fuzzySystem.requiredInputNum];
+
+        // State instanciate
+        _groundedMachine = new FiniteStateMachine();
+        // Main state
+        _groundedState = new HereticGroundedState(this, mainMachine, _groundedMachine);
+        _stiffnessState = new HereticStiffnessState(this, mainMachine);
+        // Grounded state
+        _idleState = new HereticIdleState(this, _groundedMachine);
+        _dodgeState = new HereticDodgeState(this, _groundedMachine);
+        _walkState = new HereticWalkState(this, _groundedMachine);
+        _sprintState = new HereticSprintState(this, _groundedMachine);
+        _basicAttackState = new HereticBasicAttackState(this, _groundedMachine);
+        _strongAttackState = new HereticStrongAttackState(this, _groundedMachine);
+    }
+
+    protected override void Start()
+    {
+        base.Start();
+        mainMachine.Initialize(_groundedState);
+
+        closeRange = attackData.closeRange;
+        maxDistanceToTryAttack = attackData.maxDistanceToTryAttack;
+
+        detectionBox = new Vector3(0.6f, 2.0f, maxDistanceToTryAttack);
+        detectionBoxOffset = new Vector3(0.0f, 1.0f, maxDistanceToTryAttack * 0.5f);
+
+        agent.updateRotation = false;
+    }
+
+    protected override void Update()
+    {
+        base.Update();
+    }
+
+    protected override void FixedUpdate()
+    {
+        base.FixedUpdate();
+    }
+
+    public void MakeDecision()
+    {
+        SetFuzzySystemInput();
+        float[] output = _fuzzySystem.ComputeOutDoMs(_fuzzySystemInputs);
+
+        float randomRange = 0.0f;
+        foreach (float DoM in output)
+        {
+            randomRange += DoM;
+        }
+
+
+        float randomValue =  UnityEngine.Random.Range(0.0f, randomRange);
+        randomRange = 0.0f;
+        for(int i = 0; i < output.Length; ++i)
+        {
+            if(output[i] > 0.0f)
+            {
+                randomRange += output[i];
+                if (randomValue <= randomRange)
+                {
+                    _desiredAction = (EnumTypes.FuzzyOutStates_Heretic)i;
+                    break;
+                }
+            }
+        }
+    }
+
+    public override void takeDamage(float damage, float stiffnessDamage)
+    {
+        if (!isInvincible)
+            status.TakeDamage(damage, stiffnessDamage);
+        if (status.middleOfStiffness)
+        {
+            getStiffness = true;
+        }
+    }
+
+    public void LookTarget() // 한번에 회전
+    {
+        if (_target) {
+            Vector2 forward = new Vector2(transform.position.z, transform.position.x);
+            Vector2 steeringTarget = new Vector2(target.position.z, target.position.x);
+
+            //방향을 구한 뒤, 역함수로 각을 구한다.
+            Vector2 dir = steeringTarget - forward;
+            float targetAngle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+
+            //방향 적용
+            transform.eulerAngles = Vector3.up * targetAngle;
+        }
+    }
+    public void RotateToTarget() //보간 버전
+    {
+        if (_target) {
+            Vector2 forward = new Vector2(transform.position.z, transform.position.x);
+            Vector2 steeringTarget = new Vector2(target.position.z, target.position.x);
+
+            //방향을 구한 뒤, 역함수로 각을 구한다.
+            Vector2 dir = steeringTarget - forward;
+            float targetAngle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+            float rotation = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref _rotationVelocity, rotationSmoothTime);
+
+            //방향 적용
+            transform.eulerAngles = Vector3.up * rotation;
+        }
+    }
+
+    public void DesiredActionComplete()
+    {
+        _desiredAction = EnumTypes.FuzzyOutStates_Heretic.None;
+    }
+
+    public float GetXZDistanceToTarget()
+    {
+        if (_target) {
+            return Vector2.Distance(new Vector2(transform.position.x, transform.position.z), new Vector2(_target.position.x, _target.position.z));
+        }
+        return 0.0f;
+    }
+
+    private void SetFuzzySystemInput()
+    {
+        _fuzzySystemInputs[0] = GetXZDistanceToTarget();
+        _fuzzySystemInputs[1] = targetCharacter.stat.currentHP / targetCharacter.stat.maxHP;
+    }
+
+
+    private void OnDrawGizmos()
+    {
+        if (this)
+        {
+            Gizmos.color = Color.green;
+            Gizmos.matrix = Matrix4x4.TRS(transform.position + detectionBoxOffset, transform.rotation, transform.localScale);
+            Gizmos.DrawWireCube(detectionBoxOffset, detectionBox);
+
+            if (middleOfAttack)
+            {
+                int i = ((HereticLance)equipment.currentWeapon).comboIdx - 1;
+                if(i < 0)
+                {
+                    return;
+                }
+                MeleeAttackInfo attackInfo = ((HereticLance)equipment.currentWeapon).basicAttackComboData[i];
+
+                Vector3 hitboxOffset = transform.right * attackInfo.attackRangeOffset.x +
+                    transform.up * attackInfo.attackRangeOffset.y +
+                    transform.forward * attackInfo.attackRangeOffset.z;
+
+                Gizmos.matrix = Matrix4x4.TRS(transform.position + hitboxOffset, transform.rotation, transform.localScale);
+                Gizmos.color = Color.red;
+
+
+                Gizmos.DrawWireCube(Vector3.zero, attackInfo.attackRange);
+                
+            }
+        }
+    }
+
+}

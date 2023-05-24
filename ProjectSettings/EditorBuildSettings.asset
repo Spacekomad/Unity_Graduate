@@ -6,6 +6,6 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Lab/Scenes/LabA.unity
-    guid: 9917da1137dc37947b9a379539a83725
+    path: Assets/Scenes/GameMap_LabA.unity
+    guid: c5be851786212064ab6dc8395ca98037
   m_configObjects: {}

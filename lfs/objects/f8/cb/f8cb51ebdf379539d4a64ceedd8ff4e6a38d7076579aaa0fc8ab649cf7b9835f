@@ -1,0 +1,93 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a857f5bcccdf1a438aaecc0fa602054, type: 3}
+  m_Name: HereticLance
+  m_EditorClassIdentifier: 
+  weaponPrefab: {fileID: 0}
+  weaponPower: 1
+  weaponStiffness: 1
+  comboAttackData:
+  - attackRange: {x: 1, y: 1, z: 1}
+    attackRangeOffset: {x: 0, y: 5, z: 0.5}
+    attackTarget:
+      serializedVersion: 2
+      m_Bits: 4096
+    headwayDistance: 0
+    attackDelay: 0
+    attackPowerCoefficient: 1
+    attackStiffnessCoefficient: 1
+  - attackRange: {x: 1, y: 1, z: 1}
+    attackRangeOffset: {x: 0, y: 5, z: 0.5}
+    attackTarget:
+      serializedVersion: 2
+      m_Bits: 4096
+    headwayDistance: 0
+    attackDelay: 0
+    attackPowerCoefficient: 1
+    attackStiffnessCoefficient: 1
+  - attackRange: {x: 1, y: 1, z: 1}
+    attackRangeOffset: {x: 0, y: 5, z: 0.5}
+    attackTarget:
+      serializedVersion: 2
+      m_Bits: 4096
+    headwayDistance: 0
+    attackDelay: 0
+    attackPowerCoefficient: 1
+    attackStiffnessCoefficient: 1
+  - attackRange: {x: 1, y: 1, z: 1}
+    attackRangeOffset: {x: 0, y: 5, z: 0.5}
+    attackTarget:
+      serializedVersion: 2
+      m_Bits: 4096
+    headwayDistance: 0
+    attackDelay: 0
+    attackPowerCoefficient: 1
+    attackStiffnessCoefficient: 1
+  comboSkillData:
+  - attackRange: {x: 1, y: 1, z: 1}
+    attackRangeOffset: {x: 0, y: 1, z: 0.5}
+    attackTarget:
+      serializedVersion: 2
+      m_Bits: 4096
+    headwayDistance: 0
+    attackDelay: 0
+    attackPowerCoefficient: 1
+    attackStiffnessCoefficient: 1
+  comboStrongAttackData:
+  - attackRange: {x: 1, y: 1, z: 1}
+    attackRangeOffset: {x: 0, y: 1, z: 0.5}
+    attackTarget:
+      serializedVersion: 2
+      m_Bits: 4096
+    headwayDistance: 0
+    attackDelay: 0
+    attackPowerCoefficient: 1
+    attackStiffnessCoefficient: 1
+  - attackRange: {x: 1, y: 1, z: 1}
+    attackRangeOffset: {x: 0, y: 1, z: 0.5}
+    attackTarget:
+      serializedVersion: 2
+      m_Bits: 4096
+    headwayDistance: 0
+    attackDelay: 0
+    attackPowerCoefficient: 1
+    attackStiffnessCoefficient: 1
+  comboDashAttackData:
+  - attackRange: {x: 1, y: 1, z: 1}
+    attackRangeOffset: {x: 0, y: 1, z: 0.5}
+    attackTarget:
+      serializedVersion: 2
+      m_Bits: 4096
+    headwayDistance: 0
+    attackDelay: 0
+    attackPowerCoefficient: 1
+    attackStiffnessCoefficient: 1

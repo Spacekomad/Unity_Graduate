@@ -1,0 +1,234 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UniRx;
+using UnityEngine.UI;
+using System;
+using UniRx.Triggers;
+
+public class AdjustPlayerStatus : MonoBehaviour
+{
+    private PlayerCharacterStatus stat;
+    public HealthBar healthbar;
+    public StaminaBar staminabar;
+
+    #region UniRx
+    [SerializeField]
+    // amount of stamina recovery per second
+    public float RecoveryAmount_stamina_ps = 4.0f;
+
+    [SerializeField]
+    // delay time before increasing stamina gauge
+    public float staminaRecoveryDelay = 1.0f;
+    [SerializeField]
+    // how much gain stamina per second
+    public float staminaRecoveryRate = 0.5f;
+
+    // decrease stamina with the given amount whenever the condition is true
+    private bool _condition_staminaRecovery = false;
+
+    // Stamina Recovering check
+    private bool _isRecoveringStamina = false;
+
+    // stamina gauge
+    public Slider _slider_st;
+
+    Subject<Slider> stStartSubject = new Subject<Slider>();
+    Subject<Slider> stEndSubject = new Subject<Slider>();
+
+    IDisposable recoverySubscription;
+    IDisposable conditionSubscription;
+    #endregion
+
+    private void Awake()
+    {
+        Init();
+    }
+
+    void Start()
+    {
+        stat.SetCurrentHP(stat.maxHP);
+        healthbar.SetMaxHealth(stat.maxHP);
+        healthbar.SetCurrentHealth(stat.currentHP);
+        staminabar.SetMaxStamina(stat.maxStamina);
+        staminabar.SetCurrentStamina(stat.currentStamina);
+
+        #region UniRx_Subscribe
+        var stStartStream = stStartSubject.AsObservable();
+        var stEndStream = stEndSubject.AsObservable();
+
+        // charge stamina
+        var recoveryStream = Observable.EveryUpdate()
+            .SkipUntil(stStartStream)   // start when the stStartStream is arrived
+            .TakeUntil(stEndStream)     // repeat stEndStream is arrived
+            .RepeatUntilDisable(this)
+            .Subscribe(_ =>
+            {
+                // It increases the value until it reaches to 100.
+                stat.RecoverStamina(staminaRecoveryRate * Time.deltaTime);
+                _slider_st.value = stat.currentStamina;
+
+                if (_slider_st.value >= 100.0f)
+                {
+                    _slider_st.value = 100.0f;
+                    stEndSubject.OnNext(_slider_st);
+                }
+            },
+            ()=>
+            {
+                Debug.Log("completed");
+            });
+
+        // Subscribe to the condition change
+        conditionSubscription = Observable.EveryUpdate()
+            .Subscribe(_ =>
+            {
+                if(_condition_staminaRecovery && recoverySubscription == null)
+                {
+                    StartStaminaRecovery();
+                }
+                else if(!_condition_staminaRecovery && recoverySubscription != null)
+                {
+                    StopStaminaRecovery();
+                }
+            });
+        #endregion
+    }
+
+    /// <summary>
+    /// Initial Settings
+    /// </summary>
+    private void Init()
+    {
+        stat = GetComponent<PlayerCharacterStatus>();
+        healthbar = GameObject.Find("HealthBar_player").GetComponent<HealthBar>();
+        staminabar = GameObject.Find("StaminaBar_player").GetComponent<StaminaBar>();
+        _slider_st = staminabar.GetComponent<Slider>();
+    }
+
+    /// <summary>
+    /// Dispose Subscriptions
+    /// </summary>
+    private void OnDestroy()
+    {
+        // Despose subscriptions to avoid memory leaks
+        recoverySubscription?.Dispose();
+        conditionSubscription?.Dispose();
+    }
+
+    /// <summary> 
+    /// Start Stamina Recovery System reflected in the UI system
+    /// </summary>
+    private void StartStaminaRecovery()
+    {
+        if (_isRecoveringStamina)
+            return;
+
+        _isRecoveringStamina = true;
+
+        // stop the current event on thr recoveryStream
+        stEndSubject.OnNext(_slider_st);
+
+        // send the start event on the recoveryStream
+        stStartSubject.OnNext(_slider_st);
+
+        // Start the recovery stream
+        recoverySubscription = Observable.Timer(TimeSpan.FromSeconds(staminaRecoveryDelay)
+            , TimeSpan.FromSeconds(staminaRecoveryRate))
+            .TakeUntil(stEndSubject)
+            .RepeatUntilDisable(this)
+            .Subscribe(_ =>
+            {
+                stat.RecoverStamina(RecoveryAmount_stamina_ps);
+                _slider_st.value = stat.currentStamina;
+
+                if (_slider_st.value >= 100.0f)
+                {
+                    _slider_st.value = 100.0f;
+                    stEndSubject.OnNext(_slider_st);
+                    StopStaminaRecovery();
+                }
+            })
+            .AddTo(this);
+    }
+
+    /// <summary>
+    /// Stop Stamina Recovery System reflected in the UI system
+    /// </summary>
+    private void StopStaminaRecovery()
+    {
+        if(!_isRecoveringStamina) return;
+
+        _isRecoveringStamina = false;
+
+        // Stop the recovery stream and reset the subscription
+        recoverySubscription.Dispose();
+        recoverySubscription = null;
+    }
+
+    /// <summary>
+    /// Stamina consumption reflected in UI
+    /// </summary>
+    private void ConsumeStaminaReflectUI(float amount)
+    {
+        if(!_condition_staminaRecovery)
+        {
+            stat.ConsumeStamina(amount);
+            _slider_st.value = stat.currentStamina;
+
+            if (_slider_st.value < 0f)
+                _slider_st.value = 0f;
+
+            stEndSubject.OnNext(_slider_st);
+            stStartSubject.OnNext(_slider_st);
+        }
+    }
+
+    private void SetStaminaRecoveryConditionTrue()
+    {
+        _condition_staminaRecovery = true;
+    }
+
+    private void SetStaminaRecoveryConditionFalse()
+    {
+        _condition_staminaRecovery = false;
+    }
+
+    /// <summary>
+    /// Use externally to consume stamina.
+    /// if current stamina is less than amount, return false
+    /// </summary>
+    /// <param name="amount"></param>
+    /// <returns></returns>
+    public bool UseStamina(float amount)
+    {
+        if (stat.currentStamina < amount)
+            return false;
+
+        SetStaminaRecoveryConditionFalse();
+        ConsumeStaminaReflectUI(amount);
+        SetStaminaRecoveryConditionTrue();
+
+        return true;
+    }
+
+    /// <summary>
+    /// Test Func
+    /// </summary>
+    public void Example()
+    {
+        SetStaminaRecoveryConditionFalse();
+        ConsumeStaminaReflectUI(10);
+        SetStaminaRecoveryConditionTrue();
+    }
+
+    /// <summary>
+    /// Test Func
+    /// </summary>
+    /// <param name="damage"></param>
+    public void HealthDamage(float damage)
+    {
+        stat.TakeDamage(damage);
+        healthbar.SetCurrentHealth(stat.currentHP);
+    }
+}
