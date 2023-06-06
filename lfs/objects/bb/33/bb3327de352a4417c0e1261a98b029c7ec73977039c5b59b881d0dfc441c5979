@@ -1,0 +1,37 @@
+using Globals;
+
+public class HereticStiffnessState : HereticSuperState
+{
+    public HereticStiffnessState(Character_Heretic character, FiniteStateMachine machine) : base(character, machine) { }
+
+    public override void Enter()
+    {
+        base.Enter();
+        canTransition = false;
+
+        character.animator.SetTrigger(AnimationParameters_Heretic.Stiffness);
+    }
+
+    public override void LogicUpdate()
+    {
+        base.LogicUpdate();
+        DebugUIManager.instance.debugText.text = this.ToString();
+
+        if (character.animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f)
+        {
+            canTransition = true;
+            machine.ChangeState(character.groundedState);
+        }
+    }
+
+    public override void PhysicsUpdate()
+    {
+        base.PhysicsUpdate();
+    }
+
+    public override void Exit()
+    {
+        base.Exit();
+        character.getStiffness = false;
+    }
+}

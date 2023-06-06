@@ -1,0 +1,50 @@
+using UnityEngine;
+
+[RequireComponent(typeof(EnemyCharacterStatus))]
+public class EnemyCharacter : Character
+{
+    public EnemyCharacterStatus status;
+
+    [SerializeField]
+    protected Transform _target;
+    protected PlayerCharacter targetCharacter;
+
+    protected Animator _animator;
+
+    public Transform target { get { return _target; } }
+    public Animator animator { get { return _animator; } }
+
+    protected override void Awake()
+    {
+        base.Awake();
+        _animator = GetComponent<Animator>();
+        status = GetComponent<EnemyCharacterStatus>();
+    }
+
+    public virtual void takeDamage(float damage, float stiffness)
+    {
+
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            _target = other.transform;
+            targetCharacter = target.GetComponent<PlayerCharacter>();
+
+            // UI On
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            _target = null;
+            targetCharacter = null;
+
+            // UI Off
+        }
+    }
+}

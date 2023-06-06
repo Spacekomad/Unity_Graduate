@@ -1,0 +1,102 @@
+using Globals;
+using UnityEngine;
+
+public class HereticStrongAttackState : HereticSuperState
+{
+    private HereticEquipment equipment;
+    private bool _isClose = false;
+
+    private bool _attackEnd = false;
+
+    public HereticStrongAttackState(Character_Heretic character, FiniteStateMachine machine) : base(character, machine)
+    {
+        equipment = character.GetComponent<HereticEquipment>();
+    }
+
+    public override void Enter()
+    {
+        base.Enter();
+
+        canTransition = true;
+
+        // 근접 공격 시도거리보다 상대 캐릭터가 멀면
+        if (character.GetXZDistanceToTarget() > character.maxDistanceToTryAttack)
+        {
+            /*
+            //접근하기
+            machine.ChangeState(character.walkState);
+            return;
+            */
+
+            // or
+
+            // 의사 재결정
+            character.MakeDecision();
+            machine.ChangeState(character.idleState);
+            return;
+        }
+
+        // 상대 캐릭터가 직선상에 없다면
+        if (!character.CheckStraitTarget())
+        {
+            // 접근(회전) 하기
+            machine.ChangeState(character.walkState);
+            return;
+        }
+
+        character.agent.isStopped = true;
+
+        character.animator.SetBool(AnimationParameters_Heretic.Attack, true);
+
+        if (character.GetXZDistanceToTarget() < character.closeRange)
+        {
+            _isClose = true;
+            character.animator.SetTrigger(AnimationParameters_Heretic.StrongAttack_Close);
+        }
+        else
+        {
+            _isClose = false;
+        }
+
+        _attackEnd = false;
+
+        equipment.currentWeapon.InitWeapon();
+    }
+
+    public override void LogicUpdate()
+    {
+        base.LogicUpdate();
+        DebugUIManager.instance.debugText.text = this.ToString();
+
+        // 공격이 이미 끝나지 않았다면
+        if (!_attackEnd)
+        {
+            if (_isClose) // 가까울때의 모션
+            {
+                _attackEnd = !equipment.currentWeapon.Skill();
+            }
+            else // 멀 때의 모션
+            {
+                _attackEnd = !equipment.currentWeapon.StrongAttack();
+            }
+        }
+        else // 공격이 끝났을 경우 idle로 전환
+        {
+            character.DesiredActionComplete(); // 의사 수행 완료
+            machine.ChangeState(character.idleState);
+            return;
+        }
+    }
+
+    public override void PhysicsUpdate()
+    {
+        base.PhysicsUpdate();
+    }
+
+    public override void Exit()
+    {
+        base.Exit();
+        character.animator.SetBool(AnimationParameters_Heretic.Attack, false);
+        character.StopAllCoroutines();
+    }
+}

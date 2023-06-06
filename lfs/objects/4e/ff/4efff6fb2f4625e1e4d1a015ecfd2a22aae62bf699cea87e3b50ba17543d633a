@@ -1,0 +1,125 @@
+using EnumTypes;
+using Globals;
+using UnityEngine;
+
+public class HereticWalkState : HereticSuperState
+{
+    private float _time;
+
+    public HereticWalkState(Character_Heretic character, FiniteStateMachine machine) : base(character, machine) 
+    {
+
+    }
+
+    public override void Enter()
+    {
+        base.Enter();
+        canTransition = true;
+
+        //character.enabled = true;
+        character.agent.isStopped = false;
+
+        if(character.desiredAction == FuzzyOutStates_Heretic.StepBack)
+        {
+            character.agent.speed = character.walkBackSpeed;
+            character.animator.SetBool(AnimationParameters_Heretic.WalkBack, true);
+            character.animator.SetBool(AnimationParameters_Heretic.WalkClose, false);
+        }
+        else
+        {
+            character.agent.speed = character.walkSpeed;
+            character.animator.SetBool(AnimationParameters_Heretic.WalkClose, true);
+            character.animator.SetBool(AnimationParameters_Heretic.WalkBack, false);
+        }
+
+        _time = 0.0f;
+    }
+
+    public override void LogicUpdate()
+    {
+        base.LogicUpdate();
+        DebugUIManager.instance.debugText.text = this.ToString();
+
+        if (!character.target)
+        {
+            character.DesiredActionComplete(); // 의사 수행 완료
+            machine.ChangeState(character.idleState);
+            return;
+        }
+
+        if (character.desiredAction == FuzzyOutStates_Heretic.WalkClose) // 다가가길 원한다면
+        {
+            if (character.GetXZDistanceToTarget() > character.closeRange) // 가까운 거리까지 다가감
+            {
+                character.agent.SetDestination(character.target.transform.position);
+                character.RotateToTarget();
+            }
+            else // 가까운 거리까지 다가갔다면
+            {
+                character.DesiredActionComplete(); // 의사 수행 완료
+                character.MakeDecision(); // 의사 결정
+
+                // Idle로 전환하기
+                // 의사 결정을 미리 했으므로 대기시간 없음
+                // 의사 결정에 텀을 두고 싶다면 그냥 전환하면 됨
+                machine.ChangeState(character.idleState);
+                return;
+            }
+        }
+        else if (character.desiredAction == FuzzyOutStates_Heretic.StepBack) // 물러서길 원한다면
+        {
+            // 일정 시간 동안 물러섬
+            _time += Time.deltaTime;
+            character.agent.SetDestination(character.transform.position - character.transform.forward); 
+            character.RotateToTarget();
+
+            if (_time >= character.walkBackTime) // 설정된 물러서기 시간이 지나면
+            {
+                _time = 0.0f;
+                character.DesiredActionComplete(); // 의사 수행 완료
+                character.MakeDecision(); // 의사 결정
+
+                // Idle로 전환하기
+                // 의사 결정을 미리 했으므로 대기시간 없음
+                // 의사 결정에 텀을 두고 싶다면 그냥 전환하면 됨
+                machine.ChangeState(character.idleState);
+                return;
+            }
+        }
+        else // 공격을 원하는데 직선상에 상대가 없어서 본 상태로 들어온 경우
+        {
+            // 직선상에 상대가 있는지 체크
+            if (character.CheckStraitTarget())
+            {
+                //있다면 공격
+                if (character.desiredAction == FuzzyOutStates_Heretic.BasicAttack)
+                {
+                    machine.ChangeState(character.basicAttackState);
+                    return;
+                }
+                if (character.desiredAction == FuzzyOutStates_Heretic.StrongAttack)
+                {
+                    machine.ChangeState(character.strongAttackState);
+                    return;
+                }
+            }
+            else // 직선상에 없다면 계속 상대를 바라보면서 다가감
+            {
+                character.agent.SetDestination(character.target.position);
+                character.RotateToTarget();
+            }
+        }
+    }
+
+    public override void PhysicsUpdate()
+    {
+        base.PhysicsUpdate();
+    }
+
+    public override void Exit()
+    {
+        base.Exit();
+        character.animator.SetBool(AnimationParameters_Heretic.WalkClose, false);
+        character.animator.SetBool(AnimationParameters_Heretic.WalkBack, false);
+    }
+}

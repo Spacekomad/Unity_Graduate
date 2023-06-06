@@ -1,0 +1,141 @@
+using UnityEngine;
+using System;
+
+[Serializable]
+public abstract class CharacterStatus : MonoBehaviour
+{
+    public float maxHP { get { return _maxHP; } }
+    public float currentHP { get { return _currentHP; } }
+    public float endurableStiffness { get { return _endurableStiffness; } }
+    public float currentStiffness { get { return _currentStiffness; } }
+    public bool middleOfStiffness { get { return _middleOfStiffness; } }
+
+
+    public float attackPower = 10.0f;
+    public float stiffnessPower = 10.0f;
+
+    public bool isDead = false;
+
+    [SerializeField]
+    protected float _maxHP = 100.0f;
+    [SerializeField]
+    protected float _currentHP = 100.0f;
+    [SerializeField]
+    protected float _endurableStiffness = 100.0f;
+    [SerializeField]
+    protected float _currentStiffness = 100.0f;
+    public float stiffnessRecoverRate = 0.4f;
+    [SerializeField]
+    protected bool _middleOfStiffness = false;
+
+    protected virtual void Awake()
+    {
+        _currentHP = _maxHP;
+        _currentStiffness = _endurableStiffness;
+    }
+
+    protected virtual void Update()
+    {
+        _currentStiffness += stiffnessRecoverRate * Time.deltaTime;
+        if (_currentStiffness > _endurableStiffness)
+        {
+            _currentStiffness = _endurableStiffness;
+        }
+    }
+
+    public virtual void TakeDamage(float damage, float stiffnessDamage)
+    {
+        TakeDamage(damage);
+
+        if (stiffnessDamage < 0)
+        {
+            stiffnessDamage = 0;
+        }
+
+        _currentStiffness -= stiffnessDamage;
+
+        if (_currentStiffness <= 0)
+        {
+            _middleOfStiffness = true;
+        }
+    }
+    
+    public virtual void TakeDamage(float damage)
+    {
+        //傈贸府
+        if (damage < 0)
+        {
+            damage = 0;
+        }
+
+        _currentHP -= damage;
+
+        //饶贸府
+        if (_currentHP <= 0)
+        {
+            _currentHP = 0;
+            isDead = true;
+        }
+    }
+
+    public virtual void RecoverHP(float amount)
+    {
+        //傈贸府
+        if (amount < 0.0f)
+        {
+            return;
+        }
+        if (_currentHP <= 0.0f)
+        {
+            return;
+        }
+
+        _currentHP += amount;
+
+        //饶贸府
+        if (_currentHP > _maxHP)
+        {
+            _currentHP = _maxHP;
+        }
+    }
+
+    public virtual void SetCurrentHP(float value)
+    {
+        //傈贸府
+        if (value < 0.0f)
+        {
+            value = 0.0f;
+        }
+        _currentHP = value;
+        //饶贸府
+        if (_currentHP >= _maxHP)
+        {
+            _currentHP = _maxHP;
+        }
+        if (_currentHP <= 0.0f)
+        {
+            _currentHP = 0.0f;
+            isDead = true;
+        }
+    }
+
+    public virtual void SetMaxHP(float value)
+    {
+        if(value <= 0.0f)
+        {
+            value = 0.1f;
+        }
+
+        _maxHP = value;
+
+        if(_maxHP < _currentHP)
+        {
+            _currentHP = _maxHP;
+        }
+    }
+
+    public virtual void RecoverStiffness(float amount)
+    {
+        _currentStiffness += amount;
+    }
+}
