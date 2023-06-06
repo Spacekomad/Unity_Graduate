@@ -1,0 +1,38 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class WarpToBattle : MonoBehaviour
+{
+    [SerializeField]
+    public GameObject Point;
+
+    [SerializeField]
+    public GameObject Boss;
+
+    [SerializeField]
+    public GameObject BossUI;
+
+    private CharacterController characterController;
+
+    private void OnTriggerEnter(Collider other)
+    {
+        characterController = other.GetComponent<CharacterController>();
+        if (characterController != null)
+        {
+            characterController.enabled = false;
+            characterController.transform.position = Point.transform.position;
+            characterController.enabled = true;
+
+            // 보스 UI On
+            BossUI.SetActive(true);
+            ConnectBossData();
+        }
+    }
+
+    // UI와 보스 데이터 연결 
+    private void ConnectBossData()
+    {
+        Boss.GetComponent<EnemyCharacterStatus>().InitUIConnect();
+    }
+}
