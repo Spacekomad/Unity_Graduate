@@ -1,0 +1,61 @@
+using Globals;
+using UnityEngine;
+
+public class HereticDodgeState : HereticSuperState
+{
+    private float _time;
+    private float _stepDistance = 10.0f;
+
+    public HereticDodgeState(Character_Heretic character, FiniteStateMachine machine) : base(character, machine) 
+    {
+        
+    }
+
+    public override void Enter()
+    {
+        base.Enter();
+        canTransition = false;
+
+        character.agent.enabled = false;
+
+        _time = 0.0f;
+        character.LookTarget();
+        character.animator.SetTrigger(AnimationParameters_Heretic.Dodge);
+        character.isInvincible = true;
+    }
+
+    public override void LogicUpdate()
+    {
+        base.LogicUpdate();
+#if UNITY_EDITOR
+        DebugUIManager.instance.debugText.text = this.ToString();
+#endif
+
+        _time += Time.deltaTime;
+
+        if (_time >= character.invincibleTime)
+        {
+            canTransition = true;
+            character.isInvincible = false;
+        }
+        if (character.triggerAnimationEnd)
+        {
+            character.DesiredActionComplete(); // 의사 수행 완료
+            machine.ChangeState(character.idleState);
+            return;
+        }
+
+    }
+
+    public override void PhysicsUpdate()
+    {
+        base.PhysicsUpdate();
+    }
+
+    public override void Exit()
+    {
+        base.Exit();
+        character.agent.enabled = true;
+        character.isInvincible = false;
+    }
+}

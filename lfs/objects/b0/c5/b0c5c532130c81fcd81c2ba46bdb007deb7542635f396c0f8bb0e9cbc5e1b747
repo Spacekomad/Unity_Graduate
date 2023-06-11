@@ -1,0 +1,111 @@
+using EnumTypes;
+using Globals;
+using UnityEngine;
+
+public class HereticSprintState : HereticSuperState
+{
+    public HereticSprintState(Character_Heretic character, FiniteStateMachine machine) : base(character, machine) 
+    {
+
+    }
+
+    public override void Enter()
+    {
+        base.Enter();
+        canTransition = true;
+        
+        character.agent.speed = character.sprintSpeed;
+        character.agent.isStopped = false;
+
+        character.animator.SetBool(AnimationParameters_Heretic.SprintClose, true);
+
+    }
+
+    public override void LogicUpdate()
+    {
+        base.LogicUpdate();
+#if UNITY_EDITOR
+        DebugUIManager.instance.debugText.text = this.ToString();
+#endif
+
+        if (character.desiredAction == FuzzyOutStates_Heretic.SprintClose) // 달려서 접근하길 원하면
+        {
+            // 가까울 때까지 달린다
+            if (character.GetXZDistanceToTarget() > character.closeRange)
+            {
+                character.agent.SetDestination(character.target.transform.position);
+                character.RotateToTarget();
+            }
+            else // 가까워졌으면
+            {
+                character.DesiredActionComplete(); // 의사 수행 완료
+                character.agent.isStopped = true;
+                character.MakeDecision(); // 의사 결정
+
+#if UNITY_EDITOR
+                Debug.Log("asd");
+# endif
+
+                // 의사에 따른 행동 결정
+                // 전이는 해당 행동 이후에 함
+                switch ((int)character.desiredAction)
+                {
+                    case (int)FuzzyOutStates_Heretic.None:
+#if UNITY_EDITOR
+                        Debug.LogError("Heretic's desired action is not set\n");
+#endif
+                        break;
+                    case (int)FuzzyOutStates_Heretic.Dodge: // 바로 닷지 해버리기
+                        machine.ChangeState(character.dodgeState);
+                        return;
+                    case (int)FuzzyOutStates_Heretic.SprintClose: // 다시 달려라
+                        machine.ChangeState(character.sprintState);
+                        return;
+                        // 아래는 공격을 원하는 경우
+                    case (int)FuzzyOutStates_Heretic.StrongAttack:
+                    case (int)FuzzyOutStates_Heretic.BasicAttack:
+                        // 대쉬 공격
+                        machine.ChangeState(character.sprintAttackState);
+                        return;
+                        // 아래는 현재 의사가 위를 제외한 나머지 행동인 경우 브레이크 모션 취하기
+                    default:
+                        character.animator.SetTrigger(AnimationParameters_Heretic.Break);
+                        break;
+                }
+                /*
+                 * 결국 대쉬 이후에 가능한 모션은
+                 * 1. 대쉬공격
+                 * 2. 대쉬 브레이크
+                 * 3. 닷지
+                 * 4. 피격 혹은 무력화 관련 모션
+                 * 네개가 끝임
+                 */
+            }
+        }
+        else // 브레이크를 걸었을 경우
+        {
+            if (character.triggerAnimationEnd) // 브레이크 끝나면 의사 초기화 후 idle로 전환
+            {
+                character.DesiredActionComplete(); // 의사 수행 완료
+                machine.ChangeState(character.idleState); // idle로 전환
+                return;
+            }
+        }
+
+        // Sprint attack 처리
+
+    }
+
+    public override void PhysicsUpdate()
+    {
+        base.PhysicsUpdate();
+    }
+
+    public override void Exit()
+    {
+        base.Exit();
+        character.agent.isStopped = true;
+        character.animator.SetBool(AnimationParameters_Heretic.SprintClose, false);
+        character.animator.SetBool(AnimationParameters_Heretic.Attack, false);
+    }
+}
