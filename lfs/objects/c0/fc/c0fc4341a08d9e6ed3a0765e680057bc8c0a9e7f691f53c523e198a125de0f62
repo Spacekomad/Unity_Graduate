@@ -1,0 +1,95 @@
+using EnumTypes;
+
+public class FuzzySystem_Heretic : FuzzySystem
+{
+    public FuzzySystem_Heretic() : base((int)FuzzyOutStates_Heretic.TotalNumOfStates) { }
+
+    protected override void SetMemberFunctions()
+    {
+        fuzzySets = new MembershipFunction[2][];
+        // Define Language Value of Language Variable "Distance"
+        fuzzySets[0] = new MembershipFunction[3];
+        fuzzySets[0][0] = new MF_Distance_Close();
+        fuzzySets[0][1] = new MF_Distance_Medium();
+        fuzzySets[0][2] = new MF_Distance_Far();
+
+        // Define Language Value of Language Variable "TargetHP"
+        fuzzySets[1] = new MembershipFunction[3];
+        fuzzySets[1][0] = new MF_TargetHP_Low();
+        fuzzySets[1][1] = new MF_TargetHP_Medium();
+        fuzzySets[1][2] = new MF_TargetHP_Lot();
+
+        inputNum = fuzzySets.GetLength(0);
+    }
+
+    protected override void SetRules()
+    {
+        // 거리가 가까우면
+        rules.Add(new FuzzyRule_Average((int)FuzzyOutStates_Heretic.Dodge));
+        rules[rules.Count - 1].antecedent.Add(fuzzySets[0][0]);
+
+        rules.Add(new FuzzyRule_Average((int)FuzzyOutStates_Heretic.BasicAttack));
+        rules[rules.Count - 1].antecedent.Add(fuzzySets[0][0]);
+
+        rules.Add(new FuzzyRule_Average((int)FuzzyOutStates_Heretic.StrongAttack));
+        rules[rules.Count - 1].antecedent.Add(fuzzySets[0][0]);
+
+        // 거리가 중간이면
+        rules.Add(new FuzzyRule_Average((int)FuzzyOutStates_Heretic.StepBack));
+        rules[rules.Count - 1].antecedent.Add(fuzzySets[0][1]);
+
+        rules.Add(new FuzzyRule_Average((int)FuzzyOutStates_Heretic.WalkClose));
+        rules[rules.Count - 1].antecedent.Add(fuzzySets[0][1]);
+
+        rules.Add(new FuzzyRule_Average((int)FuzzyOutStates_Heretic.BasicAttack));
+        rules[rules.Count - 1].antecedent.Add(fuzzySets[0][1]);
+
+        rules.Add(new FuzzyRule_Average((int)FuzzyOutStates_Heretic.StrongAttack));
+        rules[rules.Count - 1].antecedent.Add(fuzzySets[0][1]);
+
+        // 거리가 멀면
+        rules.Add(new FuzzyRule_Average((int)FuzzyOutStates_Heretic.StepBack));
+        rules[rules.Count - 1].antecedent.Add(fuzzySets[0][2]);
+
+        rules.Add(new FuzzyRule_Average((int)FuzzyOutStates_Heretic.Waiting));
+        rules[rules.Count - 1].antecedent.Add(fuzzySets[0][2]);
+
+        rules.Add(new FuzzyRule_Average((int)FuzzyOutStates_Heretic.RangedAttack));
+        rules[rules.Count - 1].antecedent.Add(fuzzySets[0][2]);
+
+        rules.Add(new FuzzyRule_Average((int)FuzzyOutStates_Heretic.WalkClose));
+        rules[rules.Count - 1].antecedent.Add(fuzzySets[0][2]);
+
+        rules.Add(new FuzzyRule_Average((int)FuzzyOutStates_Heretic.SprintClose));
+        rules[rules.Count - 1].antecedent.Add(fuzzySets[0][2]);
+
+        // 가까운데 체력이 적으면
+        rules.Add(new FuzzyRule_Average((int)FuzzyOutStates_Heretic.BasicAttack));
+        rules[rules.Count - 1].antecedent.Add(fuzzySets[0][0]);
+        rules[rules.Count - 1].antecedent.Add(fuzzySets[1][0]);
+
+        // 가까운데 체력이 많으면
+        rules.Add(new FuzzyRule_Average((int)FuzzyOutStates_Heretic.BasicAttack));
+        rules[rules.Count - 1].antecedent.Add(fuzzySets[0][0]);
+        rules[rules.Count - 1].antecedent.Add(fuzzySets[1][2]);
+
+        rules.Add(new FuzzyRule_Average((int)FuzzyOutStates_Heretic.StrongAttack));
+        rules[rules.Count - 1].antecedent.Add(fuzzySets[0][0]);
+        rules[rules.Count - 1].antecedent.Add(fuzzySets[1][2]);
+
+        // 거리가 중간인데 체력이 적으면
+        rules.Add(new FuzzyRule_Average((int)FuzzyOutStates_Heretic.BasicAttack));
+        rules[rules.Count - 1].antecedent.Add(fuzzySets[0][1]);
+        rules[rules.Count - 1].antecedent.Add(fuzzySets[1][0]);
+
+        // 거리가 중간인데 체력이 많으면
+        rules.Add(new FuzzyRule_Average((int)FuzzyOutStates_Heretic.StrongAttack));
+        rules[rules.Count - 1].antecedent.Add(fuzzySets[0][1]);
+        rules[rules.Count - 1].antecedent.Add(fuzzySets[1][2]);
+
+        // 먼데 체력이 없으면
+        rules.Add(new FuzzyRule_Average((int)FuzzyOutStates_Heretic.SprintClose));
+        rules[rules.Count - 1].antecedent.Add(fuzzySets[0][2]);
+        rules[rules.Count - 1].antecedent.Add(fuzzySets[1][0]);
+    }
+}

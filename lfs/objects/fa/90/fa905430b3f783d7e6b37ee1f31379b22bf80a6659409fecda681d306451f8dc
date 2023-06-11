@@ -1,0 +1,42 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class HealthPotion : Potion
+{
+    private bool _animationStart;
+    private float _recoveryAmount;
+
+    public HealthPotion(PlayerCharacter character, HealthPotionData potionData) : base(character)
+    {
+        _recoveryAmount = potionData.recoveryAmount;
+    }
+    public override void Init()
+    {
+        _animationStart = false;
+    }
+
+    
+    public override bool UseItem()
+    {
+        if (!_animationStart) 
+        {
+            character.animator.SetBool("Drink", true);
+            _animationStart = true;
+        }
+
+        if (character.itemEffectTrigger)
+        {
+            // È¸º¹
+            character.status.RecoverHP(_recoveryAmount);
+        }
+
+        if (character.justPlayedAnimation == EnumTypes.PlayerAnimation.Drink && character.isPlayingAnim == false) 
+        {
+            character.animator.SetBool("Drink", false);
+            return false;
+        }
+
+        return true;
+    }
+}
