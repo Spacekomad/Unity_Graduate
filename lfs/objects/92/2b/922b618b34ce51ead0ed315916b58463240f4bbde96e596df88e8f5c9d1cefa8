@@ -1,0 +1,95 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class BoidObjectWithCPU : BoidObject
+{
+    protected List<Transform> neighbors;
+
+    private LayerMask _boidLayer;
+
+    // Start is called before the first frame update
+    protected override void Start()
+    {
+        base.Start();
+
+        neighbors = new List<Transform>();
+        _boidLayer = LayerMask.GetMask("Boid");
+    }
+
+    protected virtual void FindNeighborWithOverlab(float radius)
+    {
+        neighbors.Clear();
+        Collider[] hit = Physics.OverlapSphere(transform.position, radius, _boidLayer);
+
+        if (hit.Length > 0) {
+            foreach (Collider neighbor in hit)
+            {
+                neighbors.Add(neighbor.transform);
+            }
+        }
+    }
+
+    protected override Vector3 FindCohesionVec()
+    {
+        FindNeighborWithOverlab(manager.cohesionRangeRadius);
+        if (neighbors.Count == 0)
+        {
+            return Vector3.zero;
+        }
+
+        Vector3 cohesionVec = Vector3.zero;
+
+        for (int i = 0; i < neighbors.Count; ++i)
+        {
+            cohesionVec += neighbors[i].position;
+        }
+
+        cohesionVec /= neighbors.Count;
+        cohesionVec -= transform.position;
+
+        return cohesionVec;
+    }
+
+    protected override Vector3 FindAlignmentVec()
+    {
+        FindNeighborWithOverlab(manager.alignmentRangeRadius);
+        if (neighbors.Count == 0)
+        {
+            return Vector3.zero;
+        }
+
+        Vector3 alignmentVec = Vector3.zero;
+
+        for (int i = 0; i < neighbors.Count; ++i)
+        {
+            alignmentVec += neighbors[i].GetComponent<BoidObjectWithCPU>().desiredDirection;
+        }
+
+        alignmentVec /= neighbors.Count;
+
+        return alignmentVec;
+    }
+
+    protected override Vector3 FindSeparationVec()
+    {
+        FindNeighborWithOverlab(manager.separationRangeRadius);
+        if (neighbors.Count == 0)
+        {
+            return Vector3.zero;
+        }
+
+        Vector3 totalSeparationVec = Vector3.zero;
+        Vector3 eachSeparationVec;
+        for (int i = 0; i < neighbors.Count; ++i)
+        {
+            //((dst * -1) + range) * separationVec.normalized
+            eachSeparationVec = transform.position - neighbors[i].position;
+            totalSeparationVec += (manager.separationRangeRadius - eachSeparationVec.magnitude) * eachSeparationVec.normalized;
+        }
+
+        //totalSeparationVec /= neighbors.Count;
+
+        return totalSeparationVec;
+    }
+}
