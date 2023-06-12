@@ -1,0 +1,113 @@
+using System;
+using UnityEngine;
+using UnityEngine.Pool;
+
+
+
+[Serializable]
+public abstract class BoidManager : MonoBehaviour
+{
+    [Header("Object Pooling Settings")]
+    public bool useObjectPool = false;
+    public int maxPoolSize = 50;
+
+    protected IObjectPool<BoidObject> pool;
+
+    [Space(10)]
+    [Header("Boid Spawn Settings")]
+    public GameObject boidPrefab;
+    [Range(10, 1000)]
+    public int maxBoidNum = 100;
+    public bool spwanBoidWithStart = true;
+    public Transform spawnTargetPosition;
+    [Range(2, 15000)]
+    public int boidSpawnNum = 100;
+    public float spawnRangeRadius = 30.0f;
+
+    [Header("Boid Settings")]
+    public Transform followTarget;
+    public float targetFollowWeight = 10.0f;
+
+    public float maxSpeed = 10.0f;
+    public float forwardSpeed = 5.0f;
+    public float maxRotateAnglePerSec = 60;
+    //public float rotationSmoothTime = 0.05f;
+    public float obstacleDetectionRange = 5.0f;
+
+    public float cohesionWeight = 1.0f;
+    public float cohesionRangeRadius = 15.0f;
+
+    public float alignmentWeight = 1.0f;
+    public float alignmentRangeRadius = 10.0f;
+
+    public float separationWeight = 0.25f;
+    public float separationRangeRadius = 5.0f;
+
+    protected virtual void Awake()
+    {
+        if(boidSpawnNum > maxBoidNum)
+        {
+            boidSpawnNum = maxBoidNum;
+        }
+
+        pool = new ObjectPool<BoidObject>(CreateBoidObject, OnGetBoidObject, OnReleaseBoidObject, OnDestroyBoidObject, maxSize:maxPoolSize);
+    }
+
+    // Start is called before the first frame update
+    protected virtual void Start()
+    {
+        if (spwanBoidWithStart)
+            SpawnBoids(boidSpawnNum);
+    }
+
+    public abstract void SpawnBoids(int num);
+
+    protected virtual void OnGetBoidObjectFromPool(BoidObject boid)
+    {
+
+    }
+    protected virtual void OnReleaseBoidObjectFromPool(BoidObject boid)
+    {
+
+    }
+    protected virtual void OnDestroyBoidObjectFromPool(BoidObject boid)
+    {
+
+    }
+
+    private BoidObject CreateBoidObject()
+    {
+        BoidObject boid = Instantiate(boidPrefab).GetComponentInChildren<BoidObject>();
+        boid.SetPool(pool);
+        return boid;
+    }
+
+    private void OnGetBoidObject(BoidObject boid)
+    {
+        boid.gameObject.SetActive(true);
+        boid.manager = this;
+        boid.transform.root.SetParent(transform);
+        OnGetBoidObjectFromPool(boid);
+    }
+
+    private void OnReleaseBoidObject(BoidObject boid)
+    {
+        boid.gameObject.SetActive(false);
+        OnReleaseBoidObjectFromPool(boid);
+    }
+
+    private void OnDestroyBoidObject(BoidObject boid)
+    {
+        OnDestroyBoidObjectFromPool(boid);
+        Destroy(boid.gameObject);
+    }
+
+    public BoidObject SpawnBoidObject(Transform target, Vector3 spawnPoint, Quaternion spawnRotation)
+    {
+        BoidObject boid = pool.Get();
+        boid.transform.position = spawnPoint;
+        boid.transform.rotation = spawnRotation;
+        boid.target = target;
+        return boid;
+    }
+}

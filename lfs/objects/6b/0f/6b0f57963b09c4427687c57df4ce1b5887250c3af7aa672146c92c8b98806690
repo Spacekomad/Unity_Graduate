@@ -1,0 +1,111 @@
+// Each #kernel tells which function to compile; you can have many kernels
+#pragma kernel BoidPharallel
+
+// Create a RenderTexture with enableRandomWrite flag and set it
+// with cs.SetTexture
+
+struct BoidStatus
+{
+	float3 position;
+	float3 velocity;
+};
+
+struct BoidDesiredDirectionParameter
+{
+	float3 cohesion;
+	float3 alignment;
+	float3 separation;
+};
+
+RWStructuredBuffer<BoidStatus> boidsStat;
+RWStructuredBuffer<BoidDesiredDirectionParameter> directionsParam;
+float cohesionRange;
+float alignmentRange;
+float separationRange;
+int boidsNum;
+
+float DistanceIn3D(float3 a, float3 b)
+{
+	return sqrt(pow(a.x - b.x, 2.0) + pow(a.y - b.y, 2.0) + pow(a.z - b.z, 2.0));
+}
+
+float3 NormalizedVector3(float3 vec)
+{
+	float len = length(vec);
+	if (len < 0.0001)
+	{
+		return float3(0, 0, 0);
+	}
+	else
+	{
+		return vec / len;
+	}
+}
+
+[numthreads(64, 1, 1)]
+void BoidPharallel(uint3 id : SV_DispatchThreadID)
+{
+	BoidStatus myStat = boidsStat[id.x];
+
+	float3 separationVector;
+	float distance = 0;
+	int countCohesion = 0;
+	int countAlignment = 0;
+	int countSeparation = 0;
+	int tmp, i, j;
+
+	if (boidsNum < 1)
+	{
+		return;
+	}
+
+	if ((int)id.x > (boidsNum * (boidsNum - 1) / 2) - 1)
+	{
+		return;
+	}
+
+	tmp = id.x % (boidsNum - 1);
+	i = id.x / (boidsNum - 1);
+	j = i + tmp;
+
+	if (tmp < i)
+	{
+		i = boidsNum - i;
+		j = boidsNum - tmp;
+	}
+
+	
+	distance = length(myStat.position - boidsStat[i].position);
+	
+	if (distance < cohesionRange)
+	{
+
+		InterlockedAdd(directionsParam[id.x].cohesion.x, boidsStat[i].position.x);
+		++countCohesion;
+	}
+	if (distance < alignmentRange)
+	{
+		directionsParam[id.x].alignment += boidsStat[i].velocity;
+		++countAlignment;
+	}
+	if (distance < separationRange)
+	{
+		separationVector = myStat.position - boidsStat[i].position;
+		directionsParam[id.x].separation += (separationRange - length(separationVector)) * NormalizedVector3(separationVector);
+		++countSeparation;
+	}
+	/*
+	if (countCohesion > 0)
+	{
+		directionsParam[id.x].cohesion /= countCohesion;
+	}
+	if (countAlignment > 0)
+	{
+		directionsParam[id.x].alignment /= countAlignment;
+	}
+	if (countSeparation > 0)
+	{
+		directionsParam[id.x].separation /= countSeparation;
+	}
+	*/
+}
