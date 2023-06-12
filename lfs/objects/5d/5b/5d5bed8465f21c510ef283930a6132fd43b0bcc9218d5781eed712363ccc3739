@@ -1,0 +1,103 @@
+using System.Collections;
+using System.Collections.Generic;
+using System.Threading;
+using UnityEngine;
+
+public class PlayerInput : MonoBehaviour
+{
+    //Singleton
+    public static PlayerInput instance { get { return _instance; } }
+    protected static PlayerInput _instance;
+    protected PlayerInput() { }
+
+    // Connect Input Binding
+    public InputBindingManager inputBindingManager;
+
+    public Vector2 move { get { return _move; } }
+    public bool jump { get { return _jump; } }
+    public bool sprint { get { return _sprint; } }
+    public float sprintGravity { get { return _sprintGravity; } }
+
+    [Header("Character Input Values")]
+    [SerializeField]
+    private Vector2 _move;
+    [SerializeField]
+    private bool _jump;
+    [SerializeField]
+    private bool _sprint;
+    [SerializeField]
+    private float _sprintGravity;
+
+    [Header("Movement Settings")]
+    public bool analogMovement;
+
+    [Header("Key Setting")]
+    public KeyCode lockOnKey = KeyCode.Q;
+    public KeyCode rollKey = KeyCode.Space;
+    public KeyCode attackKey = KeyCode.Mouse0;
+    public KeyCode skillKey = KeyCode.Mouse1;
+    public KeyCode changeWeaponKey = KeyCode.X;
+    public KeyCode useItemKey = KeyCode.R;
+    public KeyCode interactionKey = KeyCode.E;
+    public KeyCode keysetKey = KeyCode.Alpha1;
+    public KeyCode exitKey = KeyCode.Alpha2;
+
+    private void Awake()
+    {
+        //Singleton
+        if (null == instance)
+        {
+            _instance = this;
+            DontDestroyOnLoad(this.gameObject);
+        }
+        else
+        {
+            Destroy(this.gameObject);
+        }
+
+        // Input Binding
+        if (inputBindingManager == null)
+        {
+            inputBindingManager = GameObject.Find("Input Binding Manager").GetComponent<InputBindingManager>();
+        }
+        KeySetUpdate();
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        //OnMove
+        _move.x = Input.GetAxis("Horizontal");
+        _move.y = Input.GetAxis("Vertical");
+        //OnJump
+        _jump = Input.GetButton("Jump");
+        //OnSprint
+        _sprint = Input.GetButton("Sprint");
+        if (analogMovement)
+        {
+            _sprintGravity = Input.GetAxis("Sprint");
+        }
+        else
+        {
+            _sprintGravity = _sprint ? 1.0f : 0.0f;
+        }
+    }
+
+    public void KeySetUpdate()
+    {
+        inputBindingManager._binding.LoadFromFile();
+
+        inputBindingManager._binding.Bindings.TryGetValue(UserAction.LockOn, out lockOnKey);
+        inputBindingManager._binding.Bindings.TryGetValue(UserAction.Roll, out rollKey);
+        inputBindingManager._binding.Bindings.TryGetValue(UserAction.Attack, out attackKey);
+        inputBindingManager._binding.Bindings.TryGetValue(UserAction.Skill, out skillKey);
+        inputBindingManager._binding.Bindings.TryGetValue(UserAction.Change_Weapon, out changeWeaponKey);
+        inputBindingManager._binding.Bindings.TryGetValue(UserAction.Interaction, out interactionKey);
+        inputBindingManager._binding.Bindings.TryGetValue(UserAction.UI_Setting, out keysetKey);
+        inputBindingManager._binding.Bindings.TryGetValue(UserAction.UI_Exit, out exitKey);
+
+#if UNITY_EDITOR
+        Debug.Log("Update KeySetting");
+#endif
+    }
+}
