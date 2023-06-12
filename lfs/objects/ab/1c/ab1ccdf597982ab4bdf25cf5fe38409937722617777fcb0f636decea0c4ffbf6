@@ -1,0 +1,147 @@
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.Pool;
+
+public struct BoidStatus
+{
+    public Vector3 position;
+    public Vector3 velocity;
+}
+
+public struct BoidDesiredDirectionParameter
+{
+    public Vector3 cohesion;
+    public Vector3 alignment;
+    public Vector3 separation;
+}
+
+public class BoidManagerWithGPU : BoidManager
+{
+    public List<BoidObjectWithGPU> boids;
+
+    [Header("Compute Shader Settings")]
+    public ComputeShader boidComputeShader;
+    [HideInInspector]
+    public int boidKernel;
+    [HideInInspector]
+    public int boidsStatPropertyID;
+    [HideInInspector]
+    public int directionsParamPropertyID;
+    [HideInInspector]
+    public int cohesionRangePropertyID;
+    [HideInInspector]
+    public int alignmentRangePropertyID;
+    [HideInInspector]
+    public int separationRangePropertyID;
+    [HideInInspector]
+    public int boidsNumPropertyID;
+
+    public ComputeBuffer boidsStatBuffer;
+    public ComputeBuffer directionsParamBuffer;
+    public List<BoidStatus> boidsStat;
+    public BoidDesiredDirectionParameter[] directionsParam;
+
+    private int _vector3Size;
+
+    private BoidStatus _tmp;
+
+    protected override void Awake()
+    {
+        base.Awake();
+        boids = new List<BoidObjectWithGPU>(maxBoidNum);
+        boidsStat = new List<BoidStatus>(maxBoidNum);
+        directionsParam = new BoidDesiredDirectionParameter[maxBoidNum];
+    }
+
+    protected override void Start()
+    {
+        base.Start();
+
+        boidKernel = boidComputeShader.FindKernel("BoidPharallel");
+        boidsStatPropertyID = Shader.PropertyToID("boidsStat");
+        directionsParamPropertyID = Shader.PropertyToID("directionsParam");
+        cohesionRangePropertyID = Shader.PropertyToID("cohesionRange");
+        alignmentRangePropertyID = Shader.PropertyToID("alignmentRange");
+        separationRangePropertyID = Shader.PropertyToID("separationRange");
+        boidsNumPropertyID = Shader.PropertyToID("boidsNum");
+
+        _vector3Size = sizeof(float) * 3;
+        boidsStatBuffer = new ComputeBuffer(maxBoidNum, _vector3Size * 2);
+        directionsParamBuffer = new ComputeBuffer(maxBoidNum, _vector3Size * 3);
+    }
+
+    void Update()
+    {
+        if (boids.Count > 0)
+        {
+            boidsStat.Clear();
+            for (int i = 0; i < boids.Count; ++i)
+            {
+                _tmp.position = boids[i].transform.position;
+                _tmp.velocity = boids[i].desiredDirection;
+                boidsStat.Add(_tmp);
+            }
+            boidsStatBuffer.SetData(boidsStat);
+
+            boidComputeShader.SetBuffer(boidKernel, boidsStatPropertyID, boidsStatBuffer);
+            boidComputeShader.SetBuffer(boidKernel, directionsParamPropertyID, directionsParamBuffer);
+            boidComputeShader.SetFloat(cohesionRangePropertyID, cohesionRangeRadius);
+            boidComputeShader.SetFloat(alignmentRangePropertyID, alignmentRangeRadius);
+            boidComputeShader.SetFloat(separationRangePropertyID, separationRangeRadius);
+            boidComputeShader.SetInt(boidsNumPropertyID, boids.Count);
+
+            boidComputeShader.Dispatch(boidKernel, ((boids.Count - 1) / 64) + 1, 1, 1);
+
+            directionsParamBuffer.GetData(directionsParam);
+        }
+
+        for (int i = 0; i < boids.Count; ++i)
+        {
+            boids[i].desiredDirectionParameter = directionsParam[i];
+        }
+    }
+
+    protected override void OnGetBoidObjectFromPool(BoidObject boid)
+    {
+        BoidObjectWithGPU boidGPU = boid as BoidObjectWithGPU;
+        boidGPU.managerGPU = this;
+        boids.Add(boidGPU);
+    }
+    protected override void OnReleaseBoidObjectFromPool(BoidObject boid)
+    {
+        boids.Remove(boid as BoidObjectWithGPU);
+    }
+    protected override void OnDestroyBoidObjectFromPool(BoidObject boid)
+    {
+
+    }
+
+    public override void SpawnBoids(int num)
+    {
+        if (num < 1)
+        {
+            return;
+        }
+
+        for (int i = 0; i < num; ++i)
+        {
+            Vector3 randomPosition = Random.insideUnitSphere;
+            randomPosition *= spawnRangeRadius;
+
+            BoidObjectWithGPU spawnedObj = pool.Get() as BoidObjectWithGPU;
+            spawnedObj.transform.position = spawnTargetPosition.position + randomPosition;
+            spawnedObj.transform.rotation = Random.rotation;
+            spawnedObj.target = followTarget;
+
+            /*
+            GameObject spawnedObj = Instantiate(boidPrefab, spawnTargetPosition.position + randomPosition, Random.rotation);
+            spawnedObj.transform.SetParent(transform);
+            boids[i] = spawnedObj.GetComponent<BoidObjectWithGPU>();
+            boids[i].manager = this;
+            boids[i].managerGPU = this;
+            boids[i].ID = i;
+            */
+        }
+    }
+
+}
